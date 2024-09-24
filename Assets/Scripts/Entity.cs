@@ -56,3 +56,4 @@ public class Entity : MonoBehaviour
         Gizmos.DrawWireCube(transform.position - transform.up * castDistance, boxSize);
     }
 }
+//jjkljjk

@@ -3,19 +3,45 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HealthBar : MonoBehaviour
+
+public class Health : MonoBehaviour
 {
-    public Slider slider;
-    public Gradient gradient;
-    public Image fill;
-    // Start is called before the first frame update
-    public void SetMaxHealth(int health){
-        slider.maxValue = health;
-        slider.value = health;
-        fill.color = gradient.Evaluate(1f);
+    [Header("Entity Script Values")]
+    [SerializedField] public int maxHealth = 100; // Maximum health value
+    [SerializedField] private int currentHealth;   // Current health value
+
+    void Start()
+    {
+        currentHealth = maxHealth; // Set current health to max at the start
     }
-    public void SetHealth(int health){
-        slider.value = health;
-        fill.color = gradient.Evaluate(slider.normalizedValue);
+
+    // Method to take damage
+     public void TakeDamage(int amount)
+    {
+        currentHealth -= amount; // Subtract damage from current health
+        if (currentHealth < 0)
+        {
+            currentHealth = 0; // Prevent negative health
+        }
+
+        Debug.Log($"Took damage: {amount}. Current health: {currentHealth}");
+
+        if (currentHealth == 0)
+        {
+            Die(); // Call Die method if health reaches zero
+        }
     }
+
+    // Method to heal
+    public void Heal(int amount)
+    {
+        currentHealth += amount; // Add healing amount to current health
+        if (currentHealth > maxHealth)
+        {
+            currentHealth = maxHealth; // Prevent exceeding max health
+        }
+
+        Debug.Log($"Healed: {amount}. Current health: {currentHealth}");
+    }
+    
 }

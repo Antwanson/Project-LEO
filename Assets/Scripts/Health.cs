@@ -12,7 +12,7 @@ public class Health : MonoBehaviour
 
     void Start()
     {
-        currentHealth = maxHealth; // Set current health to max at the start
+        currentHealth = maxHealth; // Set current health to max at the start meow
     }
 
     // Method to take damage

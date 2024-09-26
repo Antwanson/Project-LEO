@@ -7,8 +7,8 @@ using UnityEngine.UI;
 public class Health : MonoBehaviour
 {
     [Header("Entity Script Values")]
-    [SerializedField] public int maxHealth = 100; // Maximum health value
-    [SerializedField] private int currentHealth;   // Current health value
+    [SerializeField] public int maxHealth = 100; // Maximum health value
+    [SerializeField] private int currentHealth;   // Current health value
 
     void Start()
     {

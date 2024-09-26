@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
-public class Health : MonoBehaviour
+public class EntityHealth : MonoBehaviour
 {
     [Header("Entity Script Values")]
     [SerializeField] public int maxHealth = 100; // Maximum health value
@@ -12,7 +12,7 @@ public class Health : MonoBehaviour
 
     void Start()
     {
-        currentHealth = maxHealth; // Set current health to max at the start meow
+        currentHealth = maxHealth; // Set current health to max at the start
     }
 
     // Method to take damage
@@ -26,10 +26,6 @@ public class Health : MonoBehaviour
 
         Debug.Log($"Took damage: {amount}. Current health: {currentHealth}");
 
-        if (currentHealth == 0)
-        {
-            Die(); // Call Die method if health reaches zero
-        }
     }
 
     // Method to heal

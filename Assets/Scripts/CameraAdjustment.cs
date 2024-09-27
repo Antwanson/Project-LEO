@@ -24,15 +24,21 @@ public class CameraAdjustment : MonoBehaviour
         m_MainCamera = Camera.main;
         m_MainCamera.enabled = true;
 
-        UpdateLimits();
-        SetCamera();
+        InitializeLimits();
+
+        if (GameObject.FindGameObjectsWithTag("Player") != null){
+            UpdateLimits();
+            SetCamera();
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        UpdateLimits();
-        UpdateCamera();
+        if (GameObject.FindGameObjectsWithTag("Player") != null){
+            UpdateLimits();
+            SetCamera();
+        }
     }
 
     // Floats can't be null, so I'm using a random (the first) player to initialize them
@@ -48,7 +54,6 @@ public class CameraAdjustment : MonoBehaviour
     // Updates the limit variables to get the new camera center and size needed to display all players.
     void UpdateLimits()
     {
-        InitializeLimits();
         playerArray = GameObject.FindGameObjectsWithTag("Player");
 
         foreach (GameObject player in playerArray) // Compares limits to all player positions

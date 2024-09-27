@@ -83,8 +83,8 @@ public class CameraAdjustment : MonoBehaviour
         float xMinimumZoom = Mathf.Ceil(xDistance / 4);
         float yMinimumZoom = Mathf.Ceil(yDistance * 2 / 3);
         
-        if (Mathf.Max(xMinimumZoom, yMinimumZoom) < minimumZoom){
-            yCenter += Mathf.Max(xMinimumZoom, yMinimumZoom) / 2;
+        if (yDistance <= 5f){
+            yCenter += 3f / (1 + yDistance);
         }
 
         Vector3 center = new Vector3(xCenter, yCenter, -1f);

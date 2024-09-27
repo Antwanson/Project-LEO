@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -20,21 +21,11 @@ public class CameraAdjustment : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        playerArray = GameObject.FindGameObjectsWithTag("Player");
-
         m_MainCamera = Camera.main;
         m_MainCamera.enabled = true;
 
         UpdateLimits();
         SetCamera();
-    }
-
-    private void OnPlayerJoinedMessage() {
-        playerArray = GameObject.FindGameObjectsWithTag("Player");
-    }
-
-    private void OnPlayerLeftMessage() {
-        playerArray = GameObject.FindGameObjectsWithTag("Player");
     }
 
     // Update is called once per frame
@@ -58,6 +49,7 @@ public class CameraAdjustment : MonoBehaviour
     void UpdateLimits()
     {
         InitializeLimits();
+        playerArray = GameObject.FindGameObjectsWithTag("Player");
 
         foreach (GameObject player in playerArray) // Compares limits to all player positions
         {
@@ -88,15 +80,14 @@ public class CameraAdjustment : MonoBehaviour
         float xDistance = Mathf.Abs(leftLimit - rightLimit);
         float yDistance = Mathf.Abs(downLimit - upLimit);
 
-        if (yDistance <= 3f)
-        {
-            yDistance += 4f;
+        float xMinimumZoom = Mathf.Ceil(xDistance / 4);
+        float yMinimumZoom = Mathf.Ceil(yDistance * 2 / 3);
+        
+        if (Mathf.Max(xMinimumZoom, yMinimumZoom) < minimumZoom){
+            yCenter += Mathf.Max(xMinimumZoom, yMinimumZoom) / 2;
         }
 
         Vector3 center = new Vector3(xCenter, yCenter, -1f);
-
-        float xMinimumZoom = Mathf.Ceil(xDistance / 4);
-        float yMinimumZoom = Mathf.Ceil(yDistance * 2 / 3);
 
         Camera.main.transform.position = center;
 
@@ -125,16 +116,14 @@ public class CameraAdjustment : MonoBehaviour
         float xDistance = Mathf.Abs(leftLimit - rightLimit);
         float yDistance = Mathf.Abs(downLimit - upLimit);
 
-        // This is so if all players are around the same y-value, the camera shifts upwards because player movement tends
-        // to favor up than down for better visibility.
-        if (yDistance <= 3f){
-            yDistance += 4f;
+        float xMinimumZoom = Mathf.Ceil(xDistance / 4);
+        float yMinimumZoom = Mathf.Ceil(yDistance * 2 / 3);
+        
+        if (yDistance <= 5f){
+            yCenter += 3f / (1 + yDistance);
         }
 
         Vector3 center = new Vector3(xCenter, yCenter, -1f);
-
-        float xMinimumZoom = Mathf.Ceil(xDistance / 4);
-        float yMinimumZoom = Mathf.Ceil(yDistance * 2 / 3);
 
         Camera.main.transform.position = center;
 

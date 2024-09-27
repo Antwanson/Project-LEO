@@ -33,6 +33,10 @@ public class CameraAdjustment : MonoBehaviour
         playerArray = GameObject.FindGameObjectsWithTag("Player");
     }
 
+    private void OnPlayerLeftMessage() {
+        playerArray = GameObject.FindGameObjectsWithTag("Player");
+    }
+
     // Update is called once per frame
     void Update()
     {

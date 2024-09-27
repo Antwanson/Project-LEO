@@ -11,6 +11,7 @@ public class CameraAdjustment : MonoBehaviour
     protected float rightLimit;
 
     protected GameObject[] playerArray = null;
+
     protected Camera m_MainCamera;
     [SerializeField] protected float minimumZoom = 7f;
 
@@ -19,25 +20,24 @@ public class CameraAdjustment : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        splitScreenBool = GameObject.Find("PlayerInputManager").GetComponent<PlayerInputManager>().splitScreen;
-        if (!splitScreenBool){
-            playerArray = GameObject.FindGameObjectsWithTag("Player");
+        playerArray = GameObject.FindGameObjectsWithTag("Player");
 
-            m_MainCamera = Camera.main;
-            m_MainCamera.enabled = true;
+        m_MainCamera = Camera.main;
+        m_MainCamera.enabled = true;
 
-            UpdateLimits();
-            SetCamera();
-        }
+        UpdateLimits();
+        SetCamera();
+    }
+
+    private void OnPlayerJoinedMessage() {
+        playerArray = GameObject.FindGameObjectsWithTag("Player");
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!splitScreenBool){
-            UpdateLimits();
-            UpdateCamera();
-        }
+        UpdateLimits();
+        UpdateCamera();
     }
 
     // Floats can't be null, so I'm using a random (the first) player to initialize them

@@ -26,7 +26,7 @@ public class CameraAdjustment : MonoBehaviour
 
         InitializeLimits();
 
-        if (GameObject.FindGameObjectsWithTag("Player") != null){
+        if (GameObject.FindGameObjectsWithTag("Player") != null && GameObject.FindGameObjectsWithTag("Player").Length != 0){
             UpdateLimits();
             SetCamera();
         }
@@ -35,7 +35,8 @@ public class CameraAdjustment : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GameObject.FindGameObjectsWithTag("Player") != null){
+        if (GameObject.FindGameObjectsWithTag("Player") != null && GameObject.FindGameObjectsWithTag("Player").Length != 0){
+            InitializeLimits();
             UpdateLimits();
             SetCamera();
         }
@@ -55,7 +56,7 @@ public class CameraAdjustment : MonoBehaviour
     void UpdateLimits()
     {
         playerArray = GameObject.FindGameObjectsWithTag("Player");
-
+        
         foreach (GameObject player in playerArray) // Compares limits to all player positions
         {
             if (player.transform.position.x < leftLimit){
@@ -87,10 +88,6 @@ public class CameraAdjustment : MonoBehaviour
 
         float xMinimumZoom = Mathf.Ceil(xDistance / 4);
         float yMinimumZoom = Mathf.Ceil(yDistance * 2 / 3);
-        
-        if (yDistance <= 5f){
-            yCenter += 3f / (1 + yDistance);
-        }
 
         Vector3 center = new Vector3(xCenter, yCenter, -1f);
 

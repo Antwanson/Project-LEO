@@ -136,6 +136,34 @@ public partial class @CharacterControls: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 }
             ]
+        },
+        {
+            ""name"": ""Ui"",
+            ""id"": ""368ed9bc-e3c2-4d34-a826-ca9c681875b6"",
+            ""actions"": [
+                {
+                    ""name"": ""Cursor"",
+                    ""type"": ""Button"",
+                    ""id"": ""e8024e3a-12bb-4ab7-82e3-3d2031f306f0"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""cf4642d9-f425-4fb5-8477-2707cf805b37"",
+                    ""path"": ""<Gamepad>/leftStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Player1"",
+                    ""action"": ""Cursor"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -161,6 +189,9 @@ public partial class @CharacterControls: IInputActionCollection2, IDisposable
         m_BaseCombat = asset.FindActionMap("BaseCombat", throwIfNotFound: true);
         m_BaseCombat_Jump = m_BaseCombat.FindAction("Jump", throwIfNotFound: true);
         m_BaseCombat_Movement = m_BaseCombat.FindAction("Movement", throwIfNotFound: true);
+        // Ui
+        m_Ui = asset.FindActionMap("Ui", throwIfNotFound: true);
+        m_Ui_Cursor = m_Ui.FindAction("Cursor", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -272,6 +303,52 @@ public partial class @CharacterControls: IInputActionCollection2, IDisposable
         }
     }
     public BaseCombatActions @BaseCombat => new BaseCombatActions(this);
+
+    // Ui
+    private readonly InputActionMap m_Ui;
+    private List<IUiActions> m_UiActionsCallbackInterfaces = new List<IUiActions>();
+    private readonly InputAction m_Ui_Cursor;
+    public struct UiActions
+    {
+        private @CharacterControls m_Wrapper;
+        public UiActions(@CharacterControls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Cursor => m_Wrapper.m_Ui_Cursor;
+        public InputActionMap Get() { return m_Wrapper.m_Ui; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(UiActions set) { return set.Get(); }
+        public void AddCallbacks(IUiActions instance)
+        {
+            if (instance == null || m_Wrapper.m_UiActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_UiActionsCallbackInterfaces.Add(instance);
+            @Cursor.started += instance.OnCursor;
+            @Cursor.performed += instance.OnCursor;
+            @Cursor.canceled += instance.OnCursor;
+        }
+
+        private void UnregisterCallbacks(IUiActions instance)
+        {
+            @Cursor.started -= instance.OnCursor;
+            @Cursor.performed -= instance.OnCursor;
+            @Cursor.canceled -= instance.OnCursor;
+        }
+
+        public void RemoveCallbacks(IUiActions instance)
+        {
+            if (m_Wrapper.m_UiActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IUiActions instance)
+        {
+            foreach (var item in m_Wrapper.m_UiActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_UiActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public UiActions @Ui => new UiActions(this);
     private int m_Player1SchemeIndex = -1;
     public InputControlScheme Player1Scheme
     {
@@ -285,5 +362,9 @@ public partial class @CharacterControls: IInputActionCollection2, IDisposable
     {
         void OnJump(InputAction.CallbackContext context);
         void OnMovement(InputAction.CallbackContext context);
+    }
+    public interface IUiActions
+    {
+        void OnCursor(InputAction.CallbackContext context);
     }
 }

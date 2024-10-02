@@ -1,0 +1,73 @@
+{
+    "name": "InputSystem",
+    "maps": [
+        {
+            "name": "UI",
+            "id": "c3a2a183-8d12-4eab-88b1-e74f3464264c",
+            "actions": [
+                {
+                    "name": "New action",
+                    "type": "Button",
+                    "id": "21ee10de-5a57-4fa3-8029-c16cc7ee191a",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "095dd394-ff20-48b8-90c3-7df6c2ec6ca5",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "New action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Player",
+            "id": "ca08a8c2-0a23-40f7-ac3c-0ef26ab6fba6",
+            "actions": [
+                {
+                    "name": "Jump",
+                    "type": "Button",
+                    "id": "bbd6a46d-7117-4f85-a8a6-3986b2b4c987",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "69c413d8-129c-4596-b7d1-aae8711aa0ac",
+                    "path": "<XInputController>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d6fc125b-9144-40b1-aaeb-db96ae859e34",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

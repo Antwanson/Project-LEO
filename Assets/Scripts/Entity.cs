@@ -14,8 +14,6 @@ public class Entity : MonoBehaviour
 
     // common attributes
     [Header("Common Attributes")]
-    [SerializeField] protected int health = 100;
-    [SerializeField] protected int maxHealth = 100;
     [SerializeField] protected int damage = 10;
     [SerializeField] protected int speed = 10;
     [SerializeField] protected int jumpPower = 10;

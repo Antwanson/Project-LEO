@@ -11,6 +11,7 @@ public class Entity : MonoBehaviour
 {
     
     protected Rigidbody2D rb;
+    protected EntityHealth health;
 
     // common attributes
     [Header("Common Attributes")]
@@ -30,12 +31,13 @@ public class Entity : MonoBehaviour
     protected virtual void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        health = GetComponent<EntityHealth>();
     }
 
     // Update is called once per frame
     protected virtual void Update()
     {
-        
+        health.TakeDamage(10); // TODO: Get rid of this call to TakeDamage
     }
 
     protected virtual void FixedUpdate()

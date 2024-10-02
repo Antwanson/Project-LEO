@@ -55,5 +55,10 @@ public class Entity : MonoBehaviour
     void OnDrawGizmos(){
         Gizmos.DrawWireCube(transform.position - transform.up * castDistance, boxSize);
     }
+    // method to take damage
+
+    // method to get current health
+
+    // method to kill entity
+
 }
-//jjkljjk

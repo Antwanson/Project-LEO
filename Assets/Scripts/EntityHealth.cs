@@ -39,5 +39,8 @@ public class EntityHealth : MonoBehaviour
 
         Debug.Log($"Healed: {amount}. Current health: {currentHealth}");
     }
+
+    // Method to get current health
+    
     
 }

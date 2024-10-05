@@ -7,16 +7,16 @@ using UnityEngine.UI;
 public class EntityHealth : MonoBehaviour
 {
     [Header("Entity Script Values")]
-    [SerializeField] public int maxHealth = 100; // Maximum health value
-    [SerializeField] private int currentHealth;   // Current health value
+    [SerializeField] protected int maxHealth = 100; // Maximum health value
+    [SerializeField] protected int currentHealth = 100;   // Current health value
 
     void Start()
     {
-        currentHealth = maxHealth; // Set current health to max at the start
+        
     }
 
     // Method to take damage
-     public void TakeDamage(int amount)
+     public void takeDamage(int amount)
     {
         currentHealth -= amount; // Subtract damage from current health
         if (currentHealth < 0)
@@ -26,6 +26,14 @@ public class EntityHealth : MonoBehaviour
 
         Debug.Log($"Took damage: {amount}. Current health: {currentHealth}");
 
+    }
+
+    public int getHP(){
+        return currentHealth;
+    }
+
+    public int getMaxHP(){
+        return maxHealth;
     }
 
     // Method to heal

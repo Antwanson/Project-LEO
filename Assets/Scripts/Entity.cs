@@ -37,7 +37,10 @@ public class Entity : MonoBehaviour
     // Update is called once per frame
     protected virtual void Update()
     {
-        health.TakeDamage(10); // TODO: Get rid of this call to TakeDamage
+        takeDamage(1, Vector2.zero); 
+        if(health.getHP() == 0){
+            kill();
+        }
     }
 
     protected virtual void FixedUpdate()
@@ -55,10 +58,14 @@ public class Entity : MonoBehaviour
     void OnDrawGizmos(){
         Gizmos.DrawWireCube(transform.position - transform.up * castDistance, boxSize);
     }
-    // method to take damage
+    public void takeDamage(int damage, Vector2 knockback){//TODO: ADD VARIABLE FOR PLAYER REFERENCE
+        health.takeDamage(damage);
+        rb.AddForce(knockback, ForceMode2D.Impulse);
+    }
 
-    // method to get current health
-
-    // method to kill entity
-
+    public void kill(){
+        Destroy(gameObject);
+    }
+    
 }
+//jjkljjk

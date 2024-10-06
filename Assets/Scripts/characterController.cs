@@ -6,12 +6,14 @@ using UnityEngine.InputSystem;
 using UnityEngine;
 using UnityEditor.MPE;
 using Unity.Collections;
+using System;
 
 
 public class characterController : Entity
 {
     float xDir = 0;
     protected CharacterControls playerControls;
+
     // Start is called before the first frame update
     protected override void Start()
     {

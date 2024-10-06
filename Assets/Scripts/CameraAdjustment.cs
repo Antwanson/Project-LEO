@@ -4,6 +4,8 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+// Coded by Jacob
+
 public class CameraAdjustment : MonoBehaviour
 {
     protected float upLimit;

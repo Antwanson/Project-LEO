@@ -143,12 +143,12 @@ public partial class @CharacterControls: IInputActionCollection2, IDisposable
             ""actions"": [
                 {
                     ""name"": ""Cursor"",
-                    ""type"": ""Button"",
+                    ""type"": ""Value"",
                     ""id"": ""e8024e3a-12bb-4ab7-82e3-3d2031f306f0"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """",
-                    ""initialStateCheck"": false
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [

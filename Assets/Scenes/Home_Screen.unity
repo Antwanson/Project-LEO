@@ -844,6 +844,8 @@ GameObject:
   - component: {fileID: 377662577}
   - component: {fileID: 377662579}
   - component: {fileID: 377662578}
+  - component: {fileID: 377662581}
+  - component: {fileID: 377662580}
   m_Layer: 5
   m_Name: VirtualMouse
   m_TagString: Untagged
@@ -908,6 +910,48 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 377662576}
   m_CullTransparentMesh: 1
+--- !u!114 &377662580
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 377662576}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: fe91eaad1c5ad344aa0b7326714b6553, type: 3}
+  m_NotificationBehavior: 0
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents: []
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: 368ed9bc-e3c2-4d34-a826-ca9c681875b6
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
+--- !u!114 &377662581
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 377662576}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d794d1984640e9346a393566fa6b4587, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &386622027
 GameObject:
   m_ObjectHideFlags: 0
@@ -2973,6 +3017,7 @@ GameObject:
   - component: {fileID: 1111853743}
   - component: {fileID: 1111853745}
   - component: {fileID: 1111853744}
+  - component: {fileID: 1111853746}
   m_Layer: 5
   m_Name: BackOverlay
   m_TagString: Untagged
@@ -3037,6 +3082,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1111853742}
   m_CullTransparentMesh: 1
+--- !u!114 &1111853746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1111853742}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86db812c59c398f45bb779228e07e031, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1112333037
 GameObject:
   m_ObjectHideFlags: 0

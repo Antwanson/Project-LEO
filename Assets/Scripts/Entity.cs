@@ -11,11 +11,10 @@ public class Entity : MonoBehaviour
 {
     
     protected Rigidbody2D rb;
+    protected EntityHealth health;
 
     // common attributes
     [Header("Common Attributes")]
-    [SerializeField] protected int health = 100;
-    [SerializeField] protected int maxHealth = 100;
     [SerializeField] protected int damage = 10;
     [SerializeField] protected int speed = 10;
     [SerializeField] protected int jumpPower = 10;
@@ -32,12 +31,16 @@ public class Entity : MonoBehaviour
     protected virtual void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        health = GetComponent<EntityHealth>();
     }
 
     // Update is called once per frame
     protected virtual void Update()
     {
-        
+        takeDamage(1, Vector2.zero); 
+        if(health.getHP() == 0){
+            kill();
+        }
     }
 
     protected virtual void FixedUpdate()
@@ -55,4 +58,14 @@ public class Entity : MonoBehaviour
     void OnDrawGizmos(){
         Gizmos.DrawWireCube(transform.position - transform.up * castDistance, boxSize);
     }
+    public void takeDamage(int damage, Vector2 knockback){//TODO: ADD VARIABLE FOR PLAYER REFERENCE
+        health.takeDamage(damage);
+        rb.AddForce(knockback, ForceMode2D.Impulse);
+    }
+
+    public void kill(){
+        Destroy(gameObject);
+    }
+    
 }
+//jjkljjk

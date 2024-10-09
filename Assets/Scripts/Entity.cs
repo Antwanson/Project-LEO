@@ -37,7 +37,7 @@ public class Entity : MonoBehaviour
     // Update is called once per frame
     protected virtual void Update()
     {
-        takeDamage(1, Vector2.zero); 
+        
         if(health.getHP() == 0){
             kill();
         }
@@ -45,7 +45,7 @@ public class Entity : MonoBehaviour
 
     protected virtual void FixedUpdate()
     {
-        
+        takeDamage(1, Vector2.zero); 
     }
     // checks if grounded
     public bool isGrounded(){

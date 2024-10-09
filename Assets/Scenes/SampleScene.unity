@@ -514,8 +514,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1040011f88eb02a439a83be7ec80be0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 20000
-  currentHealth: 20000
+  maxHealth: 2000
+  currentHealth: 2000
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -2723,8 +2723,8 @@ SceneRoots:
   m_Roots:
   - {fileID: 519420032}
   - {fileID: 1550806577}
-  - {fileID: 1849531796253433233}
   - {fileID: 788284513}
   - {fileID: 1917903071}
   - {fileID: 589136423}
   - {fileID: 1906898101}
+  - {fileID: 229084579}

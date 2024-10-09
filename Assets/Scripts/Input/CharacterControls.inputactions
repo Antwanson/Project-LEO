@@ -114,6 +114,34 @@
                     "isPartOfComposite": true
                 }
             ]
+        },
+        {
+            "name": "Ui",
+            "id": "368ed9bc-e3c2-4d34-a826-ca9c681875b6",
+            "actions": [
+                {
+                    "name": "Cursor",
+                    "type": "Value",
+                    "id": "e8024e3a-12bb-4ab7-82e3-3d2031f306f0",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "cf4642d9-f425-4fb5-8477-2707cf805b37",
+                    "path": "<Gamepad>/leftStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Player1",
+                    "action": "Cursor",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": [

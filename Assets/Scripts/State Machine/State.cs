@@ -18,10 +18,10 @@ public abstract class State : MonoBehaviour
     protected Animator animator;
     protected bool grounded;
 
-    public virtual void Enter() { }
-    public virtual void Do() { }
-    public virtual void FixedDo() { }
-    public virtual void Exit() { }
+    public virtual void Enter() { }//at start of state
+    public virtual void Do() { }//continuously throughout state
+    public virtual void FixedDo() { }//
+    public virtual void Exit() { }//at end of state
 
     public void SetUp(Rigidbody2D _rb, Animator _animator, StateController _controller, characterController _character)
     {

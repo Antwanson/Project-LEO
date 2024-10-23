@@ -48,4 +48,7 @@ public class characterController : Entity
         }
         //Debug.Log("Direction: " + xDir);
     }
+    private void OnDeviceLost(){
+        Debug.Log("Cursor Lost");
+    }
 }

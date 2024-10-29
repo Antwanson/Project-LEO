@@ -3,11 +3,18 @@ using UnityEngine;
 
 public class UIPolygonMove : MonoBehaviour
 {
-    void Start()
+    void OnEnable()
     {
         foreach (RectTransform child in transform)
         {
             StartCoroutine(UpdateChildPos(child));
+        }
+    }
+    private void OnDisable()
+    {
+        foreach (RectTransform child in transform)
+        {
+            StopCoroutine(UpdateChildPos(child));
         }
     }
     IEnumerator UpdateChildPos(RectTransform child)

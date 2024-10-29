@@ -6,7 +6,7 @@ public class AirState : State
 {
     public override void Enter()
     {
-        Debug.Log("Jump");
+        Debug.Log("Falling");
     }
     public override void Do()
     {

@@ -2,20 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WalkState : State
+public class DodgeState : State
 {
     public override void Enter()
     {
-        Debug.Log("Walk");
+        Debug.Log("Dodge");
         //Animator.Play(anim.name);
+
+        //move character back or make immune from hit idk
     }
     public override void Do()
     {
-        if (character.xDir == 0)
-            Exit();
+
     }
     public override void Exit()
     {
-        Debug.Log("exit walk state");
+        Debug.Log("exit dodge state");
     }
 }

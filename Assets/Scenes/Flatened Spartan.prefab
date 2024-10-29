@@ -583,4 +583,4 @@ MonoBehaviour:
   dodgeState: {fileID: 4696338880018920751}
   character: {fileID: 5119628973930995514}
   animator: {fileID: 0}
-  rb: {fileID: 0}
+  rb: {fileID: 8517115971482755357}

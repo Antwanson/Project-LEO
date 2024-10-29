@@ -46,7 +46,7 @@ public class StateController : MonoBehaviour
         {
             machine.Set(attackState);
         }
-        else if (Input.GetKeyDown(KeyCode.Space)/*|| (!character.isGrounded() && character.y < <apex of jump>)*/)    //jump state
+        else if (Input.GetKeyDown(KeyCode.Space)|| (!character.isGrounded() && rb.velocity.y > 0))    //jump state
         {
             machine.Set(jumpState);
         }

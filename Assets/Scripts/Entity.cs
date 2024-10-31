@@ -13,6 +13,8 @@ public class Entity : MonoBehaviour
     protected Rigidbody2D rb;
     protected EntityHealth health;
 
+    protected EntityFavor favor;
+
     // common attributes
     [Header("Common Attributes")]
     [SerializeField] protected int damage = 10;
@@ -32,6 +34,8 @@ public class Entity : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         health = GetComponent<EntityHealth>();
+        favor = GetComponent<EntityFavor>();
+        
     }
 
     // Update is called once per frame
@@ -47,7 +51,11 @@ public class Entity : MonoBehaviour
     {
         //takeDamage(1, Vector2.zero, gameObject); 
         Debug.Log(takeDamage(1, Vector2.zero, gameObject));
+        
+
+        
     }
+    
     // checks if grounded
     public bool isGrounded(){
         if(Physics2D.BoxCast(transform.position, boxSize, 0, -transform.up, castDistance, groundLayer)){

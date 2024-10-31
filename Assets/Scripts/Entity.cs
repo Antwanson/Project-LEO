@@ -70,6 +70,7 @@ public class Entity : MonoBehaviour
     public int takeDamage(int damage, Vector2 knockback, GameObject damageDealer){//TODO: ADD VARIABLE FOR PLAYER REFERENCE
         health.takeDamage(damage);
         rb.AddForce(knockback, ForceMode2D.Impulse);
+        favor.takeDamage(damage);
         return damage;
     }
 

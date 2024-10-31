@@ -45,7 +45,8 @@ public class Entity : MonoBehaviour
 
     protected virtual void FixedUpdate()
     {
-        takeDamage(1, Vector2.zero); 
+        //takeDamage(1, Vector2.zero, gameObject); 
+        Debug.Log(takeDamage(1, Vector2.zero, gameObject));
     }
     // checks if grounded
     public bool isGrounded(){
@@ -58,9 +59,10 @@ public class Entity : MonoBehaviour
     void OnDrawGizmos(){
         Gizmos.DrawWireCube(transform.position - transform.up * castDistance, boxSize);
     }
-    public void takeDamage(int damage, Vector2 knockback){//TODO: ADD VARIABLE FOR PLAYER REFERENCE
+    public int takeDamage(int damage, Vector2 knockback, GameObject damageDealer){//TODO: ADD VARIABLE FOR PLAYER REFERENCE
         health.takeDamage(damage);
         rb.AddForce(knockback, ForceMode2D.Impulse);
+        return damage;
     }
 
     public void kill(){

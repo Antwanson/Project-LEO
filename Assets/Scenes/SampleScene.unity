@@ -943,6 +943,7 @@ MonoBehaviour:
   prefab: {fileID: 9160874986982791390, guid: 9ee919b15faff314cb732277a644507b, type: 3}
   playerObjects: []
   playerActionMap: BaseCombat
+  allowLateJoin: 0
 --- !u!4 &1094606631
 Transform:
   m_ObjectHideFlags: 0

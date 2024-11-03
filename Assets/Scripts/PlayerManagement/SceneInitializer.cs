@@ -11,6 +11,7 @@ public class SceneInitializer : MonoBehaviour
     public GameObject[] playerObjects;
 
     public String playerActionMap = "Ui";
+    public Boolean allowLateJoin = true;
     void Start()
     {
         //instantiating the prefab at the center of the screen
@@ -40,6 +41,9 @@ public class SceneInitializer : MonoBehaviour
 
 
     public GameObject InstantiatePlayerInScene(){
+        if(allowLateJoin == false){
+            return null;
+        }
         if (prefab != null)
         {
             Vector3 screenCenter = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width / 2, Screen.height / 2, 0));

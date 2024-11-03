@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 5215137422940006323}
   - component: {fileID: 7962308037175473729}
   - component: {fileID: 8350390772816051994}
-  - component: {fileID: 8461823120308386137}
   m_Layer: 5
   m_Name: VirtualMouse
   m_TagString: Untagged
@@ -92,33 +91,3 @@ MonoBehaviour:
   rectTransform: {fileID: 0}
   transformPosition: {x: 0, y: 0}
   puckSpeedMultiplier: 10
---- !u!114 &8461823120308386137
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4904901936808233018}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: fe91eaad1c5ad344aa0b7326714b6553, type: 3}
-  m_NotificationBehavior: 0
-  m_UIInputModule: {fileID: 0}
-  m_DeviceLostEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_DeviceRegainedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ControlsChangedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ActionEvents: []
-  m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
-  m_DefaultActionMap: Ui
-  m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}

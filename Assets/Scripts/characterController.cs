@@ -31,12 +31,12 @@ public class characterController : Entity
         rb.velocity = new Vector2(xDir * 50 * speed * Time.deltaTime, rb.velocity.y);
     }
 
-    private void OnJump(){
+    public void JumpTriggered(){
         if(isGrounded()){
             rb.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
         }
     }
-    private void OnMovement(InputValue value){
+    public void MovementTriggered(InputValue value){
         //Debug.Log("Moved");
         Vector2 input = value.Get<Vector2>();
         xDir = input.x;
@@ -47,8 +47,5 @@ public class characterController : Entity
             transform.localScale = new Vector3(1, 1, 1);
         }
         //Debug.Log("Direction: " + xDir);
-    }
-    private void OnDeviceLost(){
-        Debug.Log("Cursor Lost");
     }
 }

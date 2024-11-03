@@ -10,6 +10,8 @@ public class CursorMovement : MonoBehaviour
     public RectTransform rectTransform;
     public Vector2 transformPosition;
 
+    public int playerIndex;
+
     protected CharacterControls playerControls;
     [SerializeField]
     public int puckSpeedMultiplier = 10;
@@ -66,14 +68,14 @@ public class CursorMovement : MonoBehaviour
         raycastResultsOld = raycastResults;
     }
 
-    void OnCursor(InputValue value)
+    public void CursorTriggered(InputValue value)
     {
         transformPosition = value.Get<Vector2>();
         Debug.Log("ONCURSOR\n");
         Debug.Log("x" + transformPosition.x + "y" + transformPosition.y);
     }
     
-    void OnSelect()
+    public void SelectTriggered()
     {
         Debug.Log("ONSELECT\n");
         PointerEventData pointer = new PointerEventData(EventSystem.current)

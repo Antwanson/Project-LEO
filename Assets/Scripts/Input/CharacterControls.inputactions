@@ -127,17 +127,37 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "Select",
+                    "type": "Button",
+                    "id": "768877f8-0707-45b5-9163-03a0624cd7a8",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
                 {
                     "name": "",
-                    "id": "cf4642d9-f425-4fb5-8477-2707cf805b37",
+                    "id": "4c06ec0d-5c33-49db-8a22-653bbd672bcb",
                     "path": "<Gamepad>/leftStick",
                     "interactions": "",
                     "processors": "",
                     "groups": "Player1",
                     "action": "Cursor",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0b7525f2-7559-4a2b-a996-a6d620206cc2",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Player1",
+                    "action": "Select",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

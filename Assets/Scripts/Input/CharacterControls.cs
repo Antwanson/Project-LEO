@@ -149,17 +149,37 @@ public partial class @CharacterControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Select"",
+                    ""type"": ""Button"",
+                    ""id"": ""768877f8-0707-45b5-9163-03a0624cd7a8"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
                 {
                     ""name"": """",
-                    ""id"": ""cf4642d9-f425-4fb5-8477-2707cf805b37"",
+                    ""id"": ""4c06ec0d-5c33-49db-8a22-653bbd672bcb"",
                     ""path"": ""<Gamepad>/leftStick"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Player1"",
                     ""action"": ""Cursor"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0b7525f2-7559-4a2b-a996-a6d620206cc2"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Player1"",
+                    ""action"": ""Select"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -192,6 +212,7 @@ public partial class @CharacterControls: IInputActionCollection2, IDisposable
         // Ui
         m_Ui = asset.FindActionMap("Ui", throwIfNotFound: true);
         m_Ui_Cursor = m_Ui.FindAction("Cursor", throwIfNotFound: true);
+        m_Ui_Select = m_Ui.FindAction("Select", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -308,11 +329,13 @@ public partial class @CharacterControls: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Ui;
     private List<IUiActions> m_UiActionsCallbackInterfaces = new List<IUiActions>();
     private readonly InputAction m_Ui_Cursor;
+    private readonly InputAction m_Ui_Select;
     public struct UiActions
     {
         private @CharacterControls m_Wrapper;
         public UiActions(@CharacterControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Cursor => m_Wrapper.m_Ui_Cursor;
+        public InputAction @Select => m_Wrapper.m_Ui_Select;
         public InputActionMap Get() { return m_Wrapper.m_Ui; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -325,6 +348,9 @@ public partial class @CharacterControls: IInputActionCollection2, IDisposable
             @Cursor.started += instance.OnCursor;
             @Cursor.performed += instance.OnCursor;
             @Cursor.canceled += instance.OnCursor;
+            @Select.started += instance.OnSelect;
+            @Select.performed += instance.OnSelect;
+            @Select.canceled += instance.OnSelect;
         }
 
         private void UnregisterCallbacks(IUiActions instance)
@@ -332,6 +358,9 @@ public partial class @CharacterControls: IInputActionCollection2, IDisposable
             @Cursor.started -= instance.OnCursor;
             @Cursor.performed -= instance.OnCursor;
             @Cursor.canceled -= instance.OnCursor;
+            @Select.started -= instance.OnSelect;
+            @Select.performed -= instance.OnSelect;
+            @Select.canceled -= instance.OnSelect;
         }
 
         public void RemoveCallbacks(IUiActions instance)
@@ -366,5 +395,6 @@ public partial class @CharacterControls: IInputActionCollection2, IDisposable
     public interface IUiActions
     {
         void OnCursor(InputAction.CallbackContext context);
+        void OnSelect(InputAction.CallbackContext context);
     }
 }

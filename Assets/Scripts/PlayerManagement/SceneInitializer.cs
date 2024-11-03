@@ -23,7 +23,7 @@ public class SceneInitializer : MonoBehaviour
             PlayerInput playerInputComponent = playerObject.GetComponent<PlayerInput>();
             if (playerHandlerComponent != null)
             {
-            playerHandlerComponent.InitPlayer();
+            playerHandlerComponent.InitPlayer(false);
             playerInputComponent.SwitchCurrentActionMap(playerActionMap);
             }
             else
@@ -40,8 +40,8 @@ public class SceneInitializer : MonoBehaviour
     }
 
 
-    public GameObject InstantiatePlayerInScene(){
-        if(allowLateJoin == false){
+    public GameObject InstantiatePlayerInScene(Boolean isLateJoining){
+        if(allowLateJoin == false && isLateJoining == true){
             return null;
         }
         if (prefab != null)

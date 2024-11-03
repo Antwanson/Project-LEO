@@ -7,6 +7,7 @@ TagManager:
   - MenuCanvas
   - PlayerHandler
   - SceneInitializer
+  - PlayerConfigurationManager
   layers:
   - Default
   - TransparentFX

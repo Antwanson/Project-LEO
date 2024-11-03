@@ -40,7 +40,7 @@ public class CursorMovement : MonoBehaviour
         // rectTransform.anchoredPosition = new Vector2(Input.mousePosition.x * 10, Input.mousePosition.y * 10);
         //log movement
         rectTransform.position = new Vector3(transformPosition.x * puckSpeedMultiplier + rectTransform.position.x, rectTransform.position.y + transformPosition.y * puckSpeedMultiplier, rectTransform.position.z);
-        Debug.Log("X: " + transformPosition.x + " Y: " + transformPosition.y);
+        //Debug.Log("X: " + transformPosition.x + " Y: " + transformPosition.y);
         // Create a pointer event for hovering
         PointerEventData pointer = new PointerEventData(EventSystem.current)
         {
@@ -71,13 +71,13 @@ public class CursorMovement : MonoBehaviour
     public void CursorTriggered(InputValue value)
     {
         transformPosition = value.Get<Vector2>();
-        Debug.Log("ONCURSOR\n");
-        Debug.Log("x" + transformPosition.x + "y" + transformPosition.y);
+        //Debug.Log("ONCURSOR\n");
+        //Debug.Log("x" + transformPosition.x + "y" + transformPosition.y);
     }
     
     public void SelectTriggered()
     {
-        Debug.Log("ONSELECT\n");
+        //Debug.Log("ONSELECT\n");
         PointerEventData pointer = new PointerEventData(EventSystem.current)
         {
             position = rectTransform.position

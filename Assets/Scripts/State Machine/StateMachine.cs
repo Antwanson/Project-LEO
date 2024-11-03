@@ -6,13 +6,6 @@ public class StateMachine
 {
     public State state;
 
-    
-
-    void SelectState()
-    {
-
-    }
-
     public void Set(State newState, bool forceReset = false)
     {
         if(state != newState || forceReset)

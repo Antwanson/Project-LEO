@@ -49,8 +49,9 @@ public class Entity : MonoBehaviour
 
     protected virtual void FixedUpdate()
     {
-        //takeDamage(1, Vector2.zero, gameObject); 
-        Debug.Log(takeDamage(1, Vector2.zero, gameObject));
+        //This is a test for the takeDamage method
+        //takeDamage(1, Vector2.zero, gameObject);
+        //Debug.Log(takeDamage(1, Vector2.zero, gameObject));
         
 
         

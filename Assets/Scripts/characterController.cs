@@ -12,11 +12,13 @@ public class characterController : Entity
 {
     public float xDir = 0;
     protected CharacterControls playerControls;
+    public StateController stateMachine;
     // Start is called before the first frame update
     protected override void Start()
     {
         base.Start();
         playerControls = new CharacterControls();
+        stateMachine = gameObject.GetComponent<StateController>();
     }
 
     // Update is called once per frame
@@ -47,5 +49,11 @@ public class characterController : Entity
             transform.localScale = new Vector3(1, 1, 1);
         }
         //Debug.Log("Direction: " + xDir);
+    }
+    public override int takeDamage(int damage, Vector2 knockback, GameObject damageDealer)
+    {
+        stateMachine.machine.Set(stateMachine.hurtState);
+
+        return damage;
     }
 }

@@ -6,7 +6,6 @@ using UnityEngine.UI;
 
 public class EntityHealth : MonoBehaviour
 {
-    public StateController stateMachine;
 
     [Header("Entity Script Values")]
     [SerializeField] protected int maxHealth = 100; // Maximum health value
@@ -14,7 +13,7 @@ public class EntityHealth : MonoBehaviour
 
     void Start()
     {
-        stateMachine = GetComponent<StateController>();
+        
     }
 
     // Method to take damage
@@ -27,7 +26,7 @@ public class EntityHealth : MonoBehaviour
         }
 
         //Debug.Log($"Took damage: {amount}. Current health: {currentHealth}");
-        stateMachine.machine.Set(stateMachine.hurtState);
+        
     }
 
     public int getHP(){

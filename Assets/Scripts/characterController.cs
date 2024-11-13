@@ -63,6 +63,7 @@ public class characterController : Entity
     }
     public override int takeDamage(int damage, Vector2 knockback, GameObject damageDealer)
     {
+        base.takeDamage(damage,knockback,damageDealer);
         stateMachine.machine.Set(stateMachine.hurtState);
 
         return damage;

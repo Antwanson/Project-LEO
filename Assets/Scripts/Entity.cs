@@ -65,7 +65,7 @@ public class Entity : MonoBehaviour
             return false;
         }
     }
-    void OnDrawGizmos(){
+    public virtual void OnDrawGizmos(){
         Gizmos.DrawWireCube(transform.position - transform.up * castDistance, boxSize);
     }
     public virtual int takeDamage(int damage, Vector2 knockback, GameObject damageDealer){//TODO: ADD VARIABLE FOR PLAYER REFERENCE

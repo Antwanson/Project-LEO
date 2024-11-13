@@ -44,6 +44,15 @@ public partial class @CharacterControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""AttackNeutral"",
+                    ""type"": ""Button"",
+                    ""id"": ""7c974ed5-bc66-4759-bfbe-a3dbcfe61c57"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -134,6 +143,28 @@ public partial class @CharacterControls: IInputActionCollection2, IDisposable
                     ""action"": ""Movement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c9fc6b8c-f91e-4c84-a28b-0786daf42946"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AttackNeutral"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""11118c6e-acb5-4fe1-a725-58ce452fe069"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AttackNeutral"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -209,6 +240,7 @@ public partial class @CharacterControls: IInputActionCollection2, IDisposable
         m_BaseCombat = asset.FindActionMap("BaseCombat", throwIfNotFound: true);
         m_BaseCombat_Jump = m_BaseCombat.FindAction("Jump", throwIfNotFound: true);
         m_BaseCombat_Movement = m_BaseCombat.FindAction("Movement", throwIfNotFound: true);
+        m_BaseCombat_AttackNeutral = m_BaseCombat.FindAction("AttackNeutral", throwIfNotFound: true);
         // Ui
         m_Ui = asset.FindActionMap("Ui", throwIfNotFound: true);
         m_Ui_Cursor = m_Ui.FindAction("Cursor", throwIfNotFound: true);
@@ -276,12 +308,14 @@ public partial class @CharacterControls: IInputActionCollection2, IDisposable
     private List<IBaseCombatActions> m_BaseCombatActionsCallbackInterfaces = new List<IBaseCombatActions>();
     private readonly InputAction m_BaseCombat_Jump;
     private readonly InputAction m_BaseCombat_Movement;
+    private readonly InputAction m_BaseCombat_AttackNeutral;
     public struct BaseCombatActions
     {
         private @CharacterControls m_Wrapper;
         public BaseCombatActions(@CharacterControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Jump => m_Wrapper.m_BaseCombat_Jump;
         public InputAction @Movement => m_Wrapper.m_BaseCombat_Movement;
+        public InputAction @AttackNeutral => m_Wrapper.m_BaseCombat_AttackNeutral;
         public InputActionMap Get() { return m_Wrapper.m_BaseCombat; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -297,6 +331,9 @@ public partial class @CharacterControls: IInputActionCollection2, IDisposable
             @Movement.started += instance.OnMovement;
             @Movement.performed += instance.OnMovement;
             @Movement.canceled += instance.OnMovement;
+            @AttackNeutral.started += instance.OnAttackNeutral;
+            @AttackNeutral.performed += instance.OnAttackNeutral;
+            @AttackNeutral.canceled += instance.OnAttackNeutral;
         }
 
         private void UnregisterCallbacks(IBaseCombatActions instance)
@@ -307,6 +344,9 @@ public partial class @CharacterControls: IInputActionCollection2, IDisposable
             @Movement.started -= instance.OnMovement;
             @Movement.performed -= instance.OnMovement;
             @Movement.canceled -= instance.OnMovement;
+            @AttackNeutral.started -= instance.OnAttackNeutral;
+            @AttackNeutral.performed -= instance.OnAttackNeutral;
+            @AttackNeutral.canceled -= instance.OnAttackNeutral;
         }
 
         public void RemoveCallbacks(IBaseCombatActions instance)
@@ -391,6 +431,7 @@ public partial class @CharacterControls: IInputActionCollection2, IDisposable
     {
         void OnJump(InputAction.CallbackContext context);
         void OnMovement(InputAction.CallbackContext context);
+        void OnAttackNeutral(InputAction.CallbackContext context);
     }
     public interface IUiActions
     {

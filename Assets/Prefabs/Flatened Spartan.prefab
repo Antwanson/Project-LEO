@@ -613,7 +613,11 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
+  attackNeutralDistance: 1
+  attackNeutralHitboxSize: {x: 1.5, y: 2.25}
   xDir: 0
+  stateMachine: {fileID: 0}
+  isAttackingNeutral: 0
 --- !u!114 &8277336877423080242
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -649,5 +653,6 @@ MonoBehaviour:
   hurtState: {fileID: 521919434830320851}
   deadState: {fileID: 2775840502773252810}
   character: {fileID: 5119628973930995514}
+  health: {fileID: 0}
   animator: {fileID: 0}
   rb: {fileID: 8517115971482755357}

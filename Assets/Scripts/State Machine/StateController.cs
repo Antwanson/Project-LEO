@@ -51,9 +51,21 @@ public class StateController : MonoBehaviour
             machine.Set(deadState);
             return;
         }
-        else if (Input.GetKeyDown(KeyCode.H)/*hurt*/)
+
+        //air state
+        else if (Input.GetKeyDown(KeyCode.Space) || (!character.isGrounded() && rb.velocity.y > 0))    //jump state
+            machine.Set(jumpState);
+        else if (!character.isGrounded())//fall/air state
+            machine.Set(airState);
+
+        //attack states
+        else if (Input.GetKeyDown(KeyCode.L))    //dodge state, swap button for actual input l8r
         {
-            machine.Set(hurtState);
+            machine.Set(dodgeState);
+        }
+        else if (character.isAttackingNeutral)   //attack state, swap button for actual input l8r
+        {
+            machine.Set(attackState);
         }
 
         //idle or walk state
@@ -64,23 +76,6 @@ public class StateController : MonoBehaviour
         else if (character.isGrounded())
         {
             machine.Set(walkState);
-        }
-
-
-        //air state
-        else if (Input.GetKeyDown(KeyCode.Space) || (!character.isGrounded() && rb.velocity.y > 0))    //jump state
-            machine.Set(jumpState);
-        else if (!character.isGrounded())//fall/air state
-            machine.Set(airState);
-
-        //attack states
-        else if (Input.GetKeyDown(KeyCode.L) && character.isGrounded())    //dodge state, swap button for actual input l8r
-        {
-            machine.Set(dodgeState);
-        }
-        else if (Input.GetKeyDown(KeyCode.P))   //attack state, swap button for actual input l8r
-        {
-            machine.Set(attackState);
         }
 
 

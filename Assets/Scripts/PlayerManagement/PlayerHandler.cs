@@ -87,4 +87,9 @@ public class PlayerHandler : MonoBehaviour
         characterController playerControls = currentPlayerObject.GetComponent<characterController>();
         playerControls.isAttackingNeutral = true;
     }
+    void OnAttackFavor()
+    {
+        characterController playerControls = currentPlayerObject.GetComponent<characterController>();
+        playerControls.isAttackingFavor = true;
+    }
 }

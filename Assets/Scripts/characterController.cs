@@ -10,17 +10,23 @@ using Unity.Collections;
 
 public class characterController : Entity
 {
-    [Header("Attack Attributes")]
+    [Header("Attack Neutral Attributes")]
     [SerializeField] public int attackNeutralDistance;
     [SerializeField] public Vector2 attackNeutralHitboxSize = new Vector2(10,10);
-    int attackDir = 1;
+    [SerializeField] public int attackNeutralDamage = 10;
+    public bool isAttackingNeutral = false;
 
+    [Header("Attack Favor Attributes")]
+    [SerializeField] public int attackFavorDistance;
+    [SerializeField] public Vector2 attackFavorHitboxSize = new Vector2(10, 10);
+    [SerializeField] public int attackFavorDamage = 20;
+    public bool isAttackingFavor = false;
+
+    int attackDir = 1;
     public float xDir = 0;
     protected CharacterControls playerControls;
     public StateController stateMachine;
 
-    //Bools for state-machine use
-    public bool isAttackingNeutral = false;
 
     // Start is called before the first frame update
     protected override void Start()
@@ -63,6 +69,8 @@ public class characterController : Entity
     }
     public override int takeDamage(int damage, Vector2 knockback, GameObject damageDealer)
     {
+        /*if(stateMachine.machine.state == stateMachine.dashState) {*/
+
         base.takeDamage(damage,knockback,damageDealer);
         stateMachine.machine.Set(stateMachine.hurtState);
 
@@ -82,15 +90,37 @@ public class characterController : Entity
                 Debug.Log("Hit: " + hit.collider.gameObject.name);
 
                 Entity target = hit.collider.gameObject.GetComponent<characterController>();
-                target.takeDamage(100, Vector2.zero, gameObject);
+                target.takeDamage(attackNeutralDamage, Vector2.zero, gameObject);
             }
         }
         
     }
 
+    public void AttackFavorFront()
+    {
+        Debug.Log("Favor Attack");
+        RaycastHit2D[] hits = Physics2D.BoxCastAll(transform.position, attackFavorHitboxSize, 0, transform.right * attackDir, attackNeutralDistance, LayerMask.GetMask("Default"));
+        //Debug.Log("hit array size: " + hits.Length);
+
+        foreach (RaycastHit2D hit in hits)
+        {
+            if (hit.collider.gameObject.GetComponent<characterController>() && hit.collider.gameObject != this.gameObject)
+            {
+                Debug.Log("Hit: " + hit.collider.gameObject.name);
+
+                Entity target = hit.collider.gameObject.GetComponent<characterController>();
+                target.takeDamage(attackFavorDamage, Vector2.zero, gameObject);
+            }
+        }
+
+    }
+
     public override void OnDrawGizmos()
     {
         base.OnDrawGizmos();
+        //neutral attack box
         Gizmos.DrawWireCube(transform.position + transform.right * attackNeutralDistance * attackDir, attackNeutralHitboxSize);
+        //favor attack box
+        Gizmos.DrawWireCube(transform.position + transform.right * attackFavorDistance * attackDir, attackFavorHitboxSize);
     }
 }

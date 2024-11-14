@@ -10,6 +10,7 @@ public class StateController : MonoBehaviour
     public State walkState;
     public State jumpState;
     public State attackState;
+    public State favorAttackState;
     public State dodgeState;
     public State hurtState;
     public State deadState;
@@ -30,6 +31,7 @@ public class StateController : MonoBehaviour
         airState.SetUp(rb, animator, this, character);
         jumpState.SetUp(rb, animator, this, character);
         attackState.SetUp(rb, animator, this,character);
+        favorAttackState.SetUp(rb, animator, this, character);
         dodgeState.SetUp(rb, animator, this, character);
         hurtState.SetUp(rb, animator, this, character);
         deadState.SetUp(rb, animator, this, character);
@@ -59,11 +61,11 @@ public class StateController : MonoBehaviour
             machine.Set(airState);
 
         //attack states
-        else if (Input.GetKeyDown(KeyCode.L))    //dodge state, swap button for actual input l8r
+        else if (character.isAttackingFavor)
         {
-            machine.Set(dodgeState);
+            machine.Set(favorAttackState);
         }
-        else if (character.isAttackingNeutral)   //attack state, swap button for actual input l8r
+        else if (character.isAttackingNeutral)
         {
             machine.Set(attackState);
         }

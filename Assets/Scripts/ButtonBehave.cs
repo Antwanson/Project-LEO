@@ -28,4 +28,8 @@ public class ButtonBehave : MonoBehaviour
     public void Menu() {
         SceneManager.LoadScene(0);
     }
+
+    public void LoadMap(String map){
+        SceneManager.LoadScene(map);
+    }
 }

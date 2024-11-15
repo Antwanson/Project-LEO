@@ -10,7 +10,7 @@ using Unity.Collections;
 
 public class characterController : Entity
 {
-    float xDir = 0;
+    public float xDir = 0;
     protected CharacterControls playerControls;
     // Start is called before the first frame update
     protected override void Start()
@@ -31,12 +31,12 @@ public class characterController : Entity
         rb.velocity = new Vector2(xDir * 50 * speed * Time.deltaTime, rb.velocity.y);
     }
 
-    private void OnJump(){
+    public void JumpTriggered(){
         if(isGrounded()){
             rb.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
         }
     }
-    private void OnMovement(InputValue value){
+    public void MovementTriggered(InputValue value){
         //Debug.Log("Moved");
         Vector2 input = value.Get<Vector2>();
         xDir = input.x;

@@ -138,13 +138,22 @@ public partial class @CharacterControls: IInputActionCollection2, IDisposable
             ]
         },
         {
-            ""name"": ""UI"",
-            ""id"": ""756438a9-c7ad-41d6-aa58-04d50fd6a6a6"",
+            ""name"": ""Ui"",
+            ""id"": ""368ed9bc-e3c2-4d34-a826-ca9c681875b6"",
             ""actions"": [
                 {
-                    ""name"": ""New action"",
+                    ""name"": ""Cursor"",
+                    ""type"": ""Value"",
+                    ""id"": ""e8024e3a-12bb-4ab7-82e3-3d2031f306f0"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Select"",
                     ""type"": ""Button"",
-                    ""id"": ""f955b107-140a-4845-94ca-f0b7bb2640a6"",
+                    ""id"": ""768877f8-0707-45b5-9163-03a0624cd7a8"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -154,14 +163,91 @@ public partial class @CharacterControls: IInputActionCollection2, IDisposable
             ""bindings"": [
                 {
                     ""name"": """",
-                    ""id"": ""ef93c9da-94b8-4793-a95d-57a301236a11"",
-                    ""path"": """",
+                    ""id"": ""4c06ec0d-5c33-49db-8a22-653bbd672bcb"",
+                    ""path"": ""<Gamepad>/leftStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Player1"",
+                    ""action"": ""Cursor"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0b7525f2-7559-4a2b-a996-a6d620206cc2"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Player1"",
+                    ""action"": ""Select"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""cceb3b81-0dc1-48d7-bb24-6213203f2850"",
+                    ""path"": ""<Keyboard>/f"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""New action"",
+                    ""action"": ""Select"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""WASD"",
+                    ""id"": ""86f320c4-730e-4625-a6d0-ca3392b416a2"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Cursor"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""b864f570-3bf6-4c97-bd3a-f0dcd79b72e7"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Player1"",
+                    ""action"": ""Cursor"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""40646294-21dd-4202-9a5b-b5f1d517b498"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Player1"",
+                    ""action"": ""Cursor"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""4e409dc2-8cad-4623-8969-a61ade3afcc7"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Player1"",
+                    ""action"": ""Cursor"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""0ae5a091-9020-4cc3-9b92-ef27877f14bf"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Player1"",
+                    ""action"": ""Cursor"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         }
@@ -189,9 +275,10 @@ public partial class @CharacterControls: IInputActionCollection2, IDisposable
         m_BaseCombat = asset.FindActionMap("BaseCombat", throwIfNotFound: true);
         m_BaseCombat_Jump = m_BaseCombat.FindAction("Jump", throwIfNotFound: true);
         m_BaseCombat_Movement = m_BaseCombat.FindAction("Movement", throwIfNotFound: true);
-        // UI
-        m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
-        m_UI_Newaction = m_UI.FindAction("New action", throwIfNotFound: true);
+        // Ui
+        m_Ui = asset.FindActionMap("Ui", throwIfNotFound: true);
+        m_Ui_Cursor = m_Ui.FindAction("Cursor", throwIfNotFound: true);
+        m_Ui_Select = m_Ui.FindAction("Select", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -304,51 +391,59 @@ public partial class @CharacterControls: IInputActionCollection2, IDisposable
     }
     public BaseCombatActions @BaseCombat => new BaseCombatActions(this);
 
-    // UI
-    private readonly InputActionMap m_UI;
-    private List<IUIActions> m_UIActionsCallbackInterfaces = new List<IUIActions>();
-    private readonly InputAction m_UI_Newaction;
-    public struct UIActions
+    // Ui
+    private readonly InputActionMap m_Ui;
+    private List<IUiActions> m_UiActionsCallbackInterfaces = new List<IUiActions>();
+    private readonly InputAction m_Ui_Cursor;
+    private readonly InputAction m_Ui_Select;
+    public struct UiActions
     {
         private @CharacterControls m_Wrapper;
-        public UIActions(@CharacterControls wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Newaction => m_Wrapper.m_UI_Newaction;
-        public InputActionMap Get() { return m_Wrapper.m_UI; }
+        public UiActions(@CharacterControls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Cursor => m_Wrapper.m_Ui_Cursor;
+        public InputAction @Select => m_Wrapper.m_Ui_Select;
+        public InputActionMap Get() { return m_Wrapper.m_Ui; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
         public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(UIActions set) { return set.Get(); }
-        public void AddCallbacks(IUIActions instance)
+        public static implicit operator InputActionMap(UiActions set) { return set.Get(); }
+        public void AddCallbacks(IUiActions instance)
         {
-            if (instance == null || m_Wrapper.m_UIActionsCallbackInterfaces.Contains(instance)) return;
-            m_Wrapper.m_UIActionsCallbackInterfaces.Add(instance);
-            @Newaction.started += instance.OnNewaction;
-            @Newaction.performed += instance.OnNewaction;
-            @Newaction.canceled += instance.OnNewaction;
+            if (instance == null || m_Wrapper.m_UiActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_UiActionsCallbackInterfaces.Add(instance);
+            @Cursor.started += instance.OnCursor;
+            @Cursor.performed += instance.OnCursor;
+            @Cursor.canceled += instance.OnCursor;
+            @Select.started += instance.OnSelect;
+            @Select.performed += instance.OnSelect;
+            @Select.canceled += instance.OnSelect;
         }
 
-        private void UnregisterCallbacks(IUIActions instance)
+        private void UnregisterCallbacks(IUiActions instance)
         {
-            @Newaction.started -= instance.OnNewaction;
-            @Newaction.performed -= instance.OnNewaction;
-            @Newaction.canceled -= instance.OnNewaction;
+            @Cursor.started -= instance.OnCursor;
+            @Cursor.performed -= instance.OnCursor;
+            @Cursor.canceled -= instance.OnCursor;
+            @Select.started -= instance.OnSelect;
+            @Select.performed -= instance.OnSelect;
+            @Select.canceled -= instance.OnSelect;
         }
 
-        public void RemoveCallbacks(IUIActions instance)
+        public void RemoveCallbacks(IUiActions instance)
         {
-            if (m_Wrapper.m_UIActionsCallbackInterfaces.Remove(instance))
+            if (m_Wrapper.m_UiActionsCallbackInterfaces.Remove(instance))
                 UnregisterCallbacks(instance);
         }
 
-        public void SetCallbacks(IUIActions instance)
+        public void SetCallbacks(IUiActions instance)
         {
-            foreach (var item in m_Wrapper.m_UIActionsCallbackInterfaces)
+            foreach (var item in m_Wrapper.m_UiActionsCallbackInterfaces)
                 UnregisterCallbacks(item);
-            m_Wrapper.m_UIActionsCallbackInterfaces.Clear();
+            m_Wrapper.m_UiActionsCallbackInterfaces.Clear();
             AddCallbacks(instance);
         }
     }
-    public UIActions @UI => new UIActions(this);
+    public UiActions @Ui => new UiActions(this);
     private int m_Player1SchemeIndex = -1;
     public InputControlScheme Player1Scheme
     {
@@ -363,8 +458,9 @@ public partial class @CharacterControls: IInputActionCollection2, IDisposable
         void OnJump(InputAction.CallbackContext context);
         void OnMovement(InputAction.CallbackContext context);
     }
-    public interface IUIActions
+    public interface IUiActions
     {
-        void OnNewaction(InputAction.CallbackContext context);
+        void OnCursor(InputAction.CallbackContext context);
+        void OnSelect(InputAction.CallbackContext context);
     }
 }

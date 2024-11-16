@@ -8,6 +8,7 @@ public class StateController : MonoBehaviour
     public State airState;
     public State idleState;
     public State walkState;
+    public State dashState;
     public State jumpState;
     public State attackState;
     public State favorAttackState;
@@ -28,6 +29,7 @@ public class StateController : MonoBehaviour
 
         idleState.SetUp(rb, animator, this, character);
         walkState.SetUp(rb, animator, this, character);
+        dashState.SetUp(rb, animator, this, character);
         airState.SetUp(rb, animator, this, character);
         jumpState.SetUp(rb, animator, this, character);
         attackState.SetUp(rb, animator, this,character);
@@ -54,12 +56,6 @@ public class StateController : MonoBehaviour
             return;
         }
 
-        //air state
-        else if (Input.GetKeyDown(KeyCode.Space) || (!character.isGrounded() && rb.velocity.y > 0))    //jump state
-            machine.Set(jumpState);
-        else if (!character.isGrounded())//fall/air state
-            machine.Set(airState);
-
         //attack states
         else if (character.isAttackingFavor)
         {
@@ -70,7 +66,15 @@ public class StateController : MonoBehaviour
             machine.Set(attackState);
         }
 
+        //air state
+        else if (Input.GetKeyDown(KeyCode.Space) || (!character.isGrounded() && rb.velocity.y > 0))    //jump state
+            machine.Set(jumpState);
+        else if (!character.isGrounded())//fall/air state
+            machine.Set(airState);
+
         //idle or walk state
+        else if(character.isDashing)
+            machine.Set(dashState);
         else if (character.isGrounded() && character.xDir == 0)
         {
             machine.Set(idleState);

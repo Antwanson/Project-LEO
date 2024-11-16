@@ -47,6 +47,53 @@ MonoBehaviour:
   controller: {fileID: 0}
   character: {fileID: 0}
   anim: {fileID: 0}
+--- !u!1 &1257835115983410529
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7466776385635725600}
+  - component: {fileID: 3953851022193143664}
+  m_Layer: 0
+  m_Name: Dash
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7466776385635725600
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1257835115983410529}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -6.0927277, y: -0.3350575, z: -0.03456394}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3850162768975334311}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3953851022193143664
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1257835115983410529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f47d15fd65e57142bf1c39c3a038956, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: {fileID: 0}
+  character: {fileID: 0}
+  anim: {fileID: 0}
 --- !u!1 &1276019714101522573
 GameObject:
   m_ObjectHideFlags: 0
@@ -125,6 +172,7 @@ Transform:
   m_Children:
   - {fileID: 8831168136214503057}
   - {fileID: 3012231925473234511}
+  - {fileID: 7466776385635725600}
   - {fileID: 1999124357973330125}
   - {fileID: 3154093972784490552}
   - {fileID: 6270798977776227715}
@@ -663,10 +711,14 @@ MonoBehaviour:
     m_Bits: 64
   attackNeutralDistance: 1
   attackNeutralHitboxSize: {x: 1.5, y: 2.25}
+  attackNeutralDamage: 10
   isAttackingNeutral: 0
   attackFavorDistance: 1
   attackFavorHitboxSize: {x: 3, y: 1.5}
+  attackFavorDamage: 50
   isAttackingFavor: 0
+  dashSpeed: 1
+  isDashing: 0
   xDir: 0
   stateMachine: {fileID: 0}
 --- !u!114 &8277336877423080242
@@ -698,6 +750,7 @@ MonoBehaviour:
   airState: {fileID: 8236786440568442495}
   idleState: {fileID: 2584495169474702036}
   walkState: {fileID: 2272319880017368613}
+  dashState: {fileID: 3953851022193143664}
   jumpState: {fileID: 2322277772157604609}
   attackState: {fileID: 189005648825748201}
   favorAttackState: {fileID: 2659320812211761258}

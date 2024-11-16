@@ -92,4 +92,9 @@ public class PlayerHandler : MonoBehaviour
         characterController playerControls = currentPlayerObject.GetComponent<characterController>();
         playerControls.isAttackingFavor = true;
     }
+    void OnDash()
+    {
+        StateController stateMachine = currentPlayerObject.GetComponent<StateController>();
+        stateMachine.machine.Set(stateMachine.dashState);
+    }
 }

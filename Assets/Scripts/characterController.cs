@@ -19,8 +19,12 @@ public class characterController : Entity
     [Header("Attack Favor Attributes")]
     [SerializeField] public int attackFavorDistance;
     [SerializeField] public Vector2 attackFavorHitboxSize = new Vector2(10, 10);
-    [SerializeField] public int attackFavorDamage = 20;
+    [SerializeField] public int attackFavorDamage = 50;
     public bool isAttackingFavor = false;
+
+    [Header("Dashing Attributes")]
+    [SerializeField] public int dashSpeed = 1;
+    public bool isDashing = false;
 
     int attackDir = 1;
     public float xDir = 0;
@@ -45,7 +49,7 @@ public class characterController : Entity
     protected override void FixedUpdate()
     {
         base.FixedUpdate();
-        rb.velocity = new Vector2(xDir * 50 * speed * Time.deltaTime, rb.velocity.y);
+        rb.velocity = new Vector2(xDir * 50 * speed * dashSpeed * Time.deltaTime, rb.velocity.y);
     }
 
     public void JumpTriggered(){
@@ -69,17 +73,18 @@ public class characterController : Entity
     }
     public override int takeDamage(int damage, Vector2 knockback, GameObject damageDealer)
     {
-        /*if(stateMachine.machine.state == stateMachine.dashState) {*/
-
-        base.takeDamage(damage,knockback,damageDealer);
-        stateMachine.machine.Set(stateMachine.hurtState);
-
-        return damage;
+        if (stateMachine.machine.state != stateMachine.dashState)
+        {
+            base.takeDamage(damage, knockback, damageDealer);
+            stateMachine.machine.Set(stateMachine.hurtState);
+        }
+            return damage;
+        
     }
 
     public void AttackNeutralFront()
     {
-        //Debug.Log("Attack Neutral Front");
+        Debug.Log("Attack Neutral Front");
         RaycastHit2D[] hits = Physics2D.BoxCastAll(transform.position, attackNeutralHitboxSize, 0, transform.right * attackDir, attackNeutralDistance, LayerMask.GetMask("Default"));
         //Debug.Log("hit array size: " + hits.Length);
 
@@ -90,7 +95,10 @@ public class characterController : Entity
                 Debug.Log("Hit: " + hit.collider.gameObject.name);
 
                 Entity target = hit.collider.gameObject.GetComponent<characterController>();
+                Debug.Log("gameobject: " + gameObject);
+                Debug.Log("damage:" + attackNeutralDamage + " knockbac" + Vector2.zero);
                 target.takeDamage(attackNeutralDamage, Vector2.zero, gameObject);
+                
             }
         }
         

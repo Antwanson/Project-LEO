@@ -82,5 +82,19 @@ public class PlayerHandler : MonoBehaviour
         characterController playerControls = currentPlayerObject.GetComponent<characterController>();
         playerControls.MovementTriggered(value);
     }
-    
+    void OnAttackNeutral()
+    {
+        characterController playerControls = currentPlayerObject.GetComponent<characterController>();
+        playerControls.isAttackingNeutral = true;
+    }
+    void OnAttackFavor()
+    {
+        characterController playerControls = currentPlayerObject.GetComponent<characterController>();
+        playerControls.isAttackingFavor = true;
+    }
+    void OnDash()
+    {
+        StateController stateMachine = currentPlayerObject.GetComponent<StateController>();
+        stateMachine.machine.Set(stateMachine.dashState);
+    }
 }

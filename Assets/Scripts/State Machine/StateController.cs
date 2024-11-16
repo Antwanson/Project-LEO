@@ -8,8 +8,10 @@ public class StateController : MonoBehaviour
     public State airState;
     public State idleState;
     public State walkState;
+    public State dashState;
     public State jumpState;
     public State attackState;
+    public State favorAttackState;
     public State dodgeState;
     public State hurtState;
     public State deadState;
@@ -27,9 +29,11 @@ public class StateController : MonoBehaviour
 
         idleState.SetUp(rb, animator, this, character);
         walkState.SetUp(rb, animator, this, character);
+        dashState.SetUp(rb, animator, this, character);
         airState.SetUp(rb, animator, this, character);
         jumpState.SetUp(rb, animator, this, character);
         attackState.SetUp(rb, animator, this,character);
+        favorAttackState.SetUp(rb, animator, this, character);
         dodgeState.SetUp(rb, animator, this, character);
         hurtState.SetUp(rb, animator, this, character);
         deadState.SetUp(rb, animator, this, character);
@@ -51,21 +55,16 @@ public class StateController : MonoBehaviour
             machine.Set(deadState);
             return;
         }
-        else if (Input.GetKeyDown(KeyCode.H)/*hurt*/)
-        {
-            machine.Set(hurtState);
-        }
 
-        //idle or walk state
-        else if (character.isGrounded() && character.xDir == 0)
+        //attack states
+        else if (character.isAttackingFavor)
         {
-            machine.Set(idleState);
+            machine.Set(favorAttackState);
         }
-        else if (character.isGrounded())
+        else if (character.isAttackingNeutral)
         {
-            machine.Set(walkState);
+            machine.Set(attackState);
         }
-
 
         //air state
         else if (Input.GetKeyDown(KeyCode.Space) || (!character.isGrounded() && rb.velocity.y > 0))    //jump state
@@ -73,14 +72,16 @@ public class StateController : MonoBehaviour
         else if (!character.isGrounded())//fall/air state
             machine.Set(airState);
 
-        //attack states
-        else if (Input.GetKeyDown(KeyCode.L) && character.isGrounded())    //dodge state, swap button for actual input l8r
+        //idle or walk state
+        else if(character.isDashing)
+            machine.Set(dashState);
+        else if (character.isGrounded() && character.xDir == 0)
         {
-            machine.Set(dodgeState);
+            machine.Set(idleState);
         }
-        else if (Input.GetKeyDown(KeyCode.P))   //attack state, swap button for actual input l8r
+        else if (character.isGrounded())
         {
-            machine.Set(attackState);
+            machine.Set(walkState);
         }
 
 

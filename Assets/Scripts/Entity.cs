@@ -65,13 +65,13 @@ public class Entity : MonoBehaviour
             return false;
         }
     }
-    void OnDrawGizmos(){
+    public virtual void OnDrawGizmos(){
         Gizmos.DrawWireCube(transform.position - transform.up * castDistance, boxSize);
     }
-    public int takeDamage(int damage, Vector2 knockback, GameObject damageDealer){//TODO: ADD VARIABLE FOR PLAYER REFERENCE
+    public virtual int takeDamage(int damage, Vector2 knockback, GameObject damageDealer){//TODO: ADD VARIABLE FOR PLAYER REFERENCE
         health.takeDamage(damage);
         rb.AddForce(knockback, ForceMode2D.Impulse);
-        favor.takeDamage(damage);
+        //favor.takeDamage(damage);
         return damage;
     }
 

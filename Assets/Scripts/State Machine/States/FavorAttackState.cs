@@ -11,7 +11,7 @@ public class FavorAttackState : State
         {
             character.AttackFavorFront();
             character.entityFavor.setFavor(0);
-            //Animator.Play(anim.name);
+            animator.Play(anim.name);
         }
         else
             Debug.Log("Insufficient Favor for Attack, Attack Failed.");
@@ -19,9 +19,9 @@ public class FavorAttackState : State
     public override void Do()
     {
         //if (false /*middle of animation*/)
-            //character.AttackNeutralFront();
-        if (true/*animation ends || favor < maxfavor*/)
-          character.isAttackingFavor = false;
+        //character.AttackNeutralFront();
+        if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= anim.length/1.5 /*|| character.entityFavor.getFavor() <= 0*/)
+            character.isAttackingFavor = false;
     }
     public override void Exit()
     {

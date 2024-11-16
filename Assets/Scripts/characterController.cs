@@ -12,12 +12,14 @@ public class characterController : Entity
 {
     [Header("Attack Neutral Attributes")]
     [SerializeField] public int attackNeutralDistance;
+    [SerializeField] public Vector3 attackNeutralOffset = new Vector3(0,0,0);
     [SerializeField] public Vector2 attackNeutralHitboxSize = new Vector2(10,10);
     [SerializeField] public int attackNeutralDamage = 10;
     public bool isAttackingNeutral = false;
 
     [Header("Attack Favor Attributes")]
     [SerializeField] public int attackFavorDistance;
+    [SerializeField] public Vector3 attackFavorOffset = new Vector3(0, 0, 0);
     [SerializeField] public Vector2 attackFavorHitboxSize = new Vector2(10, 10);
     [SerializeField] public int attackFavorDamage = 50;
     public bool isAttackingFavor = false;
@@ -32,7 +34,7 @@ public class characterController : Entity
     public StateController stateMachine;
     public EntityFavor entityFavor;
 
-
+    public Vector2 currentInputMovmentDir = Vector2.zero;
     // Start is called before the first frame update
     protected override void Start()
     {
@@ -51,7 +53,22 @@ public class characterController : Entity
     protected override void FixedUpdate()
     {
         base.FixedUpdate();
-        rb.velocity = new Vector2(xDir * 50 * speed * dashSpeed * Time.deltaTime, rb.velocity.y);
+        xDir = currentInputMovmentDir.x;
+
+        //Direction Sprite flippiage
+        if (xDir < 0)
+        {
+            transform.localScale = new Vector3(-1, 1, 1);
+            attackDir = -1;
+        }
+        else if (xDir > 0)
+        {
+            transform.localScale = new Vector3(1, 1, 1);
+            attackDir = 1;
+        }
+        //Debug.Log("Direction: " + xDir);
+        rb.velocity = new Vector2((xDir * speed), rb.velocity.y) + currentEntityKnockback;
+        //rb.velocity = new Vector2((xDir * 50 * speed * dashSpeed * Time.deltaTime) + rb.velocity.x, rb.velocity.y);
     }
 
     public void JumpTriggered(){
@@ -61,17 +78,8 @@ public class characterController : Entity
     }
     public void MovementTriggered(InputValue value){
         //Debug.Log("Moved");
-        Vector2 input = value.Get<Vector2>();
-        xDir = input.x;
-        rb.velocity = new Vector2(xDir * speed, rb.velocity.y);
-        if(xDir < 0){
-            transform.localScale = new Vector3(-1, 1, 1);
-            attackDir = -1;
-        } else if(xDir > 0){
-            transform.localScale = new Vector3(1, 1, 1);
-            attackDir = 1;
-        }
-        //Debug.Log("Direction: " + xDir);
+        currentInputMovmentDir = value.Get<Vector2>();
+        
     }
     public override int takeDamage(int damage, Vector2 knockback, GameObject damageDealer)
     {
@@ -87,7 +95,7 @@ public class characterController : Entity
     public void AttackNeutralFront()
     {
         Debug.Log("Attack Neutral Front");
-        RaycastHit2D[] hits = Physics2D.BoxCastAll(transform.position, attackNeutralHitboxSize, 0, transform.right * attackDir, attackNeutralDistance, LayerMask.GetMask("Default"));
+        RaycastHit2D[] hits = Physics2D.BoxCastAll(transform.position + attackNeutralOffset, attackNeutralHitboxSize, 0, transform.right * attackDir, attackNeutralDistance, LayerMask.GetMask("Default"));
         //Debug.Log("hit array size: " + hits.Length);
 
         foreach(RaycastHit2D hit in hits)
@@ -99,9 +107,9 @@ public class characterController : Entity
                 Entity target = hit.collider.gameObject.GetComponent<characterController>();
                 Debug.Log("gameobject: " + gameObject);
                 Debug.Log("damage:" + attackNeutralDamage + " knockbac" + Vector2.zero);
-                int damageDealt = target.takeDamage(attackNeutralDamage, Vector2.zero, gameObject);
+                int damageDealt = target.takeDamage(attackNeutralDamage, new Vector2(30*attackDir,2), gameObject);
                 //favor
-                favor.addFavor(damageDealt);
+                entityFavor.addFavor(damageDealt);
 
                 
             }
@@ -112,7 +120,7 @@ public class characterController : Entity
     public void AttackFavorFront()
     {
         Debug.Log("Favor Attack");
-        RaycastHit2D[] hits = Physics2D.BoxCastAll(transform.position, attackFavorHitboxSize, 0, transform.right * attackDir, attackNeutralDistance, LayerMask.GetMask("Default"));
+        RaycastHit2D[] hits = Physics2D.BoxCastAll(transform.position + attackFavorOffset, attackFavorHitboxSize, 0, transform.right * attackDir, attackNeutralDistance, LayerMask.GetMask("Default"));
         //Debug.Log("hit array size: " + hits.Length);
 
         foreach (RaycastHit2D hit in hits)
@@ -132,8 +140,8 @@ public class characterController : Entity
     {
         base.OnDrawGizmos();
         //neutral attack box
-        Gizmos.DrawWireCube(transform.position + transform.right * attackNeutralDistance * attackDir, attackNeutralHitboxSize);
+        Gizmos.DrawWireCube(transform.position + attackNeutralOffset + transform.right * attackNeutralDistance * attackDir, attackNeutralHitboxSize);
         //favor attack box
-        Gizmos.DrawWireCube(transform.position + transform.right * attackFavorDistance * attackDir, attackFavorHitboxSize);
+        Gizmos.DrawWireCube(transform.position + attackFavorOffset + transform.right * attackFavorDistance * attackDir, attackFavorHitboxSize);
     }
 }

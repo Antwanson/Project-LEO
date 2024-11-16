@@ -7,7 +7,7 @@ public class WalkState : State
     public override void Enter()
     {
         Debug.Log("Walk");
-        //Animator.Play(anim.name);
+        animator.Play(anim.name);
     }
     public override void Do()
     {

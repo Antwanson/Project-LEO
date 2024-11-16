@@ -15,10 +15,12 @@ public class Entity : MonoBehaviour
 
     protected EntityFavor favor;
 
+    public Vector2 currentEntityKnockback;
     // common attributes
     [Header("Common Attributes")]
     [SerializeField] protected int damage = 10;
-    [SerializeField] protected int speed = 10;
+    [SerializeField] protected int speed = 15;
+    [SerializeField] protected int maxSpeed = 15;
     [SerializeField] protected int jumpPower = 10;
     [SerializeField] protected int attackSpeed = 1;
     
@@ -52,7 +54,15 @@ public class Entity : MonoBehaviour
         //This is a test for the takeDamage method
         //takeDamage(1, Vector2.zero, gameObject);
         //Debug.Log(takeDamage(1, Vector2.zero, gameObject));
-        
+        currentEntityKnockback = currentEntityKnockback * .80f;
+        if (Mathf.Abs(currentEntityKnockback.x) < 1)
+        {
+            currentEntityKnockback.x = 0;
+        }
+        if (Mathf.Abs(currentEntityKnockback.y) < 1)
+        {
+            currentEntityKnockback.y = 0;
+        }
 
         
     }
@@ -70,7 +80,9 @@ public class Entity : MonoBehaviour
     }
     public virtual int takeDamage(int damage, Vector2 knockback, GameObject damageDealer){//TODO: ADD VARIABLE FOR PLAYER REFERENCE
         health.takeDamage(damage);
-        rb.AddForce(knockback, ForceMode2D.Impulse);
+        //rb.AddForce(knockback, ForceMode2D.Impulse);
+        //rb.velocity = rb.velocity + knockback;
+        currentEntityKnockback = knockback;
         //favor.takeDamage(damage);
         return damage;
     }

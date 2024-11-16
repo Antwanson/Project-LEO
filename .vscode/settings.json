@@ -56,5 +56,6 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "Project-LEO.sln"
+    "dotnet.defaultSolution": "Project-LEO.sln",
+    "dotnet.preferCSharpExtension": true
 }

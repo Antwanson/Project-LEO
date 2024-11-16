@@ -97,7 +97,10 @@ public class characterController : Entity
                 Entity target = hit.collider.gameObject.GetComponent<characterController>();
                 Debug.Log("gameobject: " + gameObject);
                 Debug.Log("damage:" + attackNeutralDamage + " knockbac" + Vector2.zero);
-                target.takeDamage(attackNeutralDamage, Vector2.zero, gameObject);
+                int damageDealt = target.takeDamage(attackNeutralDamage, Vector2.zero, gameObject);
+                //favor
+                favor.addFavor(damageDealt);
+
                 
             }
         }

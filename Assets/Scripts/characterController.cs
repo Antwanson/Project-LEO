@@ -30,6 +30,7 @@ public class characterController : Entity
     public float xDir = 0;
     protected CharacterControls playerControls;
     public StateController stateMachine;
+    public EntityFavor entityFavor;
 
 
     // Start is called before the first frame update
@@ -38,6 +39,7 @@ public class characterController : Entity
         base.Start();
         playerControls = new CharacterControls();
         stateMachine = gameObject.GetComponent<StateController>();
+        entityFavor = gameObject.GetComponent<EntityFavor>();
     }
 
     // Update is called once per frame

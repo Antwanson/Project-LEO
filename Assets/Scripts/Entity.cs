@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using Unity.VisualScripting;
 using UnityEngine;
 
 
@@ -77,6 +78,12 @@ public class Entity : MonoBehaviour
 
     public void kill(){
         Destroy(gameObject);
+    }
+
+    private void OnTriggerEnter2D(Collider2D o){
+        if (o.tag == "KillZone"){
+            kill();
+        }
     }
     
 }

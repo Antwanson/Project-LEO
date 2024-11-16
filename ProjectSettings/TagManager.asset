@@ -8,6 +8,7 @@ TagManager:
   - PlayerHandler
   - SceneInitializer
   - PlayerConfigurationManager
+  - KillZone
   layers:
   - Default
   - TransparentFX

@@ -92,6 +92,13 @@ public class characterController : Entity
         
     }
 
+    public override void kill()
+    {
+        stateMachine.machine.Set(stateMachine.deadState);
+        if (stateMachine.machine.state.animComplete)
+            base.kill();
+    }
+
     public void AttackNeutralFront()
     {
         Debug.Log("Attack Neutral Front");

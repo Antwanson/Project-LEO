@@ -20,7 +20,7 @@ public class FavorAttackState : State
     {
         //if (false /*middle of animation*/)
         //character.AttackNeutralFront();
-        if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= anim.length/1.5 /*|| character.entityFavor.getFavor() <= 0*/)
+        if (animationComplete())
             character.isAttackingFavor = false;
     }
     public override void Exit()

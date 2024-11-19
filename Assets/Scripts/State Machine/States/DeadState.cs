@@ -11,7 +11,8 @@ public class DeadState : State
     }
     public override void Do()
     {
-        
+        if (animationComplete())
+            animComplete = true;
     }
     public override void Exit()
     {

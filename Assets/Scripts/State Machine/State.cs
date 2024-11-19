@@ -5,6 +5,7 @@ using UnityEngine;
 public abstract class State : MonoBehaviour
 {
     public bool isComplete { get; protected set; }
+    public bool animComplete = false;
 
     protected float startTime;
 
@@ -33,6 +34,15 @@ public abstract class State : MonoBehaviour
     public void Initialize()
     {
         isComplete = false;
+        animComplete = false;
         startTime = Time.time;
+    }
+
+    public bool animationComplete()
+    {
+        if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= anim.length)
+            return true;
+        else
+            return false;
     }
 }

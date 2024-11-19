@@ -14,7 +14,7 @@ public class AttackState : State
     {
         //if(false /*middle of animation*/)
         //character.AttackNeutralFront();
-        if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= anim.length)
+        if (animationComplete())
             character.isAttackingNeutral = false;
     }
     public override void Exit()

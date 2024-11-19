@@ -44,9 +44,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71c26e3783138fb4aa41f2124b4f6e82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animComplete: 0
   controller: {fileID: 0}
   character: {fileID: 0}
-  anim: {fileID: 4210022502552390803, guid: 819926ae6fa61274c8599ffe8ab03c25, type: 3}
+  anim: {fileID: 7400000, guid: 7b76eff652e729348b4a591609f9e0c8, type: 2}
 --- !u!1 &1257835115983410529
 GameObject:
   m_ObjectHideFlags: 0
@@ -91,9 +92,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f47d15fd65e57142bf1c39c3a038956, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animComplete: 0
   controller: {fileID: 0}
   character: {fileID: 0}
-  anim: {fileID: 0}
+  anim: {fileID: 7400000, guid: 8df3899a3d87d634bb74607f3f246bea, type: 2}
 --- !u!1 &1276019714101522573
 GameObject:
   m_ObjectHideFlags: 0
@@ -138,6 +140,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b20f56f4a9af3a48ad788be8258ba44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animComplete: 0
   controller: {fileID: 0}
   character: {fileID: 0}
   anim: {fileID: -3100369314251171874, guid: 819926ae6fa61274c8599ffe8ab03c25, type: 3}
@@ -226,6 +229,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec566d5c450ac114096f9b93fd3d7d81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animComplete: 0
   controller: {fileID: 0}
   character: {fileID: 0}
   anim: {fileID: -1868118456065059449, guid: 819926ae6fa61274c8599ffe8ab03c25, type: 3}
@@ -273,6 +277,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52e770e218a37414d9f8ed89cc865284, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animComplete: 0
   controller: {fileID: 0}
   character: {fileID: 0}
   anim: {fileID: 2667949614841947897, guid: 819926ae6fa61274c8599ffe8ab03c25, type: 3}
@@ -320,9 +325,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70d9b77e9db65dc4bba79e99d6db9178, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animComplete: 0
   controller: {fileID: 0}
   character: {fileID: 0}
-  anim: {fileID: -7007934847922880295, guid: 819926ae6fa61274c8599ffe8ab03c25, type: 3}
+  anim: {fileID: 7400000, guid: db5e5360790a35d42ad984c3ee616ab5, type: 2}
 --- !u!1 &6765387569018884683
 GameObject:
   m_ObjectHideFlags: 0
@@ -367,9 +373,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83cdcaaf770a2f0499d3c724b305e181, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animComplete: 0
   controller: {fileID: 0}
   character: {fileID: 0}
-  anim: {fileID: 8017390324079358001, guid: 819926ae6fa61274c8599ffe8ab03c25, type: 3}
+  anim: {fileID: 7400000, guid: b2dbacf9a28ab1949b498bb60fc28023, type: 2}
 --- !u!1 &7469518402590372048
 GameObject:
   m_ObjectHideFlags: 0
@@ -414,9 +421,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 657bb9da82ae80045a9aa8e93eeb0a5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animComplete: 0
   controller: {fileID: 0}
   character: {fileID: 0}
-  anim: {fileID: 4348485665485846014, guid: 819926ae6fa61274c8599ffe8ab03c25, type: 3}
+  anim: {fileID: 7400000, guid: 5419d5042d5d8884786e6ce6e230a776, type: 2}
 --- !u!1 &7999270400496457107
 GameObject:
   m_ObjectHideFlags: 0
@@ -461,6 +469,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18bea9fef09e92e4aaf49732f41079c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animComplete: 0
   controller: {fileID: 0}
   character: {fileID: 0}
   anim: {fileID: 0}
@@ -508,6 +517,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 489ee1e1434b814488eca9afb14a918c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animComplete: 0
   controller: {fileID: 0}
   character: {fileID: 0}
   anim: {fileID: -1868118456065059449, guid: 819926ae6fa61274c8599ffe8ab03c25, type: 3}

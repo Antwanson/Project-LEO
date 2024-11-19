@@ -87,7 +87,7 @@ public class Entity : MonoBehaviour
         return damage;
     }
 
-    public void kill(){
+    public virtual void kill(){
         Destroy(gameObject);
     }
     

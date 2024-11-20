@@ -6,24 +6,26 @@ public class FavorAttackState : State
 {
     public override void Enter()
     {
-        Debug.Log("Favor Attack");
-        if(true/*character.entityFavor.currentFavor >= character.entityFavor.maxFavor*/)  //temp cond
+        Debug.Log("Enter Favor Attack");
+        if (character.entityFavor.getFavor() >= character.entityFavor.getMaxFavor())  //temp cond
         {
             character.AttackFavorFront();
-            //Animator.Play(anim.name);
+            character.entityFavor.setFavor(0);
+            animator.Play(anim.name);
         }
+        else
+            Debug.Log("Insufficient Favor for Attack, Attack Failed.");
     }
     public override void Do()
     {
         //if (false /*middle of animation*/)
-            //character.AttackNeutralFront();
-        if (true/*animation ends || favor < maxfavor*/)
-          character.isAttackingFavor = false;
+        //character.AttackNeutralFront();
+        if (animationComplete())
+            character.isAttackingFavor = false;
     }
     public override void Exit()
     {
         Debug.Log("exit favor attack state");
         character.isAttackingFavor = false;
-        //favor = 0;
     }
 }

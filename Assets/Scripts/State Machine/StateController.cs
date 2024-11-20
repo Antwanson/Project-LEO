@@ -86,4 +86,9 @@ public class StateController : MonoBehaviour
 
 
     }
+
+    public void SetStateComplete()
+    {
+        machine.state.animComplete = true;
+    }
 }

@@ -44,9 +44,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71c26e3783138fb4aa41f2124b4f6e82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animComplete: 0
   controller: {fileID: 0}
   character: {fileID: 0}
-  anim: {fileID: 0}
+  anim: {fileID: 7400000, guid: 7b76eff652e729348b4a591609f9e0c8, type: 2}
 --- !u!1 &1257835115983410529
 GameObject:
   m_ObjectHideFlags: 0
@@ -91,9 +92,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f47d15fd65e57142bf1c39c3a038956, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animComplete: 0
   controller: {fileID: 0}
   character: {fileID: 0}
-  anim: {fileID: 0}
+  anim: {fileID: 7400000, guid: 8df3899a3d87d634bb74607f3f246bea, type: 2}
 --- !u!1 &1276019714101522573
 GameObject:
   m_ObjectHideFlags: 0
@@ -138,9 +140,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b20f56f4a9af3a48ad788be8258ba44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animComplete: 0
   controller: {fileID: 0}
   character: {fileID: 0}
-  anim: {fileID: 0}
+  anim: {fileID: -3100369314251171874, guid: 819926ae6fa61274c8599ffe8ab03c25, type: 3}
 --- !u!1 &2015617308392153807
 GameObject:
   m_ObjectHideFlags: 0
@@ -226,9 +229,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec566d5c450ac114096f9b93fd3d7d81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animComplete: 0
   controller: {fileID: 0}
   character: {fileID: 0}
-  anim: {fileID: 0}
+  anim: {fileID: -1868118456065059449, guid: 819926ae6fa61274c8599ffe8ab03c25, type: 3}
 --- !u!1 &6079704141637914292
 GameObject:
   m_ObjectHideFlags: 0
@@ -273,9 +277,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52e770e218a37414d9f8ed89cc865284, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animComplete: 0
   controller: {fileID: 0}
   character: {fileID: 0}
-  anim: {fileID: 0}
+  anim: {fileID: 2667949614841947897, guid: 819926ae6fa61274c8599ffe8ab03c25, type: 3}
 --- !u!1 &6134040818403891063
 GameObject:
   m_ObjectHideFlags: 0
@@ -320,9 +325,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70d9b77e9db65dc4bba79e99d6db9178, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animComplete: 0
   controller: {fileID: 0}
   character: {fileID: 0}
-  anim: {fileID: 0}
+  anim: {fileID: 7400000, guid: db5e5360790a35d42ad984c3ee616ab5, type: 2}
 --- !u!1 &6765387569018884683
 GameObject:
   m_ObjectHideFlags: 0
@@ -367,9 +373,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83cdcaaf770a2f0499d3c724b305e181, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animComplete: 0
   controller: {fileID: 0}
   character: {fileID: 0}
-  anim: {fileID: 0}
+  anim: {fileID: 7400000, guid: b2dbacf9a28ab1949b498bb60fc28023, type: 2}
 --- !u!1 &7469518402590372048
 GameObject:
   m_ObjectHideFlags: 0
@@ -414,9 +421,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 657bb9da82ae80045a9aa8e93eeb0a5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animComplete: 0
   controller: {fileID: 0}
   character: {fileID: 0}
-  anim: {fileID: 0}
+  anim: {fileID: 7400000, guid: 5419d5042d5d8884786e6ce6e230a776, type: 2}
 --- !u!1 &7999270400496457107
 GameObject:
   m_ObjectHideFlags: 0
@@ -461,6 +469,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18bea9fef09e92e4aaf49732f41079c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animComplete: 0
   controller: {fileID: 0}
   character: {fileID: 0}
   anim: {fileID: 0}
@@ -508,9 +517,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 489ee1e1434b814488eca9afb14a918c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animComplete: 0
   controller: {fileID: 0}
   character: {fileID: 0}
-  anim: {fileID: 0}
+  anim: {fileID: -1868118456065059449, guid: 819926ae6fa61274c8599ffe8ab03c25, type: 3}
 --- !u!1 &9160874986982791390
 GameObject:
   m_ObjectHideFlags: 0
@@ -527,6 +537,8 @@ GameObject:
   - component: {fileID: 5119628973930995514}
   - component: {fileID: 8277336877423080242}
   - component: {fileID: 7351329004441188136}
+  - component: {fileID: -6687319152334032485}
+  - component: {fileID: 4970227194916708904}
   m_Layer: 0
   m_Name: Flatened Spartan
   m_TagString: Player
@@ -545,7 +557,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.03, y: 1.29, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 3850162768975334311}
   m_Father: {fileID: 0}
@@ -591,7 +603,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 7bc9e3a242ac4c84b9e4a35b2ba778dd, type: 3}
+  m_Sprite: {fileID: -841133797870060797, guid: 3299b65781b9a114ab0ba2f66dcd444b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -599,7 +611,7 @@ SpriteRenderer:
   m_Size: {x: 0.32, y: 0.64}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!50 &8517115971482755357
@@ -661,18 +673,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.04}
+  m_Offset: {x: 0, y: 1.02}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 2}
+    pivot: {x: 0.4666667, y: 0}
+    oldSize: {x: 0.9375, y: 1.96875}
     newSize: {x: 0.32, y: 0.64}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.95, y: 1.88}
+  m_Size: {x: 0.95, y: 2}
   m_EdgeRadius: 0
 --- !u!114 &4746486574639474817
 MonoBehaviour:
@@ -700,27 +712,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6cfd76844bd85a44a50fa1707dd45fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentEntityKnockback: {x: 0, y: 0}
   damage: 10
   speed: 10
+  maxSpeed: 15
   jumpPower: 30
   attackSpeed: 1
   boxSize: {x: 0.85, y: 0.3}
-  castDistance: 0.98
+  castDistance: -0.01
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
   attackNeutralDistance: 1
+  attackNeutralOffset: {x: -0.27, y: 1.08, z: 0}
   attackNeutralHitboxSize: {x: 1.5, y: 2.25}
   attackNeutralDamage: 10
   isAttackingNeutral: 0
   attackFavorDistance: 1
-  attackFavorHitboxSize: {x: 3, y: 1.5}
+  attackFavorOffset: {x: 0.48, y: 1.06, z: 0}
+  attackFavorHitboxSize: {x: 3, y: 1.52}
   attackFavorDamage: 50
   isAttackingFavor: 0
   dashSpeed: 1
   isDashing: 0
   xDir: 0
   stateMachine: {fileID: 0}
+  entityFavor: {fileID: 0}
+  currentInputMovmentDir: {x: 0, y: 0}
 --- !u!114 &8277336877423080242
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -759,5 +777,40 @@ MonoBehaviour:
   deadState: {fileID: 2775840502773252810}
   character: {fileID: 5119628973930995514}
   health: {fileID: 0}
-  animator: {fileID: 0}
+  animator: {fileID: 4970227194916708904}
   rb: {fileID: 8517115971482755357}
+--- !u!114 &-6687319152334032485
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9160874986982791390}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec7a96452d3019247be3ca1f2fd1db28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxFavor: 100
+  currentFavor: 100
+--- !u!95 &4970227194916708904
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9160874986982791390}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 339901572551229146, guid: 819926ae6fa61274c8599ffe8ab03c25, type: 3}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

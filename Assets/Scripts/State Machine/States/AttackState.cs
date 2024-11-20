@@ -8,17 +8,19 @@ public class AttackState : State
     {
         Debug.Log("Attack");
         character.AttackNeutralFront(); //remove once mid of animation added
-        //Animator.Play(anim.name);
+        animator.Play(anim.name);
     }
     public override void Do()
     {
         //if(false /*middle of animation*/)
-            //character.AttackNeutralFront();
-        if (true/*animation ends*/)
+        //character.AttackNeutralFront();
+        if (animationComplete())
             character.isAttackingNeutral = false;
     }
     public override void Exit()
     {
+        Debug.Log("attack time: " + animator.GetCurrentAnimatorStateInfo(0).normalizedTime);
+        Debug.Log("attack length: " + anim.length);
         Debug.Log("exit attack state");
         character.isAttackingNeutral = false;
     }

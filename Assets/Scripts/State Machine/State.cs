@@ -13,6 +13,8 @@ public abstract class State : MonoBehaviour
 
     public StateController controller;
     public characterController character;
+    public StateMachine machine;
+    public EntityHealth health;
 
     public AnimationClip anim;
     protected Rigidbody2D rb;
@@ -30,6 +32,10 @@ public abstract class State : MonoBehaviour
         animator = _animator;
         controller = _controller;
         character = _character;
+        
+        //sneaky ~ Anthony
+        machine = controller.machine;
+        health = controller.health;
     }
     public void Initialize()
     {

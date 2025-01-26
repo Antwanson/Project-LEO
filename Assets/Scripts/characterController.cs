@@ -78,7 +78,12 @@ public class characterController : Entity
     }
     public void MovementTriggered(InputValue value){
         //Debug.Log("Moved");
+        
         currentInputMovmentDir = value.Get<Vector2>();
+        //need to give this movement a deadzone so if the the abxolute value of x or y is less than .1 then it is 0
+        currentInputMovmentDir.x = Mathf.Abs(currentInputMovmentDir.x) < .6 ? 0 : currentInputMovmentDir.x;
+        currentInputMovmentDir.y = Mathf.Abs(currentInputMovmentDir.y) < .6 ? 0 : currentInputMovmentDir.y;
+
         
     }
     public override int takeDamage(int damage, Vector2 knockback, GameObject damageDealer)
@@ -86,7 +91,7 @@ public class characterController : Entity
         if (stateMachine.machine.state != stateMachine.dashState)
         {
             base.takeDamage(damage, knockback, damageDealer);
-            stateMachine.machine.Set(stateMachine.hurtState);
+            //stateMachine.machine.Set(stateMachine.hurtState);
         }
             return damage;
         

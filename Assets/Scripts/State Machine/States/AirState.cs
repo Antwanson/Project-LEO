@@ -11,6 +11,26 @@ public class AirState : State
     }
     public override void Do()
     {
+        //contains logic for which states to transition to out of the air state
+
+        //Death state first because it is the most important
+        if (health.currentHealth <= 0)
+        {
+            machine.Set(controller.deadState);
+            return;
+        }
+        //walking state if grounded and moving
+        if (character.isGrounded() && character.xDir == 0)
+        {
+            machine.Set(controller.walkState);
+            return;
+        }
+        //if the player is grounded return to idle state
+        if (character.isGrounded())
+        {
+            machine.Set(controller.idleState);
+            return;
+        }
 
     }
     public override void Exit()

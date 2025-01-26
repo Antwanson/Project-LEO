@@ -7,15 +7,34 @@ public class AttackState : State
     public override void Enter()
     {
         Debug.Log("Attack");
-        character.AttackNeutralFront(); //remove once mid of animation added
         animator.Play(anim.name);
+        
     }
     public override void Do()
     {
         //if(false /*middle of animation*/)
         //character.AttackNeutralFront();
-        if (animationComplete())
-            character.isAttackingNeutral = false;
+        if (health.currentHealth <= 0)
+        {
+            machine.Set(controller.deadState);
+            return;
+        }
+
+        if (animationComplete()){
+
+            character.AttackNeutralFront(); //remove once mid of animation added
+            //logic for if the player is airborne or grounded
+            if (character.isGrounded())
+            {
+                machine.Set(controller.idleState);
+                return;
+            }
+            else
+            {
+                machine.Set(controller.airState);
+                return;
+            }
+        }
     }
     public override void Exit()
     {

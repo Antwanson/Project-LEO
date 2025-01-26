@@ -9,8 +9,7 @@ public class FavorAttackState : State
         Debug.Log("Enter Favor Attack");
         if (character.entityFavor.getFavor() >= character.entityFavor.getMaxFavor())  //temp cond
         {
-            character.AttackFavorFront();
-            character.entityFavor.setFavor(0);
+            
             animator.Play(anim.name);
         }
         else
@@ -18,10 +17,28 @@ public class FavorAttackState : State
     }
     public override void Do()
     {
-        //if (false /*middle of animation*/)
-        //character.AttackNeutralFront();
-        if (animationComplete())
-            character.isAttackingFavor = false;
+        if (health.currentHealth <= 0)
+        {
+            machine.Set(controller.deadState);
+            return;
+        }
+
+        if (animationComplete()){
+
+            character.AttackFavorFront();
+            character.entityFavor.setFavor(0); //remove once mid of animation added
+            //logic for if the player is airborne or grounded
+            if (character.isGrounded())
+            {
+                machine.Set(controller.idleState);
+                return;
+            }
+            else
+            {
+                machine.Set(controller.airState);
+                return;
+            }
+        }
     }
     public override void Exit()
     {

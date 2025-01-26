@@ -14,6 +14,8 @@ public class DashState : State
     {
         if (true/*animation completed*/)
             character.isDashing = false;
+            
+        //add logic eventually for state transition
     }
     public override void Exit()
     {

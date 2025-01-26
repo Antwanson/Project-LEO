@@ -10,9 +10,40 @@ public class IdleState : State
         animator.Play(anim.name);
     }
     public override void Do()
-    {/*
-        if (!character.isGrounded() || character.xDir != 0)
-            isComplete = true;*/
+    {
+        //probably the hardest one to do
+
+        //death is first obviously
+        if (health.currentHealth <= 0)
+        {
+            machine.Set(controller.deadState);
+            return;
+        }
+        //if the player is moving switch to walk state
+        if (!(character.xDir == 0))
+        {
+            machine.Set(controller.walkState);
+            return;
+        }
+        //if the player is attacking switch to attack state
+        if (character.isAttackingNeutral)
+        {
+            machine.Set(controller.attackState);
+            return;
+        }
+        //if the player is attacking with favor switch to favor attack state
+        if (character.isAttackingFavor)
+        {
+            machine.Set(controller.favorAttackState);
+            return;
+        }
+        //if the player is not grounded then switch to air state
+        if (!character.isGrounded())
+        {
+            machine.Set(controller.airState);
+            return;
+        }
+
     }
     public override void Exit()
     {

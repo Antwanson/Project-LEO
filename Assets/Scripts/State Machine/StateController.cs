@@ -16,6 +16,9 @@ public class StateController : MonoBehaviour
     public State hurtState;
     public State deadState;
 
+    //used keep track of state outside of this class
+    //public String currentState;
+
     public StateMachine machine;
     public characterController character;
     public EntityHealth health;
@@ -27,6 +30,8 @@ public class StateController : MonoBehaviour
     {
         health = gameObject.GetComponent<EntityHealth>();
 
+        machine = new StateMachine();
+        
         idleState.SetUp(rb, animator, this, character);
         walkState.SetUp(rb, animator, this, character);
         dashState.SetUp(rb, animator, this, character);
@@ -38,53 +43,96 @@ public class StateController : MonoBehaviour
         hurtState.SetUp(rb, animator, this, character);
         deadState.SetUp(rb, animator, this, character);
 
-        machine = new StateMachine();
+        
         machine.Set(idleState);
     }
 
     private void Update()
     {
-        SelectState();
+        //SelectState();
         machine.state.Do();
     }
+    /**
+        This method used to hold the logic for changing states, now it will simply just call Set most likely might be irrelevant after changes
+    */
     void SelectState()
     {
-        //hurt/dead states
-        if (health.currentHealth <= 0)
-        {
-            machine.Set(deadState);
-            return;
-        }
+        // //hurt/dead states
+        // if (health.currentHealth <= 0)
+        // {
+        //     machine.Set(deadState);
+        //     return;
+        // }
 
-        //attack states
-        else if (character.isAttackingFavor)
-        {
-            machine.Set(favorAttackState);
-        }
-        else if (character.isAttackingNeutral)
-        {
-            machine.Set(attackState);
-        }
+        // //attack states
+        // else if (character.isAttackingFavor)
+        // {
+        //     machine.Set(favorAttackState);
+        // }
+        // else if (character.isAttackingNeutral)
+        // {
+        //     machine.Set(attackState);
+        // }
 
-        //air state
-        else if (Input.GetKeyDown(KeyCode.Space) || (!character.isGrounded() && rb.velocity.y > 0))    //jump state
-            machine.Set(jumpState);
-        else if (!character.isGrounded())//fall/air state
-            machine.Set(airState);
+        // //air state
+        // else if (Input.GetKeyDown(KeyCode.Space) || (!character.isGrounded() && rb.velocity.y > 0))    //jump state
+        //     machine.Set(jumpState);
+        // else if (!character.isGrounded())//fall/air state
+        //     machine.Set(airState);
 
-        //idle or walk state
-        else if(character.isDashing)
-            machine.Set(dashState);
-        else if (character.isGrounded() && character.xDir == 0)
-        {
-            machine.Set(idleState);
-        }
-        else if (character.isGrounded())
-        {
-            machine.Set(walkState);
-        }
-
-
+        // //idle or walk state
+        // else if(character.isDashing)
+        //     machine.Set(dashState);
+        // else if (character.isGrounded() && character.xDir == 0)
+        // {
+        //     machine.Set(idleState);
+        // }
+        // else if (character.isGrounded())
+        // {
+        //     machine.Set(walkState);
+        // }
+        
+        // if statements if the currentState is equal to the name of the state class then set the state for each state if statements only no else if
+        // if(currentState == "IdleState")
+        // {
+        //     machine.Set(idleState);
+        // }
+        // if(currentState == "WalkState")
+        // {
+        //     machine.Set(walkState);
+        // }
+        // if(currentState == "DashState")
+        // {
+        //     machine.Set(dashState);
+        // }
+        // if(currentState == "AirState")
+        // {
+        //     machine.Set(airState);
+        // }
+        // if(currentState == "JumpState")
+        // {
+        //     machine.Set(jumpState);
+        // }
+        // if(currentState == "AttackState")
+        // {
+        //     machine.Set(attackState);
+        // }
+        // if(currentState == "FavorAttackState")
+        // {
+        //     machine.Set(favorAttackState);
+        // }
+        // if(currentState == "DodgeState")
+        // {
+        //     machine.Set(dodgeState);
+        // }
+        // if(currentState == "HurtState")
+        // {
+        //     machine.Set(hurtState);
+        // }
+        // if(currentState == "DeadState")
+        // {
+        //     machine.Set(deadState);
+        // }
     }
 
     public void SetStateComplete()

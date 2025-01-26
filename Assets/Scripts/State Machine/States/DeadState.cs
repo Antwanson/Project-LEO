@@ -11,7 +11,11 @@ public class DeadState : State
     }
     public override void Do()
     {
-
+        //when the animation is complete call kill
+        if (animationComplete())
+        {
+            character.kill();
+        }
     }
     public override void Exit()
     {

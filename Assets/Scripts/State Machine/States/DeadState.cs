@@ -12,9 +12,11 @@ public class DeadState : State
     public override void Do()
     {
         //when the animation is complete call kill
-        if (animationComplete())
+        //TODO: please fix animation so it ends at the proper time so we can use animationComplete() instead
+        if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= anim.length*.63f)
         {
             character.kill();
+            return;
         }
     }
     public override void Exit()

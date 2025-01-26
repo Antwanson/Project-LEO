@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class FavorAttackState : State
 {
+    public bool hasAttacked = false;
     public override void Enter()
     {
         Debug.Log("Enter Favor Attack");
@@ -23,10 +24,15 @@ public class FavorAttackState : State
             return;
         }
 
-        if (animationComplete()){
-
+        if (hasAttacked == false && animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= anim.length * .55f)
+        {
             character.AttackFavorFront();
             character.entityFavor.setFavor(0); //remove once mid of animation added
+            hasAttacked = true;
+        }
+
+        //TODO: fix original animation so this check is not needed and can instead use animationComplete()
+        if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= anim.length * .75f){
             //logic for if the player is airborne or grounded
             if (character.isGrounded())
             {
@@ -43,6 +49,7 @@ public class FavorAttackState : State
     public override void Exit()
     {
         Debug.Log("exit favor attack state");
+        hasAttacked = false;
         character.isAttackingFavor = false;
     }
 }

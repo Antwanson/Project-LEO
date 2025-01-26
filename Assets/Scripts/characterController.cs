@@ -35,6 +35,10 @@ public class characterController : Entity
     public EntityFavor entityFavor;
 
     public Vector2 currentInputMovmentDir = Vector2.zero;
+
+    [Header("Knockback Multipliers")]
+    [SerializeField] public float NeutralKnockbackMulti = 15;
+    [SerializeField] public float FavorKnockbackMulti = 60;
     // Start is called before the first frame update
     protected override void Start()
     {
@@ -99,9 +103,7 @@ public class characterController : Entity
 
     public override void kill()
     {
-        stateMachine.machine.Set(stateMachine.deadState);
-        if (stateMachine.machine.state.animComplete)
-            base.kill();
+        base.kill();
     }
 
     public void AttackNeutralFront()
@@ -119,7 +121,7 @@ public class characterController : Entity
                 Entity target = hit.collider.gameObject.GetComponent<characterController>();
                 Debug.Log("gameobject: " + gameObject);
                 Debug.Log("damage:" + attackNeutralDamage + " knockbac" + Vector2.zero);
-                int damageDealt = target.takeDamage(attackNeutralDamage, new Vector2(30*attackDir,2), gameObject);
+                int damageDealt = target.takeDamage(attackNeutralDamage, new Vector2(NeutralKnockbackMulti*attackDir,2), gameObject);
                 //favor
                 entityFavor.addFavor(damageDealt);
 
@@ -142,7 +144,7 @@ public class characterController : Entity
                 Debug.Log("Hit: " + hit.collider.gameObject.name);
 
                 Entity target = hit.collider.gameObject.GetComponent<characterController>();
-                target.takeDamage(attackFavorDamage, Vector2.zero, gameObject);
+                target.takeDamage(attackFavorDamage, new Vector2(FavorKnockbackMulti*attackDir,3), gameObject);
             }
         }
 

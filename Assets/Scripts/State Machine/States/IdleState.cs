@@ -32,7 +32,7 @@ public class IdleState : State
             return;
         }
         //if the player is attacking with favor switch to favor attack state
-        if (character.isAttackingFavor)
+        if (character.isAttackingFavor && character.entityFavor.getFavor() >= character.entityFavor.getMaxFavor())
         {
             machine.Set(controller.favorAttackState);
             return;

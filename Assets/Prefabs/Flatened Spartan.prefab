@@ -47,7 +47,9 @@ MonoBehaviour:
   animComplete: 0
   controller: {fileID: 0}
   character: {fileID: 0}
+  health: {fileID: 0}
   anim: {fileID: 7400000, guid: 7b76eff652e729348b4a591609f9e0c8, type: 2}
+  hasAttacked: 0
 --- !u!1 &1257835115983410529
 GameObject:
   m_ObjectHideFlags: 0
@@ -95,6 +97,7 @@ MonoBehaviour:
   animComplete: 0
   controller: {fileID: 0}
   character: {fileID: 0}
+  health: {fileID: 0}
   anim: {fileID: 7400000, guid: 8df3899a3d87d634bb74607f3f246bea, type: 2}
 --- !u!1 &1276019714101522573
 GameObject:
@@ -143,6 +146,7 @@ MonoBehaviour:
   animComplete: 0
   controller: {fileID: 0}
   character: {fileID: 0}
+  health: {fileID: 0}
   anim: {fileID: -3100369314251171874, guid: 819926ae6fa61274c8599ffe8ab03c25, type: 3}
 --- !u!1 &2015617308392153807
 GameObject:
@@ -232,6 +236,7 @@ MonoBehaviour:
   animComplete: 0
   controller: {fileID: 0}
   character: {fileID: 0}
+  health: {fileID: 0}
   anim: {fileID: -1868118456065059449, guid: 819926ae6fa61274c8599ffe8ab03c25, type: 3}
 --- !u!1 &6079704141637914292
 GameObject:
@@ -280,6 +285,7 @@ MonoBehaviour:
   animComplete: 0
   controller: {fileID: 0}
   character: {fileID: 0}
+  health: {fileID: 0}
   anim: {fileID: 2667949614841947897, guid: 819926ae6fa61274c8599ffe8ab03c25, type: 3}
 --- !u!1 &6134040818403891063
 GameObject:
@@ -328,7 +334,9 @@ MonoBehaviour:
   animComplete: 0
   controller: {fileID: 0}
   character: {fileID: 0}
+  health: {fileID: 0}
   anim: {fileID: 7400000, guid: db5e5360790a35d42ad984c3ee616ab5, type: 2}
+  hasAttacked: 0
 --- !u!1 &6765387569018884683
 GameObject:
   m_ObjectHideFlags: 0
@@ -376,6 +384,7 @@ MonoBehaviour:
   animComplete: 0
   controller: {fileID: 0}
   character: {fileID: 0}
+  health: {fileID: 0}
   anim: {fileID: 7400000, guid: b2dbacf9a28ab1949b498bb60fc28023, type: 2}
 --- !u!1 &7469518402590372048
 GameObject:
@@ -424,6 +433,7 @@ MonoBehaviour:
   animComplete: 0
   controller: {fileID: 0}
   character: {fileID: 0}
+  health: {fileID: 0}
   anim: {fileID: 7400000, guid: 5419d5042d5d8884786e6ce6e230a776, type: 2}
 --- !u!1 &7999270400496457107
 GameObject:
@@ -472,6 +482,7 @@ MonoBehaviour:
   animComplete: 0
   controller: {fileID: 0}
   character: {fileID: 0}
+  health: {fileID: 0}
   anim: {fileID: 0}
 --- !u!1 &8804185559253309587
 GameObject:
@@ -520,6 +531,7 @@ MonoBehaviour:
   animComplete: 0
   controller: {fileID: 0}
   character: {fileID: 0}
+  health: {fileID: 0}
   anim: {fileID: -1868118456065059449, guid: 819926ae6fa61274c8599ffe8ab03c25, type: 3}
 --- !u!1 &9160874986982791390
 GameObject:
@@ -726,14 +738,14 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   attackNeutralDistance: 1
-  attackNeutralOffset: {x: -0.27, y: 1.08, z: 0}
-  attackNeutralHitboxSize: {x: 1.5, y: 2.25}
-  attackNeutralDamage: 10
+  attackNeutralOffset: {x: 0.09, y: 1, z: 0}
+  attackNeutralHitboxSize: {x: 2.5, y: 2.25}
+  attackNeutralDamage: 40
   isAttackingNeutral: 0
   attackFavorDistance: 1
-  attackFavorOffset: {x: 0.48, y: 1.06, z: 0}
-  attackFavorHitboxSize: {x: 3, y: 1.52}
-  attackFavorDamage: 50
+  attackFavorOffset: {x: 1, y: 1, z: 0}
+  attackFavorHitboxSize: {x: 4, y: 1.61}
+  attackFavorDamage: 200
   isAttackingFavor: 0
   dashSpeed: 1
   isDashing: 0
@@ -741,6 +753,8 @@ MonoBehaviour:
   stateMachine: {fileID: 0}
   entityFavor: {fileID: 0}
   currentInputMovmentDir: {x: 0, y: 0}
+  NeutralKnockbackMulti: 15
+  FavorKnockbackMulti: 60
 --- !u!114 &8277336877423080242
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -753,8 +767,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1040011f88eb02a439a83be7ec80be0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
-  currentHealth: 100
+  maxHealth: 400
+  currentHealth: 400
 --- !u!114 &7351329004441188136
 MonoBehaviour:
   m_ObjectHideFlags: 0

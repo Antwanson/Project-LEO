@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class AttackState : State
 {
+    public bool hasAttacked = false;
     public override void Enter()
     {
         Debug.Log("Attack");
@@ -20,9 +21,14 @@ public class AttackState : State
             return;
         }
 
+        if (hasAttacked == false && animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= anim.length*.9f)
+        {
+            character.AttackNeutralFront();
+            hasAttacked = true;
+        }
+
         if (animationComplete()){
 
-            character.AttackNeutralFront(); //remove once mid of animation added
             //logic for if the player is airborne or grounded
             if (character.isGrounded())
             {
@@ -41,6 +47,7 @@ public class AttackState : State
         Debug.Log("attack time: " + animator.GetCurrentAnimatorStateInfo(0).normalizedTime);
         Debug.Log("attack length: " + anim.length);
         Debug.Log("exit attack state");
+        hasAttacked = false;
         character.isAttackingNeutral = false;
     }
 }

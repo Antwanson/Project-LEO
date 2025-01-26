@@ -45,9 +45,6 @@ public class Entity : MonoBehaviour
     protected virtual void Update()
     {
         
-        if(health.getHP() == 0){
-            kill();
-        }
     }
 
     protected virtual void FixedUpdate()

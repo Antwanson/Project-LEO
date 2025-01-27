@@ -63,12 +63,19 @@ public class characterController : Entity
         if (xDir < 0)
         {
             transform.localScale = new Vector3(-1, 1, 1);
+            //reverse attack offset x for favor and neutral
+            attackFavorOffset = new Vector3(-1 * Mathf.Abs(attackFavorOffset.x), attackFavorOffset.y, attackFavorOffset.z);
+            attackNeutralOffset = new Vector3(-1 * Mathf.Abs(attackNeutralOffset.x), attackNeutralOffset.y, attackNeutralOffset.z);
+
             attackDir = -1;
         }
         else if (xDir > 0)
         {
             transform.localScale = new Vector3(1, 1, 1);
             attackDir = 1;
+            //reset attack offset x for favor and neutral
+            attackFavorOffset = new Vector3(Mathf.Abs(attackFavorOffset.x), attackFavorOffset.y, attackFavorOffset.z);
+            attackNeutralOffset = new Vector3(Mathf.Abs(attackNeutralOffset.x), attackNeutralOffset.y, attackNeutralOffset.z);
         }
         //Debug.Log("Direction: " + xDir);
         rb.velocity = new Vector2((xDir * speed), rb.velocity.y) + currentEntityKnockback;
@@ -153,6 +160,8 @@ public class characterController : Entity
     public override void OnDrawGizmos()
     {
         base.OnDrawGizmos();
+
+        
         //neutral attack box
         Gizmos.DrawWireCube(transform.position + attackNeutralOffset + transform.right * attackNeutralDistance * attackDir, attackNeutralHitboxSize);
         //favor attack box

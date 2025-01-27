@@ -738,13 +738,13 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   attackNeutralDistance: 1
-  attackNeutralOffset: {x: 0.09, y: 1, z: 0}
+  attackNeutralOffset: {x: 0.21, y: 1, z: 0}
   attackNeutralHitboxSize: {x: 2.5, y: 2.25}
   attackNeutralDamage: 40
   isAttackingNeutral: 0
   attackFavorDistance: 1
-  attackFavorOffset: {x: 1, y: 1, z: 0}
-  attackFavorHitboxSize: {x: 4, y: 1.61}
+  attackFavorOffset: {x: 0.94, y: 1, z: 0}
+  attackFavorHitboxSize: {x: 1.89, y: 1.73}
   attackFavorDamage: 200
   isAttackingFavor: 0
   dashSpeed: 1

@@ -63,23 +63,24 @@ public class characterController : Entity
         base.FixedUpdate();
         xDir = currentInputMovmentDir.x;
 
-        //Direction Sprite flippiage
-        if (xDir < 0)
-        {
-            transform.localScale = new Vector3(-1, 1, 1);
-            //reverse attack offset x for favor and neutral
-            attackFavorOffset = new Vector3(-1 * Mathf.Abs(attackFavorOffset.x), attackFavorOffset.y, attackFavorOffset.z);
-            attackNeutralOffset = new Vector3(-1 * Mathf.Abs(attackNeutralOffset.x), attackNeutralOffset.y, attackNeutralOffset.z);
+        if(isMovementLocked == false){//Direction Sprite flippiage
+            if (xDir < 0)
+            {
+                transform.localScale = new Vector3(-1, 1, 1);
+                //reverse attack offset x for favor and neutral
+                attackFavorOffset = new Vector3(-1 * Mathf.Abs(attackFavorOffset.x), attackFavorOffset.y, attackFavorOffset.z);
+                attackNeutralOffset = new Vector3(-1 * Mathf.Abs(attackNeutralOffset.x), attackNeutralOffset.y, attackNeutralOffset.z);
 
-            attackDir = -1;
-        }
-        else if (xDir > 0)
-        {
-            transform.localScale = new Vector3(1, 1, 1);
-            attackDir = 1;
-            //reset attack offset x for favor and neutral
-            attackFavorOffset = new Vector3(Mathf.Abs(attackFavorOffset.x), attackFavorOffset.y, attackFavorOffset.z);
-            attackNeutralOffset = new Vector3(Mathf.Abs(attackNeutralOffset.x), attackNeutralOffset.y, attackNeutralOffset.z);
+                attackDir = -1;
+            }
+            else if (xDir > 0)
+            {
+                transform.localScale = new Vector3(1, 1, 1);
+                attackDir = 1;
+                //reset attack offset x for favor and neutral
+                attackFavorOffset = new Vector3(Mathf.Abs(attackFavorOffset.x), attackFavorOffset.y, attackFavorOffset.z);
+                attackNeutralOffset = new Vector3(Mathf.Abs(attackNeutralOffset.x), attackNeutralOffset.y, attackNeutralOffset.z);
+            }
         }
 
         /*if you change the velocity calculation you will have to change lockMovement as well

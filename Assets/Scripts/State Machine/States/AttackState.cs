@@ -8,7 +8,8 @@ public class AttackState : State
     public override void Enter()
     {
         Debug.Log("Attack");
-        animator.Play(anim.name);
+        animator.Play(anim.name, 0, .2f);
+        animator.speed = 2f;
         
     }
     public override void Do()
@@ -49,5 +50,8 @@ public class AttackState : State
         Debug.Log("exit attack state");
         hasAttacked = false;
         character.isAttackingNeutral = false;
+
+        //reset the animation speed
+        animator.speed = 1f;
     }
 }

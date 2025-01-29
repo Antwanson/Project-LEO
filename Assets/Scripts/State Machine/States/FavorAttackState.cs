@@ -12,6 +12,8 @@ public class FavorAttackState : State
         {
             
             animator.Play(anim.name);
+            //double speed
+            animator.speed = 2f;
         }
         else
             Debug.Log("Insufficient Favor for Attack, Attack Failed.");
@@ -51,5 +53,7 @@ public class FavorAttackState : State
         Debug.Log("exit favor attack state");
         hasAttacked = false;
         character.isAttackingFavor = false;
+        //reset speed
+        animator.speed = 1f;
     }
 }

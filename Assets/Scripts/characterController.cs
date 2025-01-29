@@ -40,6 +40,10 @@ public class characterController : Entity
     [SerializeField] public float NeutralKnockbackMulti = 15;
     [SerializeField] public float FavorKnockbackMulti = 60;
     // Start is called before the first frame update
+
+    //Variables related to movementLock
+    public bool isMovementLocked = false;
+    public Vector2 lockedVelocity = Vector2.zero;
     protected override void Start()
     {
         base.Start();
@@ -77,9 +81,35 @@ public class characterController : Entity
             attackFavorOffset = new Vector3(Mathf.Abs(attackFavorOffset.x), attackFavorOffset.y, attackFavorOffset.z);
             attackNeutralOffset = new Vector3(Mathf.Abs(attackNeutralOffset.x), attackNeutralOffset.y, attackNeutralOffset.z);
         }
-        //Debug.Log("Direction: " + xDir);
-        rb.velocity = new Vector2((xDir * speed), rb.velocity.y) + currentEntityKnockback;
-        //rb.velocity = new Vector2((xDir * 50 * speed * dashSpeed * Time.deltaTime) + rb.velocity.x, rb.velocity.y);
+
+        /*if you change the velocity calculation you will have to change lockMovement as well
+        calculate velocity in it's own function at that point */
+        rb.velocity = movementLockCheck(new Vector2((xDir * speed), rb.velocity.y)) + currentEntityKnockback;
+    }
+
+    public void lockMovement(bool retainLockedVelocity, Vector2 lockedVelocity){
+        this.isMovementLocked = true;
+        if(retainLockedVelocity){
+            this.lockedVelocity = new Vector2((xDir * speed), rb.velocity.y);
+        }
+        else {
+            this.lockedVelocity = lockedVelocity;
+        }
+        
+    }
+
+    public void unlockMovement(){
+        this.isMovementLocked = false;
+        this.lockedVelocity = Vector2.zero;
+    }
+
+    public Vector2 movementLockCheck(Vector2 velocity){
+
+        if(isMovementLocked){
+            return lockedVelocity;
+        }
+
+        return velocity;
     }
 
     public void JumpTriggered(){

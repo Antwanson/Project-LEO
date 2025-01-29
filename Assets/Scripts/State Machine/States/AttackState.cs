@@ -11,6 +11,7 @@ public class AttackState : State
         animator.Play(anim.name, 0, .2f);
         animator.speed = 2f;
         
+        character.lockMovement(false, Vector2.zero);
     }
     public override void Do()
     {
@@ -53,5 +54,6 @@ public class AttackState : State
 
         //reset the animation speed
         animator.speed = 1f;
+        character.unlockMovement();
     }
 }

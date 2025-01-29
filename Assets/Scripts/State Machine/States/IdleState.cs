@@ -8,6 +8,10 @@ public class IdleState : State
     {
         Debug.Log("Idle");
         animator.Play(anim.name);
+
+        //fixes issue on player attack might cause other issues :p
+        character.isAttackingFavor = false;
+        character.isAttackingNeutral = false;
     }
     public override void Do()
     {

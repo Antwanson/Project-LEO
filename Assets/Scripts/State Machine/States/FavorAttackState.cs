@@ -7,6 +7,7 @@ public class FavorAttackState : State
     public bool hasAttacked = false;
     public override void Enter()
     {
+        //TODO: Remove this if condition it is not needed
         Debug.Log("Enter Favor Attack");
         if (character.entityFavor.getFavor() >= character.entityFavor.getMaxFavor())  //temp cond
         {
@@ -17,6 +18,8 @@ public class FavorAttackState : State
         }
         else
             Debug.Log("Insufficient Favor for Attack, Attack Failed.");
+        //locking movement false (means it doesn't retain velocity) Vector2.zero means the velocity of the character is zero durring this attack
+        character.lockMovement(false, Vector2.zero);
     }
     public override void Do()
     {
@@ -55,5 +58,7 @@ public class FavorAttackState : State
         character.isAttackingFavor = false;
         //reset speed
         animator.speed = 1f;
+        
+        character.unlockMovement();
     }
 }

@@ -91,7 +91,7 @@ public class characterController : Entity
     public void lockMovement(bool retainLockedVelocity, Vector2 lockedVelocity){
         this.isMovementLocked = true;
         if(retainLockedVelocity){
-            this.lockedVelocity = new Vector2((xDir * speed), rb.velocity.y);
+            this.lockedVelocity = new Vector2((xDir * speed), rb.velocity.y) + lockedVelocity;
         }
         else {
             this.lockedVelocity = lockedVelocity;

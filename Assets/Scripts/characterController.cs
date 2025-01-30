@@ -36,6 +36,8 @@ public class characterController : Entity
 
     public Vector2 currentInputMovmentDir = Vector2.zero;
 
+    bool isHSWaiting = false;
+
     [Header("Knockback Multipliers")]
     [SerializeField] public float NeutralKnockbackMulti = 15;
     [SerializeField] public float FavorKnockbackMulti = 60;
@@ -113,6 +115,21 @@ public class characterController : Entity
         return velocity;
     }
 
+    public void HSStop(float duration){
+        if(isHSWaiting){
+            return;
+        }
+        Time.timeScale = 0.0f;
+        StartCoroutine(HSWait(duration));
+    }
+
+    IEnumerator HSWait(float duration){
+        isHSWaiting = true;
+        yield return new WaitForSecondsRealtime(duration);
+        Time.timeScale = 1.0f;
+        isHSWaiting = false;
+    }
+
     public void JumpTriggered(){
         if(isGrounded()){
             rb.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
@@ -163,6 +180,8 @@ public class characterController : Entity
                 //favor
                 entityFavor.addFavor(damageDealt);
 
+                HSStop(.1f);
+
                 
             }
         }
@@ -183,6 +202,8 @@ public class characterController : Entity
 
                 Entity target = hit.collider.gameObject.GetComponent<characterController>();
                 target.takeDamage(attackFavorDamage, new Vector2(FavorKnockbackMulti*attackDir,3), gameObject);
+
+                HSStop(.2f);
             }
         }
 

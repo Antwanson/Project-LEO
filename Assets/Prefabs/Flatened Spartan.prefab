@@ -753,8 +753,10 @@ MonoBehaviour:
   stateMachine: {fileID: 0}
   entityFavor: {fileID: 0}
   currentInputMovmentDir: {x: 0, y: 0}
-  NeutralKnockbackMulti: 15
+  NeutralKnockbackMulti: 5
   FavorKnockbackMulti: 60
+  isMovementLocked: 0
+  lockedVelocity: {x: 0, y: 0}
 --- !u!114 &8277336877423080242
 MonoBehaviour:
   m_ObjectHideFlags: 0

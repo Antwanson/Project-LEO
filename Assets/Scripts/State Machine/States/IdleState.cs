@@ -12,6 +12,7 @@ public class IdleState : State
         //fixes issue on player attack might cause other issues :p
         character.isAttackingFavor = false;
         character.isAttackingNeutral = false;
+        character.isTaunting = false;
     }
     public override void Do()
     {
@@ -39,6 +40,12 @@ public class IdleState : State
         if (character.isAttackingFavor && character.entityFavor.getFavor() >= character.entityFavor.getMaxFavor())
         {
             machine.Set(controller.favorAttackState);
+            return;
+        }
+        //if taunting switch to taunt state
+        if (character.isTaunting)
+        {
+            machine.Set(controller.tauntState);
             return;
         }
         //if the player is not grounded then switch to air state

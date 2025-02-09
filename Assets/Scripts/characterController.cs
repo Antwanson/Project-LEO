@@ -23,6 +23,7 @@ public class characterController : Entity
     [SerializeField] public Vector2 attackFavorHitboxSize = new Vector2(10, 10);
     [SerializeField] public int attackFavorDamage = 50;
     public bool isAttackingFavor = false;
+    public bool isTaunting = false;
 
     [Header("Dashing Attributes")]
     [SerializeField] public int dashSpeed = 1;

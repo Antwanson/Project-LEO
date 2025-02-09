@@ -71,6 +71,15 @@ public partial class @CharacterControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Taunt"",
+                    ""type"": ""Button"",
+                    ""id"": ""96d8d5a8-2753-4b78-aa3a-ca8b37e794d5"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -249,6 +258,28 @@ public partial class @CharacterControls: IInputActionCollection2, IDisposable
                     ""action"": ""Dash"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""561feb71-30dc-4b78-9625-808c421b67b1"",
+                    ""path"": ""<Gamepad>/dpad/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Taunt"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""05e1defa-f99f-41d7-8564-0980614f8acd"",
+                    ""path"": ""<Keyboard>/t"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Taunt"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -393,6 +424,7 @@ public partial class @CharacterControls: IInputActionCollection2, IDisposable
         m_BaseCombat_AttackNeutral = m_BaseCombat.FindAction("AttackNeutral", throwIfNotFound: true);
         m_BaseCombat_AttackFavor = m_BaseCombat.FindAction("AttackFavor", throwIfNotFound: true);
         m_BaseCombat_Dash = m_BaseCombat.FindAction("Dash", throwIfNotFound: true);
+        m_BaseCombat_Taunt = m_BaseCombat.FindAction("Taunt", throwIfNotFound: true);
         // Ui
         m_Ui = asset.FindActionMap("Ui", throwIfNotFound: true);
         m_Ui_Cursor = m_Ui.FindAction("Cursor", throwIfNotFound: true);
@@ -463,6 +495,7 @@ public partial class @CharacterControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_BaseCombat_AttackNeutral;
     private readonly InputAction m_BaseCombat_AttackFavor;
     private readonly InputAction m_BaseCombat_Dash;
+    private readonly InputAction m_BaseCombat_Taunt;
     public struct BaseCombatActions
     {
         private @CharacterControls m_Wrapper;
@@ -472,6 +505,7 @@ public partial class @CharacterControls: IInputActionCollection2, IDisposable
         public InputAction @AttackNeutral => m_Wrapper.m_BaseCombat_AttackNeutral;
         public InputAction @AttackFavor => m_Wrapper.m_BaseCombat_AttackFavor;
         public InputAction @Dash => m_Wrapper.m_BaseCombat_Dash;
+        public InputAction @Taunt => m_Wrapper.m_BaseCombat_Taunt;
         public InputActionMap Get() { return m_Wrapper.m_BaseCombat; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -496,6 +530,9 @@ public partial class @CharacterControls: IInputActionCollection2, IDisposable
             @Dash.started += instance.OnDash;
             @Dash.performed += instance.OnDash;
             @Dash.canceled += instance.OnDash;
+            @Taunt.started += instance.OnTaunt;
+            @Taunt.performed += instance.OnTaunt;
+            @Taunt.canceled += instance.OnTaunt;
         }
 
         private void UnregisterCallbacks(IBaseCombatActions instance)
@@ -515,6 +552,9 @@ public partial class @CharacterControls: IInputActionCollection2, IDisposable
             @Dash.started -= instance.OnDash;
             @Dash.performed -= instance.OnDash;
             @Dash.canceled -= instance.OnDash;
+            @Taunt.started -= instance.OnTaunt;
+            @Taunt.performed -= instance.OnTaunt;
+            @Taunt.canceled -= instance.OnTaunt;
         }
 
         public void RemoveCallbacks(IBaseCombatActions instance)
@@ -602,6 +642,7 @@ public partial class @CharacterControls: IInputActionCollection2, IDisposable
         void OnAttackNeutral(InputAction.CallbackContext context);
         void OnAttackFavor(InputAction.CallbackContext context);
         void OnDash(InputAction.CallbackContext context);
+        void OnTaunt(InputAction.CallbackContext context);
     }
     public interface IUiActions
     {

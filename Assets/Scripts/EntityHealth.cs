@@ -8,8 +8,8 @@ public class EntityHealth : MonoBehaviour
 {
 
     [Header("Entity Script Values")]
-    [SerializeField] protected int maxHealth = 100; // Maximum health value
-    [SerializeField] public int currentHealth = 100;   // Current health value
+    [SerializeField] protected float maxHealth = 100; // Maximum health value
+    [SerializeField] public float currentHealth = 100;   // Current health value
 
     void Start()
     {
@@ -17,7 +17,7 @@ public class EntityHealth : MonoBehaviour
     }
 
     // Method to take damage
-     public void takeDamage(int amount)
+     public void takeDamage(float amount)
     {
         currentHealth -= amount; // Subtract damage from current health
         if (currentHealth < 0)
@@ -29,16 +29,16 @@ public class EntityHealth : MonoBehaviour
         
     }
 
-    public int getHP(){
+    public float getHP(){
         return currentHealth;
     }
 
-    public int getMaxHP(){
+    public float getMaxHP(){
         return maxHealth;
     }
 
     // Method to heal
-    public void Heal(int amount)
+    public void Heal(float amount)
     {
         currentHealth += amount; // Add healing amount to current health
         if (currentHealth > maxHealth)

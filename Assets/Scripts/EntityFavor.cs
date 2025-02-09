@@ -6,11 +6,11 @@ using UnityEngine.UI;
 public class EntityFavor : MonoBehaviour
 {
     [Header("Entity Script Values")]
-    [SerializeField] protected int maxFavor = 100; // Maximum Favor value
-    [SerializeField] protected int currentFavor = 0;   // Current Favor value
+    [SerializeField] protected float maxFavor = 100; // Maximum Favor value
+    [SerializeField] protected float currentFavor = 0;   // Current Favor value
 
     // Method to modify damage by addition / subtraction
-    public void addFavor(int amount)
+    public void addFavor(float amount)
     {
         currentFavor += amount;
         if (currentFavor < 0)
@@ -24,7 +24,7 @@ public class EntityFavor : MonoBehaviour
 
         Debug.Log($"Modified favor by: {amount}. Current Favor: {currentFavor}");
     }
-    public void setFavor(int amount)
+    public void setFavor(float amount)
     {
         currentFavor = amount;
         if (currentFavor < 0)
@@ -43,11 +43,11 @@ public class EntityFavor : MonoBehaviour
         currentFavor = maxFavor;
     }
 
-    public int getFavor(){
+    public float getFavor(){
         return currentFavor;
     }
 
-    public int getMaxFavor(){
+    public float getMaxFavor(){
         return maxFavor;
     }
 }

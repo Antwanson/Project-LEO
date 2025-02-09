@@ -15,6 +15,7 @@ public class StateController : MonoBehaviour
     public State dodgeState;
     public State hurtState;
     public State deadState;
+    public State tauntState;
 
     //used keep track of state outside of this class
     //public String currentState;
@@ -42,6 +43,7 @@ public class StateController : MonoBehaviour
         dodgeState.SetUp(rb, animator, this, character);
         hurtState.SetUp(rb, animator, this, character);
         deadState.SetUp(rb, animator, this, character);
+        tauntState.SetUp(rb, animator, this, character);
 
         
         machine.Set(idleState);

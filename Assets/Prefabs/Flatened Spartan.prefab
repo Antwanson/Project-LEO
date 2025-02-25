@@ -99,6 +99,7 @@ MonoBehaviour:
   character: {fileID: 0}
   health: {fileID: 0}
   anim: {fileID: 7400000, guid: 8df3899a3d87d634bb74607f3f246bea, type: 2}
+  hasDashed: 0
 --- !u!1 &1276019714101522573
 GameObject:
   m_ObjectHideFlags: 0
@@ -533,7 +534,8 @@ MonoBehaviour:
   controller: {fileID: 0}
   character: {fileID: 0}
   health: {fileID: 0}
-  anim: {fileID: 0}
+  anim: {fileID: 7400000, guid: b2dbacf9a28ab1949b498bb60fc28023, type: 2}
+  hasDodged: 0
 --- !u!1 &8804185559253309587
 GameObject:
   m_ObjectHideFlags: 0

@@ -40,6 +40,18 @@ public class CameraAdjustment : MonoBehaviour
             UpdateLimits();
             SetCamera();
         }
+        else {
+            ResetLimits();
+        }
+    }
+
+    void ResetLimits() {
+        leftLimit = 0;
+        rightLimit = 0;
+        upLimit = 3;
+        downLimit = 0;
+
+        SetCamera();
     }
 
     // Floats can't be null, so I'm using a random (the first) player to initialize them
@@ -56,7 +68,7 @@ public class CameraAdjustment : MonoBehaviour
     void UpdateLimits()
     {
         playerArray = GameObject.FindGameObjectsWithTag("Player");
-        
+
         foreach (GameObject player in playerArray) // Compares limits to all player positions
         {
             if (player.transform.position.x < leftLimit){
@@ -81,7 +93,7 @@ public class CameraAdjustment : MonoBehaviour
     void SetCamera()
     {
         float xCenter = (leftLimit + rightLimit) / 2;
-        float yCenter = (downLimit + upLimit) / 2;
+        float yCenter = (downLimit + upLimit) / 2 + 3;
 
         float xDistance = Mathf.Abs(leftLimit - rightLimit);
         float yDistance = Mathf.Abs(downLimit - upLimit);

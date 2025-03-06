@@ -8,9 +8,10 @@ public class DodgeState : State
     public override void Enter()
     {
         Debug.Log("Dodge");
-        //Animator.Play(anim.name);
+        animator.Play(anim.name);
 
         //move character back or make immune from hit idk
+        character.EnableImmunity();
     }
     public override void Do()
     {
@@ -47,6 +48,6 @@ public class DodgeState : State
         Debug.Log("exit dodge state");
 
         hasDodged = false;
-        //character.enableHitbox
+        character.DisableImmunity();
     }
 }

@@ -102,4 +102,9 @@ public class PlayerHandler : MonoBehaviour
         StateController stateMachine = currentPlayerObject.GetComponent<StateController>();
         stateMachine.machine.Set(stateMachine.dashState);
     }
+    void OnDodge()
+    {
+        StateController stateMachine = currentPlayerObject.GetComponent<StateController>();
+        stateMachine.machine.Set(stateMachine.dodgeState);
+    }
 }

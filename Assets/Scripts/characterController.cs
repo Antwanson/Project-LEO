@@ -31,7 +31,7 @@ public class characterController : Entity
     public bool isDashing = false;
 
     public bool immune = false;
-    int attackDir = 1;
+    public int attackDir = 1;
     public float xDir = 0;
     protected CharacterControls playerControls;
     public StateController stateMachine;

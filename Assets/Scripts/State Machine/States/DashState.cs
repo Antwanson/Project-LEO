@@ -15,6 +15,7 @@ public class DashState : State
         //locking movement IF pushing player, delete if just increasing velocity
         //character.lockMovement(false, Vector2.zero);
         character.EnableImmunity();
+        character.lockMovement(false, new Vector2(character.attackDir * 30, 0));
     }
     public override void Do()
     {
@@ -27,7 +28,7 @@ public class DashState : State
         if (!hasDashed && animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= anim.length * .5f)//change to .9f after anim input
         {
             Debug.Log("Dashing");
-            character.DashForward();
+            //character.DashForward();
             hasDashed = true;
         }
 

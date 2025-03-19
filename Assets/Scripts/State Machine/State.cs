@@ -23,7 +23,7 @@ public abstract class State : MonoBehaviour
 
     public virtual void Enter() { }//at start of state
     public virtual void Do() { }//continuously throughout state
-    public virtual void FixedDo() { }//idk
+    public virtual void FixedDo() { }
     public virtual void Exit() { }//at end of state
 
     public void SetUp(Rigidbody2D _rb, Animator _animator, StateController _controller, characterController _character)
@@ -42,6 +42,7 @@ public abstract class State : MonoBehaviour
         isComplete = false;
         animComplete = false;
         startTime = Time.time;
+        animator.Rebind();
     }
 
     public bool animationComplete()

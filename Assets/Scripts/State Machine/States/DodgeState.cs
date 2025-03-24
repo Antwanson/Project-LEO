@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,6 +10,7 @@ public class DodgeState : State
     {
         Debug.Log("Dodge");
         animator.Play(anim.name);
+        animator.speed = 0.5f;
 
         //move character back or make immune from hit idk
         character.EnableImmunity();
@@ -21,13 +23,13 @@ public class DodgeState : State
             return;
         }
 
-        if (hasDodged == false && animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= anim.length * .9f)
+        if (hasDodged == false && animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= anim.length*4)
         {
             //character.disableHitbox
             hasDodged = true;
         }
 
-        if (animationComplete())
+        if (hasDodged)
         {
 
             //logic for if the player is airborne or grounded
@@ -47,6 +49,7 @@ public class DodgeState : State
     {
         Debug.Log("exit dodge state");
 
+        animator.speed = 1.0f;
         hasDodged = false;
         character.DisableImmunity();
     }

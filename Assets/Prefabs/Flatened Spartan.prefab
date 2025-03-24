@@ -534,7 +534,7 @@ MonoBehaviour:
   controller: {fileID: 0}
   character: {fileID: 0}
   health: {fileID: 0}
-  anim: {fileID: -3100369314251171874, guid: 819926ae6fa61274c8599ffe8ab03c25, type: 3}
+  anim: {fileID: 8017390324079358001, guid: 819926ae6fa61274c8599ffe8ab03c25, type: 3}
   hasDodged: 0
 --- !u!1 &8804185559253309587
 GameObject:
@@ -803,6 +803,7 @@ MonoBehaviour:
   dashingSpeed: 10
   isDashing: 0
   immune: 0
+  attackDir: 1
   xDir: 0
   stateMachine: {fileID: 0}
   entityFavor: {fileID: 0}

@@ -165,7 +165,7 @@ public class characterController : Entity
     public void AttackNeutralFront()
     {
         Debug.Log("Attack Neutral Front");
-        RaycastHit2D[] hits = Physics2D.BoxCastAll(transform.position + attackNeutralOffset, attackNeutralHitboxSize, 0, transform.right * attackDir, attackNeutralDistance, LayerMask.GetMask("Default"));
+        RaycastHit2D[] hits = Physics2D.BoxCastAll(transform.position + attackNeutralOffset, attackNeutralHitboxSize, 0, transform.right * attackDir, attackNeutralDistance, LayerMask.GetMask("Player"));
         //Debug.Log("hit array size: " + hits.Length);
 
         foreach(RaycastHit2D hit in hits)

@@ -35,6 +35,9 @@ public class characterController : Entity
     public StateController stateMachine;
     public EntityFavor entityFavor;
 
+    //Layer Mask character is on; important for physics in attacks
+    public LayerMask characterLayer;
+
     public Vector2 currentInputMovmentDir = Vector2.zero;
 
     bool isHSWaiting = false;
@@ -53,6 +56,7 @@ public class characterController : Entity
         playerControls = new CharacterControls();
         stateMachine = gameObject.GetComponent<StateController>();
         entityFavor = gameObject.GetComponent<EntityFavor>();
+        characterLayer = LayerMask.GetMask("Player");
     }
 
     // Update is called once per frame
@@ -165,7 +169,7 @@ public class characterController : Entity
     public void AttackNeutralFront()
     {
         Debug.Log("Attack Neutral Front");
-        RaycastHit2D[] hits = Physics2D.BoxCastAll(transform.position + attackNeutralOffset, attackNeutralHitboxSize, 0, transform.right * attackDir, attackNeutralDistance, LayerMask.GetMask("Player"));
+        RaycastHit2D[] hits = Physics2D.BoxCastAll(transform.position + attackNeutralOffset, attackNeutralHitboxSize, 0, transform.right * attackDir, attackNeutralDistance, characterLayer);
         //Debug.Log("hit array size: " + hits.Length);
 
         foreach(RaycastHit2D hit in hits)
@@ -192,7 +196,7 @@ public class characterController : Entity
     public void AttackFavorFront()
     {
         Debug.Log("Favor Attack");
-        RaycastHit2D[] hits = Physics2D.BoxCastAll(transform.position + attackFavorOffset, attackFavorHitboxSize, 0, transform.right * attackDir, attackNeutralDistance, LayerMask.GetMask("Default"));
+        RaycastHit2D[] hits = Physics2D.BoxCastAll(transform.position + attackFavorOffset, attackFavorHitboxSize, 0, transform.right * attackDir, attackNeutralDistance, characterLayer);
         //Debug.Log("hit array size: " + hits.Length);
 
         foreach (RaycastHit2D hit in hits)

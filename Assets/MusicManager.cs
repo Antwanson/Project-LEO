@@ -12,6 +12,8 @@ public class MusicManager : MonoBehaviour
         audioSource.clip = IntroFightingMusic;
         audioSource.loop = false; // Ensure the intro music does not loop
         audioSource.Play();
+        //set volume to 0.5f
+        audioSource.volume = 0.05f; // Set the volume to 50%
     }
 
     void Update()

@@ -26,10 +26,12 @@ public class characterController : Entity
     public bool isTaunting = false;
 
     [Header("Dashing Attributes")]
-    [SerializeField] public int dashSpeed = 1;
+    public int dashingSpeed = 10;
+    int dashMultiplier = 1000;
     public bool isDashing = false;
 
-    int attackDir = 1;
+    public bool immune = false;
+    public int attackDir = 1;
     public float xDir = 0;
     protected CharacterControls playerControls;
     public StateController stateMachine;
@@ -66,7 +68,7 @@ public class characterController : Entity
         base.FixedUpdate();
         xDir = currentInputMovmentDir.x;
 
-        if(isMovementLocked == false){//Direction Sprite flippiage
+        if (isMovementLocked == false){//Direction Sprite flippiage
             if (xDir < 0)
             {
                 transform.localScale = new Vector3(-1, 1, 1);
@@ -116,6 +118,18 @@ public class characterController : Entity
         return velocity;
     }
 
+    public void EnableImmunity()
+    {
+        immune = true;
+        Debug.Log("immune");
+    }
+
+    public void DisableImmunity()
+    {
+        immune = false;
+        Debug.Log("No longer immune");
+    }
+
     public void HSStop(float duration){
         if(isHSWaiting){
             return;
@@ -148,7 +162,7 @@ public class characterController : Entity
     }
     public override int takeDamage(int damage, Vector2 knockback, GameObject damageDealer)
     {
-        if (stateMachine.machine.state != stateMachine.dashState)
+        if (!immune)
         {
             base.takeDamage(damage, knockback, damageDealer);
             //stateMachine.machine.Set(stateMachine.hurtState);
@@ -208,6 +222,12 @@ public class characterController : Entity
             }
         }
 
+    }
+    public void DashForward()
+    {
+        Debug.Log("Dashing");
+
+        rb.AddForce(Vector2.right * attackDir * dashingSpeed * dashMultiplier, ForceMode2D.Force);
     }
 
     public override void OnDrawGizmos()

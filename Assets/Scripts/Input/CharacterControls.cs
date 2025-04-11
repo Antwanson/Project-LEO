@@ -80,6 +80,15 @@ public partial class @CharacterControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Dodge"",
+                    ""type"": ""Button"",
+                    ""id"": ""252899d9-01d4-4a81-9410-0b1d534d24ee"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -280,6 +289,28 @@ public partial class @CharacterControls: IInputActionCollection2, IDisposable
                     ""action"": ""Taunt"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""622a4fc3-4b24-469a-8a89-d9c4aaffabd2"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Dodge"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""48aa276b-208e-4eac-9391-3de8d4f01144"",
+                    ""path"": ""<Keyboard>/c"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Dodge"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -425,6 +456,7 @@ public partial class @CharacterControls: IInputActionCollection2, IDisposable
         m_BaseCombat_AttackFavor = m_BaseCombat.FindAction("AttackFavor", throwIfNotFound: true);
         m_BaseCombat_Dash = m_BaseCombat.FindAction("Dash", throwIfNotFound: true);
         m_BaseCombat_Taunt = m_BaseCombat.FindAction("Taunt", throwIfNotFound: true);
+        m_BaseCombat_Dodge = m_BaseCombat.FindAction("Dodge", throwIfNotFound: true);
         // Ui
         m_Ui = asset.FindActionMap("Ui", throwIfNotFound: true);
         m_Ui_Cursor = m_Ui.FindAction("Cursor", throwIfNotFound: true);
@@ -496,6 +528,7 @@ public partial class @CharacterControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_BaseCombat_AttackFavor;
     private readonly InputAction m_BaseCombat_Dash;
     private readonly InputAction m_BaseCombat_Taunt;
+    private readonly InputAction m_BaseCombat_Dodge;
     public struct BaseCombatActions
     {
         private @CharacterControls m_Wrapper;
@@ -506,6 +539,7 @@ public partial class @CharacterControls: IInputActionCollection2, IDisposable
         public InputAction @AttackFavor => m_Wrapper.m_BaseCombat_AttackFavor;
         public InputAction @Dash => m_Wrapper.m_BaseCombat_Dash;
         public InputAction @Taunt => m_Wrapper.m_BaseCombat_Taunt;
+        public InputAction @Dodge => m_Wrapper.m_BaseCombat_Dodge;
         public InputActionMap Get() { return m_Wrapper.m_BaseCombat; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -533,6 +567,9 @@ public partial class @CharacterControls: IInputActionCollection2, IDisposable
             @Taunt.started += instance.OnTaunt;
             @Taunt.performed += instance.OnTaunt;
             @Taunt.canceled += instance.OnTaunt;
+            @Dodge.started += instance.OnDodge;
+            @Dodge.performed += instance.OnDodge;
+            @Dodge.canceled += instance.OnDodge;
         }
 
         private void UnregisterCallbacks(IBaseCombatActions instance)
@@ -555,6 +592,9 @@ public partial class @CharacterControls: IInputActionCollection2, IDisposable
             @Taunt.started -= instance.OnTaunt;
             @Taunt.performed -= instance.OnTaunt;
             @Taunt.canceled -= instance.OnTaunt;
+            @Dodge.started -= instance.OnDodge;
+            @Dodge.performed -= instance.OnDodge;
+            @Dodge.canceled -= instance.OnDodge;
         }
 
         public void RemoveCallbacks(IBaseCombatActions instance)
@@ -643,6 +683,7 @@ public partial class @CharacterControls: IInputActionCollection2, IDisposable
         void OnAttackFavor(InputAction.CallbackContext context);
         void OnDash(InputAction.CallbackContext context);
         void OnTaunt(InputAction.CallbackContext context);
+        void OnDodge(InputAction.CallbackContext context);
     }
     public interface IUiActions
     {

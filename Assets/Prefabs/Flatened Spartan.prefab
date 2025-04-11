@@ -98,7 +98,8 @@ MonoBehaviour:
   controller: {fileID: 0}
   character: {fileID: 0}
   health: {fileID: 0}
-  anim: {fileID: 7400000, guid: 8df3899a3d87d634bb74607f3f246bea, type: 2}
+  anim: {fileID: 2667949614841947897, guid: 819926ae6fa61274c8599ffe8ab03c25, type: 3}
+  hasDashed: 0
 --- !u!1 &1276019714101522573
 GameObject:
   m_ObjectHideFlags: 0
@@ -533,7 +534,8 @@ MonoBehaviour:
   controller: {fileID: 0}
   character: {fileID: 0}
   health: {fileID: 0}
-  anim: {fileID: 0}
+  anim: {fileID: -3100369314251171874, guid: 819926ae6fa61274c8599ffe8ab03c25, type: 3}
+  hasDodged: 0
 --- !u!1 &8804185559253309587
 GameObject:
   m_ObjectHideFlags: 0
@@ -691,7 +693,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
+  m_LinearDrag: 1
   m_AngularDrag: 0.05
   m_GravityScale: 6
   m_Material: {fileID: 6200000, guid: acdf2b546a8012549bed5fb8c975266d, type: 2}
@@ -798,8 +800,9 @@ MonoBehaviour:
   attackFavorDamage: 200
   isAttackingFavor: 0
   isTaunting: 0
-  dashSpeed: 1
+  dashingSpeed: 10
   isDashing: 0
+  immune: 0
   xDir: 0
   stateMachine: {fileID: 0}
   entityFavor: {fileID: 0}

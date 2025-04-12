@@ -20,7 +20,7 @@ public class Entity : MonoBehaviour
     // common attributes
     [Header("Common Attributes")]
     [SerializeField] protected int damage = 10;
-    [SerializeField] protected int speed = 15;
+    [SerializeField] public int speed = 15;
     [SerializeField] protected int maxSpeed = 15;
     [SerializeField] protected int jumpPower = 10;
     [SerializeField] protected int attackSpeed = 1;

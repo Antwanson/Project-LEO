@@ -18,9 +18,11 @@ public class PauseMenu : MonoBehaviour
 
     [SerializeField] protected GameObject pauseMenuUI;
 
-    [SerializeField] protected String uiInputMap;
-    [SerializeField] protected String gameplayInputMap;
+    [SerializeField] protected String uiInputMap = "Ui";
+    [SerializeField] protected String gameplayInputMap = "BaseCombat";
     [SerializeField] protected CharacterControls playerControls;
+
+    public GameObject cursorPrefab;
 
     protected void Update() {
         // Had to hard code this because InputSystem outside "On[InputAction]" is janky
@@ -56,11 +58,32 @@ public class PauseMenu : MonoBehaviour
         AudioListener.pause = false; // Resume audio
 
         // If there are players, it goes to each and sets their controls to gameplay
-        if (GameObject.FindGameObjectsWithTag("Player") != null) {
-            GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+        if (GameObject.FindGameObjectsWithTag("PlayerHandler") != null) {
+            GameObject[] players = GameObject.FindGameObjectsWithTag("PlayerHandler");
             foreach (GameObject player in players) {
-                PlayerInput playerInput = player.GetComponent<PlayerInput>();
-                playerInput.SwitchCurrentActionMap(gameplayInputMap);
+                Debug.Log("Player found: " + player.name);
+                //get cursor (current player object)
+                PlayerHandler playerHandler = player.GetComponent<PlayerHandler>();
+                if (playerHandler != null) {
+                    //set the current player object to the stored player object
+                    GameObject cursorPrefabInstance = playerHandler.currentPlayerObject;
+                    playerHandler.currentPlayerObject = playerHandler.storedPlayerObject;
+                    
+                    //destroy the cursor object
+                    Destroy(cursorPrefabInstance);
+
+                    //switch the current action map of player handler to "Gameplay"
+                    PlayerInput playerInput = player.GetComponent<PlayerInput>();
+                    if (playerInput != null) {
+                        playerInput.SwitchCurrentActionMap(gameplayInputMap);
+                    }
+                    else {
+                        Debug.LogError("PlayerInput not found on player object: " + player.name);
+                    }
+                }
+                else {
+                    Debug.LogError("PlayerHandler not found on player object: " + player.name);
+                }
             }
         }
     }
@@ -75,11 +98,36 @@ public class PauseMenu : MonoBehaviour
         AudioListener.pause = true; // Resumes audio
 
         // If there are players, it goes to each and sets their controls to ui
-        if (GameObject.FindGameObjectsWithTag("Player") != null) {
-            GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+        if (GameObject.FindGameObjectsWithTag("PlayerHandler") != null) {
+            GameObject[] players = GameObject.FindGameObjectsWithTag("PlayerHandler");
             foreach (GameObject player in players) {
-                PlayerInput playerInput = player.GetComponent<PlayerInput>();
-                playerInput.SwitchCurrentActionMap(uiInputMap);
+                Debug.Log("Player found: " + player.name);
+                //for each player handler we need to store the current player object as the stored player object
+                PlayerHandler playerHandler = player.GetComponent<PlayerHandler>();
+                if (playerHandler != null) {
+                    //set the current player object to the stored player object
+                    playerHandler.storedPlayerObject = playerHandler.currentPlayerObject;
+                    
+                    //instantiate a cursor object in the scene and set it to the current player object, the cursor's parent is the pauseMenuUI
+                    GameObject cursor = Instantiate(cursorPrefab, pauseMenuUI.transform);
+                    cursor.transform.SetParent(pauseMenuUI.transform, false);
+
+                    //set the cursor to the current player object
+                    playerHandler.currentPlayerObject = cursor;
+
+                    //switch the current action map of player handler to "Ui"
+                    PlayerInput playerInput = player.GetComponent<PlayerInput>();
+                    if (playerInput != null) {
+                        playerInput.SwitchCurrentActionMap(uiInputMap);
+                    }
+                    else {
+                        Debug.LogError("PlayerInput not found on player object: " + player.name);
+                    }
+                    
+                }
+                else {
+                    Debug.LogError("PlayerHandler not found on player object: " + player.name);
+                }
             }
         }
     }

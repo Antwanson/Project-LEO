@@ -10,6 +10,8 @@ public class PlayerHandler : MonoBehaviour
     public PlayerConfigurationManager playerConfigurationManager;
     public SceneInitializer sceneInitializer;
     public GameObject currentPlayerObject = null;
+    //stored object for when we switch to UI
+    public GameObject storedPlayerObject = null;
     private PlayerInput playerInput;
     
     [Header("Player attributes")]

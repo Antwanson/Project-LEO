@@ -4,6 +4,9 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
+using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 // Coded by Jacob, using as reference...
 // https://youtu.be/ROwsdftEGF0?si=4V8KzqGZOYjFj7oI "The right way to pause a game in Unity" by Game Dev Beginner

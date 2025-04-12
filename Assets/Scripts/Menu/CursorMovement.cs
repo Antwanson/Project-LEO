@@ -21,6 +21,8 @@ public class CursorMovement : MonoBehaviour
 
     [SerializeField]
     public List<RaycastResult> raycastResultsOld = new List<RaycastResult>();
+    [SerializeField]
+    public bool autoReparent = true;
     // Start is called before the first frame update
     void Start()
     {
@@ -30,14 +32,16 @@ public class CursorMovement : MonoBehaviour
         rectTransform = GetComponent<RectTransform>();
         playerControls = new CharacterControls();
         // Reparent to the canvas in the scene
-        Canvas canvas = FindObjectOfType<Canvas>();
-        if (canvas != null)
-        {
-            rectTransform.SetParent(canvas.transform, false);
-        }
-        else
-        {
-            Debug.LogError("Canvas not found in the scene.");
+        if (autoReparent){
+            Canvas canvas = GameObject.FindWithTag("CursorAutoCanvas")?.GetComponent<Canvas>();
+            if (canvas != null)
+            {
+                rectTransform.SetParent(canvas.transform, false);
+            }
+            else
+            {
+                Debug.Log("Canvas not found in the scene.");
+            }
         }
     }
 

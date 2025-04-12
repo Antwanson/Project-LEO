@@ -9,6 +9,8 @@ TagManager:
   - SceneInitializer
   - PlayerConfigurationManager
   - KillZone
+  - DeathManager
+  - CursorAutoCanvas
   layers:
   - Default
   - TransparentFX

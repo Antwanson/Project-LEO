@@ -13,6 +13,9 @@ public class PlayerHandler : MonoBehaviour
     //stored object for when we switch to UI
     public GameObject storedPlayerObject = null;
     private PlayerInput playerInput;
+
+    public string playerName = "NameInvalid";
+    public int playerLives = 1;
     
     [Header("Player attributes")]
     // stores player color
@@ -26,7 +29,8 @@ public class PlayerHandler : MonoBehaviour
         //set color of player to random vibrant color generate a color do not use another class
         playerColor = new Color(255, 0, 0);
         //color set to red
-
+        
+        playerName = "Player " + playerInput.playerIndex.ToString();
     }
     // Start is called before the first frame update
     void Start()

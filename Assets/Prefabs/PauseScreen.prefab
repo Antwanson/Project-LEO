@@ -119,7 +119,7 @@ MonoBehaviour:
   pauseMenuUI: {fileID: 2830201241203540780}
   uiInputMap: UI
   gameplayInputMap: BaseCombat
-  cursorPrefab: {fileID: 0}
+  cursorPrefab: {fileID: 4904901936808233018, guid: aa58700e1b43b394bba7c561c744d6db, type: 3}
 --- !u!114 &2948707805562125081
 MonoBehaviour:
   m_ObjectHideFlags: 0

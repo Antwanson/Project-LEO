@@ -55,7 +55,8 @@ public class CursorMovement : MonoBehaviour
             Vector3 topRight = corners[2];
 
             //get delta time
-            float deltaTime = Time.deltaTime;
+            
+            float deltaTime = Time.unscaledDeltaTime;
 
             float xPos = transformPosition.x * puckSpeedMultiplier * deltaTime + rectTransform.position.x;
             // xPos = xPos * deltaTime;

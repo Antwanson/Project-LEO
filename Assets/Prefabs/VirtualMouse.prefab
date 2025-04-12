@@ -92,7 +92,7 @@ MonoBehaviour:
   rectTransform: {fileID: 0}
   transformPosition: {x: 0, y: 0}
   playerIndex: 0
-  puckSpeedMultiplier: 6
+  puckSpeedMultiplier: 600
 --- !u!114 &5177896613746357993
 MonoBehaviour:
   m_ObjectHideFlags: 0

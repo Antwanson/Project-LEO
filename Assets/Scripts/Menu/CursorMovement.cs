@@ -15,7 +15,9 @@ public class CursorMovement : MonoBehaviour
 
     protected CharacterControls playerControls;
     [SerializeField]
-    public int puckSpeedMultiplier;
+
+    public int puckSpeedMultiplierMultiplier = 800;
+    public int puckSpeedMultiplier = 600;
 
     [SerializeField]
     public List<RaycastResult> raycastResultsOld = new List<RaycastResult>();
@@ -23,7 +25,7 @@ public class CursorMovement : MonoBehaviour
     void Start()
     {
         // Set the puck speed multiplier based on the screen resolution - Jacob
-        puckSpeedMultiplier = (Screen.currentResolution.width / 1920) + (Screen.currentResolution.height / 1080) * 10;
+        puckSpeedMultiplier = (Screen.currentResolution.width / 1920) + (Screen.currentResolution.height / 1080) * puckSpeedMultiplierMultiplier;
 
         rectTransform = GetComponent<RectTransform>();
         playerControls = new CharacterControls();
@@ -42,11 +44,29 @@ public class CursorMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // rectTransform.anchoredPosition = new Vector2(Input.mousePosition.x * 10, Input.mousePosition.y * 10);
-        //log movement
-        rectTransform.position = new Vector3(transformPosition.x * puckSpeedMultiplier + rectTransform.position.x, rectTransform.position.y + transformPosition.y * puckSpeedMultiplier, rectTransform.position.z);
-        //Debug.Log("X: " + transformPosition.x + " Y: " + transformPosition.y);
-        // Create a pointer event for hovering
+        
+        // need to make sure cursor doesn't go out of the bounds of the parent canvas
+
+        if(this.transform.parent != null){
+            RectTransform parentRectTransform = this.transform.parent.GetComponent<RectTransform>();
+            Vector3[] corners = new Vector3[4];
+            parentRectTransform.GetWorldCorners(corners);
+            Vector3 bottomLeft = corners[0];
+            Vector3 topRight = corners[2];
+
+            //get delta time
+            float deltaTime = Time.deltaTime;
+
+            float xPos = transformPosition.x * puckSpeedMultiplier * deltaTime + rectTransform.position.x;
+            // xPos = xPos * deltaTime;
+            float yPos = transformPosition.y * puckSpeedMultiplier * deltaTime + rectTransform.position.y;
+            // yPos = yPos * deltaTime;
+            // Clamp the position of the cursor within the bounds of the parent canvas
+            rectTransform.position = new Vector3(Mathf.Clamp(xPos, bottomLeft.x, topRight.x), Mathf.Clamp(yPos, bottomLeft.y, topRight.y), rectTransform.position.z);
+        }
+
+        //rectTransform.position = new Vector3(transformPosition.x * puckSpeedMultiplier + rectTransform.position.x, rectTransform.position.y + transformPosition.y * puckSpeedMultiplier, rectTransform.position.z);
+        
         updateHover();
     }
 

@@ -31,6 +31,12 @@ public class AirState : State
             machine.Set(controller.idleState);
             return;
         }
+        if (character.isAttackingNeutral)
+        {
+            Debug.Log("reached if attacking");
+            machine.Set(controller.airAttackState);
+            return;
+        }
 
     }
     public override void Exit()

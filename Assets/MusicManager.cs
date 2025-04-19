@@ -6,6 +6,24 @@ public class MusicManager : MonoBehaviour
     public AudioClip IntroFightingMusic;   // The intro music clip
     public AudioClip NormalFightingMusic; // The looping music clip
 
+    //needs to be a singleton
+    private static MusicManager instance;
+
+    public void Awake()
+    {
+        // Check if an instance already exists
+        if (instance == null)
+        {
+            instance = this; // Set the instance to this object
+            DontDestroyOnLoad(gameObject); // Don't destroy this object when loading new scenes
+        }
+        else
+        {
+            Destroy(gameObject); // Destroy this object if another instance already exists
+        }   
+    }
+
+
     void Start()
     {
         // Set the intro music and play it
@@ -13,7 +31,7 @@ public class MusicManager : MonoBehaviour
         audioSource.loop = false; // Ensure the intro music does not loop
         audioSource.Play();
         //set volume to 0.5f
-        audioSource.volume = 0.05f; // Set the volume to 50%
+        audioSource.volume = 0.5f; // Set the volume to 50%
     }
 
     void Update()
@@ -31,5 +49,27 @@ public class MusicManager : MonoBehaviour
         audioSource.clip = NormalFightingMusic;
         audioSource.loop = true; // Enable looping for the new track
         audioSource.Play();
+    }
+
+    public void StopMusic()
+    {
+        // Stop the music
+        audioSource.Stop();
+    }
+
+    // This function is called when the player enters the combat state
+    public void SwitchCombat(){
+        StopMusic();
+        //TODO: play combat music
+    }
+    // This function is called when player enters the intense combat state
+    public void SwitchIntenseCombat(){
+        StopMusic();
+        //TODO: play intense combat music
+    }
+    // This function is called when player enters menu/Character select/Map select/ pause?
+    public void SwitchMenu(){
+        StopMusic();
+        //TODO: play menu music
     }
 }

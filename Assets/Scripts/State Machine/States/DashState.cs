@@ -5,17 +5,22 @@ using UnityEngine;
 public class DashState : State
 {
     public bool hasDashed = false;
+    public bool canDash = true;
     public override void Enter()
     {
-        Debug.Log("Dash");
-        animator.Play(anim.name, 0, 0f);
-        animator.speed = 8f; // remove once actual anim input
-        character.isDashing = true;
+        if (canDash) {
+            StartCoroutine(DashCooldown(0.7f));
 
-        //locking movement IF pushing player, delete if just increasing velocity
-        //character.lockMovement(false, Vector2.zero);
-        character.EnableImmunity();
-        character.lockMovement(false, new Vector2(character.attackDir * 30, 0));
+            Debug.Log("Dash");
+            animator.Play(anim.name, 0, 0f);
+            animator.speed = 8f; // remove once actual anim input
+            character.isDashing = true;
+
+            //locking movement IF pushing player, delete if just increasing velocity
+            //character.lockMovement(false, Vector2.zero);
+            character.EnableImmunity();
+            character.lockMovement(false, new Vector2(character.attackDir * 30, 0));
+        }
     }
     public override void Do()
     {
@@ -34,7 +39,6 @@ public class DashState : State
 
         if (animationComplete())
         {
-
             //logic for if the player is airborne or grounded
             if (character.isGrounded())
             {
@@ -48,6 +52,13 @@ public class DashState : State
             }
         }
     }
+
+    IEnumerator DashCooldown(float duration) {
+        canDash = false;
+        yield return new WaitForSeconds(duration);
+        canDash = true;
+    }
+
     public override void Exit()
     {
         Debug.Log("exit dash state");

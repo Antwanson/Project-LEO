@@ -183,6 +183,7 @@ Transform:
   - {fileID: 7466776385635725600}
   - {fileID: 1999124357973330125}
   - {fileID: 3154093972784490552}
+  - {fileID: 5832475662557184193}
   - {fileID: 6270798977776227715}
   - {fileID: 3758360852940569261}
   - {fileID: 2172253163399689459}
@@ -240,6 +241,56 @@ MonoBehaviour:
   character: {fileID: 0}
   health: {fileID: 0}
   anim: {fileID: -1868118456065059449, guid: 819926ae6fa61274c8599ffe8ab03c25, type: 3}
+--- !u!1 &3623204931627882184
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5832475662557184193}
+  - component: {fileID: 6855142542664597558}
+  m_Layer: 7
+  m_Name: Air Attack
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5832475662557184193
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3623204931627882184}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3850162768975334311}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6855142542664597558
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3623204931627882184}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d654bd7c001f8db4eb5a5324b5e4c392, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animComplete: 0
+  controller: {fileID: 0}
+  character: {fileID: 0}
+  health: {fileID: 0}
+  anim: {fileID: -7007934847922880295, guid: 819926ae6fa61274c8599ffe8ab03c25, type: 3}
+  hasAttacked: 0
 --- !u!1 &4015936556186973580
 GameObject:
   m_ObjectHideFlags: 0
@@ -807,6 +858,9 @@ MonoBehaviour:
   xDir: 0
   stateMachine: {fileID: 0}
   entityFavor: {fileID: 0}
+  characterLayer:
+    serializedVersion: 2
+    m_Bits: 0
   currentInputMovmentDir: {x: 0, y: 0}
   NeutralKnockbackMulti: 5
   FavorKnockbackMulti: 60
@@ -844,6 +898,7 @@ MonoBehaviour:
   dashState: {fileID: 3953851022193143664}
   jumpState: {fileID: 2322277772157604609}
   attackState: {fileID: 189005648825748201}
+  airAttackState: {fileID: 6855142542664597558}
   favorAttackState: {fileID: 2659320812211761258}
   dodgeState: {fileID: 4696338880018920751}
   hurtState: {fileID: 521919434830320851}

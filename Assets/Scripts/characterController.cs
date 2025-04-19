@@ -206,6 +206,33 @@ public class characterController : Entity
         
     }
 
+    public void AttackAir()
+    {
+        Debug.Log("Air Attack Front");
+        RaycastHit2D[] hits = Physics2D.BoxCastAll(transform.position + attackNeutralOffset, attackNeutralHitboxSize, 0, transform.right * attackDir, attackNeutralDistance, characterLayer);
+        //Debug.Log("hit array size: " + hits.Length);
+
+        foreach (RaycastHit2D hit in hits)
+        {
+            if (hit.collider.gameObject.GetComponent<characterController>() && hit.collider.gameObject != this.gameObject)
+            {
+                Debug.Log("Hit: " + hit.collider.gameObject.name);
+
+                Entity target = hit.collider.gameObject.GetComponent<characterController>();
+                Debug.Log("gameobject: " + gameObject);
+                Debug.Log("damage:" + attackNeutralDamage + " knockbac" + Vector2.zero);
+                int damageDealt = target.takeDamage(attackNeutralDamage, new Vector2(NeutralKnockbackMulti * attackDir, 2), gameObject);
+                //favor
+                entityFavor.addFavor(damageDealt);
+
+                HSStop(.1f);
+
+
+            }
+        }
+
+    }
+
     public void AttackFavorFront()
     {
         Debug.Log("Favor Attack");

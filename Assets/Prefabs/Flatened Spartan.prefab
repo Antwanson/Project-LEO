@@ -98,7 +98,7 @@ MonoBehaviour:
   controller: {fileID: 0}
   character: {fileID: 0}
   health: {fileID: 0}
-  anim: {fileID: 2667949614841947897, guid: 819926ae6fa61274c8599ffe8ab03c25, type: 3}
+  anim: {fileID: -8444228808809566427, guid: 819926ae6fa61274c8599ffe8ab03c25, type: 3}
   hasDashed: 0
 --- !u!1 &1276019714101522573
 GameObject:
@@ -289,7 +289,7 @@ MonoBehaviour:
   controller: {fileID: 0}
   character: {fileID: 0}
   health: {fileID: 0}
-  anim: {fileID: -7007934847922880295, guid: 819926ae6fa61274c8599ffe8ab03c25, type: 3}
+  anim: {fileID: -8661461711739830008, guid: 819926ae6fa61274c8599ffe8ab03c25, type: 3}
   hasAttacked: 0
 --- !u!1 &4015936556186973580
 GameObject:
@@ -850,6 +850,10 @@ MonoBehaviour:
   attackFavorHitboxSize: {x: 1.89, y: 1.73}
   attackFavorDamage: 200
   isAttackingFavor: 0
+  attackAirDistance: 0
+  attackAirOffset: {x: 0.19, y: 1.02, z: 0}
+  attackAirHitboxSize: {x: 3.95, y: 2.58}
+  attackAirDamage: 40
   isTaunting: 0
   dashingSpeed: 10
   isDashing: 0
@@ -864,6 +868,7 @@ MonoBehaviour:
   currentInputMovmentDir: {x: 0, y: 0}
   NeutralKnockbackMulti: 5
   FavorKnockbackMulti: 60
+  AirKnockbackMulti: 30
   isMovementLocked: 0
   lockedVelocity: {x: 0, y: 0}
 --- !u!114 &8277336877423080242

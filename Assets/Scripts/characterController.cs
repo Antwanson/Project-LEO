@@ -22,13 +22,20 @@ public class characterController : Entity
     [SerializeField] public Vector2 attackFavorHitboxSize = new Vector2(10, 10);
     [SerializeField] public int attackFavorDamage = 50;
     public bool isAttackingFavor = false;
-    public bool isTaunting = false;
+
+    [Header("Air Attack Attributes")]
+    [SerializeField] public int attackAirDistance;
+    [SerializeField] public Vector3 attackAirOffset = new Vector3(0, 0, 0);
+    [SerializeField] public Vector2 attackAirHitboxSize = new Vector2(10, 10);
+    [SerializeField] public int attackAirDamage = 10;
 
     [Header("Dashing Attributes")]
+    public bool isTaunting = false;
     public int dashingSpeed = 10;
     int dashMultiplier = 1000;
     public bool isDashing = false;
 
+    [Header("Other")]
     public bool immune = false;
     public int attackDir = 1;
     public float xDir = 0;
@@ -46,6 +53,7 @@ public class characterController : Entity
     [Header("Knockback Multipliers")]
     [SerializeField] public float NeutralKnockbackMulti = 15;
     [SerializeField] public float FavorKnockbackMulti = 60;
+    [SerializeField] public float AirKnockbackMulti = 30;
     // Start is called before the first frame update
 
     //Variables related to movementLock
@@ -209,7 +217,7 @@ public class characterController : Entity
     public void AttackAir()
     {
         Debug.Log("Air Attack Front");
-        RaycastHit2D[] hits = Physics2D.BoxCastAll(transform.position + attackNeutralOffset, attackNeutralHitboxSize, 0, transform.right * attackDir, attackNeutralDistance, characterLayer);
+        RaycastHit2D[] hits = Physics2D.BoxCastAll(transform.position + attackAirOffset, attackAirHitboxSize, 0, transform.right * attackDir, attackAirDistance, characterLayer);
         //Debug.Log("hit array size: " + hits.Length);
 
         foreach (RaycastHit2D hit in hits)
@@ -220,8 +228,8 @@ public class characterController : Entity
 
                 Entity target = hit.collider.gameObject.GetComponent<characterController>();
                 Debug.Log("gameobject: " + gameObject);
-                Debug.Log("damage:" + attackNeutralDamage + " knockbac" + Vector2.zero);
-                int damageDealt = target.takeDamage(attackNeutralDamage, new Vector2(NeutralKnockbackMulti * attackDir, 2), gameObject);
+                Debug.Log("damage:" + attackAirDamage + " knockbac" + Vector2.zero);
+                int damageDealt = target.takeDamage(attackAirDamage, new Vector2(AirKnockbackMulti * attackDir, 2), gameObject);
                 //favor
                 entityFavor.addFavor(damageDealt);
 
@@ -267,6 +275,8 @@ public class characterController : Entity
         
         //neutral attack box
         Gizmos.DrawWireCube(transform.position + attackNeutralOffset + transform.right * attackNeutralDistance * attackDir, attackNeutralHitboxSize);
+        //air attack box
+        Gizmos.DrawWireCube(transform.position + attackAirOffset + transform.right * attackAirDistance * attackDir, attackAirHitboxSize);
         //favor attack box
         Gizmos.DrawWireCube(transform.position + attackFavorOffset + transform.right * attackFavorDistance * attackDir, attackFavorHitboxSize);
     }

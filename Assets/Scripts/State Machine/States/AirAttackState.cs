@@ -11,7 +11,7 @@ public class AirAttackState : State
         animator.Play(anim.name, 0, .2f);
         animator.speed = 2f;
 
-        character.lockMovement(false, new Vector2(0, -100));
+        //character.lockMovement(false, new Vector2(0, -100));
     }
     public override void Do()
     {

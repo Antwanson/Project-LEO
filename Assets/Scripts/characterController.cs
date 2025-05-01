@@ -17,9 +17,14 @@ public class characterController : Entity
     public bool isAttackingNeutral = false;
 
     [Header("Attack Favor Attributes")]
-    [SerializeField] public GameObject bullet;
-    [SerializeField] public int bulletSpeed;
-    [SerializeField] public Vector2 bulletOffset = new Vector2(0,0);
+
+    [SerializeField] public int attackFavorDistance;
+    [SerializeField] public Vector3 attackFavorOffset = new Vector3(0, 0, 0);
+    [SerializeField] public Vector2 attackFavorHitboxSize = new Vector2(10, 10);
+    [SerializeField] public int attackFavorDamage = 50;
+    //[SerializeField] public GameObject bullet;
+    //[SerializeField] public int bulletSpeed;
+    //[SerializeField] public Vector2 bulletOffset = new Vector2(0,0);
     public bool isAttackingFavor = false;
 
     [Header("Air Attack Attributes")]
@@ -27,6 +32,12 @@ public class characterController : Entity
     [SerializeField] public Vector3 attackAirOffset = new Vector3(0, 0, 0);
     [SerializeField] public Vector2 attackAirHitboxSize = new Vector2(10, 10);
     [SerializeField] public int attackAirDamage = 10;
+
+    [Header("Dash Attack Attributes")]
+    [SerializeField] public int attackDashDistance;
+    [SerializeField] public Vector3 attackDashOffset = new Vector3(0, 0, 0);
+    [SerializeField] public Vector2 attackDashHitboxSize = new Vector2(10, 10);
+    [SerializeField] public int attackDashDamage = 15;
 
     [Header("Dashing Attributes")]
     public bool isTaunting = false;
@@ -53,6 +64,7 @@ public class characterController : Entity
     [SerializeField] public float NeutralKnockbackMulti = 15;
     [SerializeField] public float FavorKnockbackMulti = 60;
     [SerializeField] public float AirKnockbackMulti = 30;
+    [SerializeField] public float DashKnockbackMulti = 50;
     // Start is called before the first frame update
 
     //Variables related to movementLock
@@ -82,9 +94,11 @@ public class characterController : Entity
             if (xDir < 0)
             {
                 transform.localScale = new Vector3(-1, 1, 1);
-                //reverse attack offset x for air and neutral
+                //reverse attack offset x for air, dash and neutral
                 attackNeutralOffset = new Vector3(-1 * Mathf.Abs(attackNeutralOffset.x), attackNeutralOffset.y, attackNeutralOffset.z);
-                attackAirOffset = new Vector3(Mathf.Abs(attackAirOffset.x), attackAirOffset.y, attackAirOffset.z);
+                attackAirOffset = new Vector3(-1 * Mathf.Abs(attackAirOffset.x), attackAirOffset.y, attackAirOffset.z);
+                attackDashOffset = new Vector3(Mathf.Abs(attackDashOffset.x), attackDashOffset.y, attackDashOffset.z);
+                attackFavorOffset = new Vector3(-1 * Mathf.Abs(attackFavorOffset.x), attackFavorOffset.y, attackFavorOffset.z);
 
                 attackDir = -1;
             }
@@ -94,7 +108,9 @@ public class characterController : Entity
                 attackDir = 1;
                 //reset attack offset x for favor and neutral
                 attackNeutralOffset = new Vector3(Mathf.Abs(attackNeutralOffset.x), attackNeutralOffset.y, attackNeutralOffset.z);
-                attackAirOffset = new Vector3(-1 * Mathf.Abs(attackAirOffset.x), attackAirOffset.y, attackAirOffset.z);
+                attackAirOffset = new Vector3(Mathf.Abs(attackAirOffset.x), attackAirOffset.y, attackAirOffset.z);
+                attackDashOffset = new Vector3(-1 * Mathf.Abs(attackDashOffset.x), attackDashOffset.y, attackDashOffset.z);
+                attackFavorOffset = new Vector3(Mathf.Abs(attackFavorOffset.x), attackFavorOffset.y, attackFavorOffset.z);
             }
         }
 
@@ -244,8 +260,23 @@ public class characterController : Entity
     {
         Debug.Log("Favor Attack");
 
-        GameObject bulletChild = Instantiate(bullet, new Vector2(transform.position.x + bulletOffset.x * attackDir, transform.position.y + bulletOffset.y), Quaternion.identity);
-        bulletChild.GetComponent<LeoBullet>().SetUp(attackDir, this.gameObject);
+        //GameObject bulletChild = Instantiate(bullet, new Vector2(transform.position.x + bulletOffset.x * attackDir, transform.position.y + bulletOffset.y), Quaternion.identity);
+        //bulletChild.GetComponent<LeoBullet>().SetUp(attackDir, this.gameObject);
+
+        RaycastHit2D[] hits = Physics2D.BoxCastAll(transform.position + attackFavorOffset, attackFavorHitboxSize, 0, transform.right * attackDir, attackNeutralDistance, characterLayer);
+
+        foreach (RaycastHit2D hit in hits)
+        {
+            if (hit.collider.gameObject.GetComponent<characterController>() && hit.collider.gameObject != this.gameObject)
+            {
+                Debug.Log("Hit: " + hit.collider.gameObject.name);
+
+                Entity target = hit.collider.gameObject.GetComponent<characterController>();
+                target.takeDamage(attackFavorDamage, new Vector2(FavorKnockbackMulti * attackDir, 3), gameObject);
+
+                HSStop(.2f);
+            }
+        }
     }
     public void DashForward()
     {
@@ -263,5 +294,9 @@ public class characterController : Entity
         Gizmos.DrawWireCube(transform.position + attackNeutralOffset + transform.right * attackNeutralDistance * attackDir, attackNeutralHitboxSize);
         //air attack box
         Gizmos.DrawWireCube(transform.position + attackAirOffset + transform.right * attackAirDistance * attackDir, attackAirHitboxSize);
+        //dash attack box
+        Gizmos.DrawWireCube(transform.position + attackDashOffset + transform.right * attackDashDistance * attackDir, attackDashHitboxSize);
+        //favor attack box
+        Gizmos.DrawWireCube(transform.position + attackFavorOffset + transform.right * attackFavorDistance * attackDir, attackFavorHitboxSize);
     }
 }

@@ -289,7 +289,7 @@ MonoBehaviour:
   controller: {fileID: 0}
   character: {fileID: 0}
   health: {fileID: 0}
-  anim: {fileID: -8661461711739830008, guid: 819926ae6fa61274c8599ffe8ab03c25, type: 3}
+  anim: {fileID: -7247768705297451640, guid: 819926ae6fa61274c8599ffe8ab03c25, type: 3}
   hasAttacked: 0
 --- !u!1 &4015936556186973580
 GameObject:
@@ -845,14 +845,19 @@ MonoBehaviour:
   attackNeutralHitboxSize: {x: 2.5, y: 2.25}
   attackNeutralDamage: 40
   isAttackingNeutral: 0
-  bullet: {fileID: 5459276076725234701, guid: c2a446be06a51e640858741d5fdccc3d, type: 3}
-  bulletSpeed: 0
-  bulletOffset: {x: 1.75, y: 1.5}
+  attackFavorDistance: 1
+  attackFavorOffset: {x: 0.32, y: 1.57, z: 0}
+  attackFavorHitboxSize: {x: 1.66, y: 1}
+  attackFavorDamage: 200
   isAttackingFavor: 0
   attackAirDistance: 0
-  attackAirOffset: {x: 0.2, y: 1.02, z: 0}
-  attackAirHitboxSize: {x: 2.6, y: 2.58}
+  attackAirOffset: {x: 0.07, y: 1.13, z: 0}
+  attackAirHitboxSize: {x: 1.6, y: 2.28}
   attackAirDamage: 40
+  attackDashDistance: 0
+  attackDashOffset: {x: 0.2, y: 1.02, z: 0}
+  attackDashHitboxSize: {x: 2.6, y: 2.56}
+  attackDashDamage: 40
   isTaunting: 0
   dashingSpeed: 10
   isDashing: 0
@@ -868,6 +873,7 @@ MonoBehaviour:
   NeutralKnockbackMulti: 5
   FavorKnockbackMulti: 60
   AirKnockbackMulti: 30
+  DashKnockbackMulti: 50
   isMovementLocked: 0
   lockedVelocity: {x: 0, y: 0}
 --- !u!114 &8277336877423080242

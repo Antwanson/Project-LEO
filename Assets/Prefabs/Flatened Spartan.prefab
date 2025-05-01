@@ -845,14 +845,13 @@ MonoBehaviour:
   attackNeutralHitboxSize: {x: 2.5, y: 2.25}
   attackNeutralDamage: 40
   isAttackingNeutral: 0
-  attackFavorDistance: 1
-  attackFavorOffset: {x: 0.94, y: 1, z: 0}
-  attackFavorHitboxSize: {x: 1.89, y: 1.73}
-  attackFavorDamage: 200
+  bullet: {fileID: 5459276076725234701, guid: c2a446be06a51e640858741d5fdccc3d, type: 3}
+  bulletSpeed: 0
+  bulletOffset: {x: 1.75, y: 1.5}
   isAttackingFavor: 0
   attackAirDistance: 0
-  attackAirOffset: {x: 0.19, y: 1.02, z: 0}
-  attackAirHitboxSize: {x: 3.95, y: 2.58}
+  attackAirOffset: {x: 0.2, y: 1.02, z: 0}
+  attackAirHitboxSize: {x: 2.6, y: 2.58}
   attackAirDamage: 40
   isTaunting: 0
   dashingSpeed: 10

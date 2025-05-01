@@ -31,9 +31,9 @@ public class FavorAttackState : State
 
         if (hasAttacked == false && animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= anim.length * .55f)
         {
-            character.AttackFavorFront();
             character.entityFavor.setFavor(0); //remove once mid of animation added
             hasAttacked = true;
+            character.AttackFavorFront();
         }
 
         //TODO: fix original animation so this check is not needed and can instead use animationComplete()

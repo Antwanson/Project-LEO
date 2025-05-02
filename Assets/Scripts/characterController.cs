@@ -60,6 +60,8 @@ public class characterController : Entity
 
     bool isHSWaiting = false;
 
+    public bool canDash = true;
+
     [Header("Knockback Multipliers")]
     [SerializeField] public float NeutralKnockbackMulti = 15;
     [SerializeField] public float FavorKnockbackMulti = 60;
@@ -304,6 +306,12 @@ public class characterController : Entity
                 HSStop(.2f);
             }
         }
+    }
+
+    public IEnumerator DashCooldown(float duration) {
+        canDash = false;
+        yield return new WaitForSeconds(duration);
+        canDash = true;
     }
     public void DashForward()
     {

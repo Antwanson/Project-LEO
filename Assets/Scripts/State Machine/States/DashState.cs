@@ -5,8 +5,12 @@ using UnityEngine;
 public class DashState : State
 {
     public bool hasDashed = false;
+    
     public override void Enter()
     {
+        
+        StartCoroutine(character.DashCooldown(0.7f));
+
         Debug.Log("Dash");
         animator.Play(anim.name, 0, 0f);
         animator.speed = 4f; // remove once actual anim input
@@ -15,7 +19,9 @@ public class DashState : State
         //locking movement IF pushing player, delete if just increasing velocity
         //character.lockMovement(false, Vector2.zero);
         character.EnableImmunity();
+
         character.lockMovement(false, new Vector2(character.attackDir * 15, 0));
+    
     }
     public override void Do()
     {
@@ -37,7 +43,6 @@ public class DashState : State
 
         if (animationComplete())
         {
-
             //logic for if the player is airborne or grounded
             if (character.isGrounded())
             {
@@ -51,6 +56,9 @@ public class DashState : State
             }
         }
     }
+
+ 
+
     public override void Exit()
     {
         Debug.Log("exit dash state");

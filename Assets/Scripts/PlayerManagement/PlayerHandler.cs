@@ -106,7 +106,11 @@ public class PlayerHandler : MonoBehaviour
     void OnDash()
     {
         StateController stateMachine = currentPlayerObject.GetComponent<StateController>();
-        stateMachine.machine.Set(stateMachine.dashState);
+        //get character controller component from current player object
+        characterController character = currentPlayerObject.GetComponent<characterController>();
+        if (character.canDash == true) {
+            stateMachine.machine.Set(stateMachine.dashState);
+        }
     }
     void OnDodge()
     {

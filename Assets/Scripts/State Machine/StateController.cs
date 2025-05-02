@@ -12,6 +12,7 @@ public class StateController : MonoBehaviour
     public State jumpState;
     public State attackState;
     public State airAttackState;
+    public State dashAttackState;
     public State favorAttackState;
     public State dodgeState;
     public State hurtState;
@@ -41,6 +42,7 @@ public class StateController : MonoBehaviour
         jumpState.SetUp(rb, animator, this, character);
         attackState.SetUp(rb, animator, this,character);
         airAttackState.SetUp(rb, animator, this, character);
+        dashAttackState.SetUp(rb, animator, this, character);
         favorAttackState.SetUp(rb, animator, this, character);
         dodgeState.SetUp(rb, animator, this, character);
         hurtState.SetUp(rb, animator, this, character);

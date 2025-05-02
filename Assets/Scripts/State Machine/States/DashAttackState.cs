@@ -2,38 +2,32 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DashState : State
+public class DashAttackState : State
 {
-    public bool hasDashed = false;
+    public bool hasAttacked = false;
     public override void Enter()
     {
-        Debug.Log("Dash");
-        animator.Play(anim.name, 0, 0f);
-        animator.speed = 4f; // remove once actual anim input
-        character.isDashing = true;
+        Debug.Log("Dash Attack");
+        animator.Play(anim.name, 0, .2f);
+        animator.speed = 6f;
 
-        //locking movement IF pushing player, delete if just increasing velocity
-        //character.lockMovement(false, Vector2.zero);
-        character.EnableImmunity();
+        //character.lockMovement(false, new Vector2(0, -100));
         character.lockMovement(false, new Vector2(character.attackDir * 15, 0));
     }
     public override void Do()
     {
+
         if (health.currentHealth <= 0)
         {
             machine.Set(controller.deadState);
             return;
         }
 
-        if (!hasDashed && animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= anim.length * .5f)//change to .9f after anim input
+        if (hasAttacked == false && animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= anim.length * .9f)
         {
-            Debug.Log("Dashing");
-            //character.DashForward();
-            hasDashed = true;
+            character.AttackDash();
+            hasAttacked = true;
         }
-
-        if(character.isAttackingNeutral)
-            machine.Set(controller.dashAttackState);
 
         if (animationComplete())
         {
@@ -53,12 +47,14 @@ public class DashState : State
     }
     public override void Exit()
     {
-        Debug.Log("exit dash state");
-        character.isDashing = false;
+        Debug.Log("attack time: " + animator.GetCurrentAnimatorStateInfo(0).normalizedTime);
+        Debug.Log("attack length: " + anim.length);
+        Debug.Log("exit dash attack state");
+        hasAttacked = false;
+        character.isAttackingNeutral = false;
 
-        hasDashed = false;
+        //reset the animation speed
         animator.speed = 1f;
         character.unlockMovement();
-        character.DisableImmunity();
     }
 }

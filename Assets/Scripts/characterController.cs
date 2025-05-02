@@ -256,6 +256,33 @@ public class characterController : Entity
 
     }
 
+    public void AttackDash()
+    {
+        Debug.Log("Dash Attack Front");
+        RaycastHit2D[] hits = Physics2D.BoxCastAll(transform.position + attackDashOffset, attackDashHitboxSize, 0, transform.right * attackDir, attackDashDistance, characterLayer);
+        //Debug.Log("hit array size: " + hits.Length);
+
+        foreach (RaycastHit2D hit in hits)
+        {
+            if (hit.collider.gameObject.GetComponent<characterController>() && hit.collider.gameObject != this.gameObject)
+            {
+                Debug.Log("Hit: " + hit.collider.gameObject.name);
+
+                Entity target = hit.collider.gameObject.GetComponent<characterController>();
+                Debug.Log("gameobject: " + gameObject);
+                Debug.Log("damage:" + attackDashDamage + " knockbac" + Vector2.zero);
+                int damageDealt = target.takeDamage(attackDashDamage, new Vector2(DashKnockbackMulti * attackDir, 2), gameObject);
+                //favor
+                entityFavor.addFavor(damageDealt);
+
+                HSStop(.1f);
+
+
+            }
+        }
+
+    }
+
     public void AttackFavorFront()
     {
         Debug.Log("Favor Attack");

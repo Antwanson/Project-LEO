@@ -13,13 +13,14 @@ public class DashState : State
 
         Debug.Log("Dash");
         animator.Play(anim.name, 0, 0f);
-        animator.speed = 8f; // remove once actual anim input
+        animator.speed = 4f; // remove once actual anim input
         character.isDashing = true;
 
         //locking movement IF pushing player, delete if just increasing velocity
         //character.lockMovement(false, Vector2.zero);
         character.EnableImmunity();
-        character.lockMovement(false, new Vector2(character.attackDir * 30, 0));
+
+        character.lockMovement(false, new Vector2(character.attackDir * 15, 0));
     
     }
     public override void Do()
@@ -36,6 +37,9 @@ public class DashState : State
             //character.DashForward();
             hasDashed = true;
         }
+
+        if(character.isAttackingNeutral)
+            machine.Set(controller.dashAttackState);
 
         if (animationComplete())
         {

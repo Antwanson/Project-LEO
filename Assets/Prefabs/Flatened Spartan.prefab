@@ -98,7 +98,7 @@ MonoBehaviour:
   controller: {fileID: 0}
   character: {fileID: 0}
   health: {fileID: 0}
-  anim: {fileID: 2667949614841947897, guid: 819926ae6fa61274c8599ffe8ab03c25, type: 3}
+  anim: {fileID: -8444228808809566427, guid: 819926ae6fa61274c8599ffe8ab03c25, type: 3}
   hasDashed: 0
 --- !u!1 &1276019714101522573
 GameObject:
@@ -183,12 +183,14 @@ Transform:
   - {fileID: 7466776385635725600}
   - {fileID: 1999124357973330125}
   - {fileID: 3154093972784490552}
+  - {fileID: 5832475662557184193}
   - {fileID: 6270798977776227715}
   - {fileID: 3758360852940569261}
   - {fileID: 2172253163399689459}
   - {fileID: 225987165735779504}
   - {fileID: 268814113368985643}
   - {fileID: 9044028024809953460}
+  - {fileID: 6665598229267036922}
   m_Father: {fileID: 7593516954882562712}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3478864023308086037
@@ -240,6 +242,56 @@ MonoBehaviour:
   character: {fileID: 0}
   health: {fileID: 0}
   anim: {fileID: -1868118456065059449, guid: 819926ae6fa61274c8599ffe8ab03c25, type: 3}
+--- !u!1 &3623204931627882184
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5832475662557184193}
+  - component: {fileID: 6855142542664597558}
+  m_Layer: 7
+  m_Name: Air Attack
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5832475662557184193
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3623204931627882184}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3850162768975334311}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6855142542664597558
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3623204931627882184}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d654bd7c001f8db4eb5a5324b5e4c392, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animComplete: 0
+  controller: {fileID: 0}
+  character: {fileID: 0}
+  health: {fileID: 0}
+  anim: {fileID: -7247768705297451640, guid: 819926ae6fa61274c8599ffe8ab03c25, type: 3}
+  hasAttacked: 0
 --- !u!1 &4015936556186973580
 GameObject:
   m_ObjectHideFlags: 0
@@ -486,6 +538,56 @@ MonoBehaviour:
   character: {fileID: 0}
   health: {fileID: 0}
   anim: {fileID: 7400000, guid: 5419d5042d5d8884786e6ce6e230a776, type: 2}
+--- !u!1 &7568985422349033476
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6665598229267036922}
+  - component: {fileID: 613881478764529290}
+  m_Layer: 7
+  m_Name: Dash Attack
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6665598229267036922
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7568985422349033476}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3850162768975334311}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &613881478764529290
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7568985422349033476}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88e9cb486c7f6874994494f0bdff3dd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animComplete: 0
+  controller: {fileID: 0}
+  character: {fileID: 0}
+  health: {fileID: 0}
+  anim: {fileID: 868331454848165815, guid: 819926ae6fa61274c8599ffe8ab03c25, type: 3}
+  hasAttacked: 0
 --- !u!1 &7999270400496457107
 GameObject:
   m_ObjectHideFlags: 0
@@ -795,10 +897,18 @@ MonoBehaviour:
   attackNeutralDamage: 40
   isAttackingNeutral: 0
   attackFavorDistance: 1
-  attackFavorOffset: {x: 0.94, y: 1, z: 0}
-  attackFavorHitboxSize: {x: 1.89, y: 1.73}
+  attackFavorOffset: {x: 0.32, y: 1.57, z: 0}
+  attackFavorHitboxSize: {x: 1.66, y: 1}
   attackFavorDamage: 200
   isAttackingFavor: 0
+  attackAirDistance: 0
+  attackAirOffset: {x: 0.07, y: 1.13, z: 0}
+  attackAirHitboxSize: {x: 1.6, y: 2.28}
+  attackAirDamage: 40
+  attackDashDistance: 0
+  attackDashOffset: {x: 0.2, y: 1.02, z: 0}
+  attackDashHitboxSize: {x: 2.6, y: 2.56}
+  attackDashDamage: 40
   isTaunting: 0
   dashingSpeed: 10
   isDashing: 0
@@ -807,9 +917,14 @@ MonoBehaviour:
   xDir: 0
   stateMachine: {fileID: 0}
   entityFavor: {fileID: 0}
+  characterLayer:
+    serializedVersion: 2
+    m_Bits: 0
   currentInputMovmentDir: {x: 0, y: 0}
   NeutralKnockbackMulti: 5
   FavorKnockbackMulti: 60
+  AirKnockbackMulti: 30
+  DashKnockbackMulti: 50
   isMovementLocked: 0
   lockedVelocity: {x: 0, y: 0}
 --- !u!114 &8277336877423080242
@@ -844,6 +959,8 @@ MonoBehaviour:
   dashState: {fileID: 3953851022193143664}
   jumpState: {fileID: 2322277772157604609}
   attackState: {fileID: 189005648825748201}
+  airAttackState: {fileID: 6855142542664597558}
+  dashAttackState: {fileID: 613881478764529290}
   favorAttackState: {fileID: 2659320812211761258}
   dodgeState: {fileID: 4696338880018920751}
   hurtState: {fileID: 521919434830320851}

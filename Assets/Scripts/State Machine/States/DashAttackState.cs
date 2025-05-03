@@ -9,7 +9,7 @@ public class DashAttackState : State
     {
         Debug.Log("Dash Attack");
         animator.Play(anim.name, 0, 0.05f);
-        animator.speed = 1.5f;
+        animator.speed = 2.5f;
 
         //play animation in reverse
 

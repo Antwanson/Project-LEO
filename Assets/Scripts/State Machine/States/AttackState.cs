@@ -9,7 +9,7 @@ public class AttackState : State
     {
         Debug.Log("Attack");
         animator.Play(anim.name, 0, .2f);
-        animator.speed = 2f;
+        animator.speed = 2.5f;
         
         character.lockMovement(false, Vector2.zero);
     }

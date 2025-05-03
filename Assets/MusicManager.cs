@@ -22,6 +22,7 @@ public class MusicManager : MonoBehaviour
             instance = this;
             DontDestroyOnLoad(gameObject); // Persist across scene loads
             SceneManager.sceneLoaded += OnSceneLoaded; // Subscribe to scene load events
+            // set volume of intro fighting music to 0.5f
         }
         else
         {
@@ -40,13 +41,15 @@ public class MusicManager : MonoBehaviour
         string currentScene = SceneManager.GetActiveScene().name;
 
         // If we are in PlayerTestingMap, play the intro music
-        if (currentScene == "Map1")
+        if (currentScene == "Map1" || currentScene == "PlayerTestingMap" || currentScene == "Map2")
         {
+            audioSource.volume = 0.18f; // Set the volume (adjust as needed)
             PlayMusic(IntroFightingMusic, false);
         }
         // Otherwise, keep playing MenuMusic for any non-gameplay scene
         else
         {
+            audioSource.volume = 1f; // Set the volume (adjust as needed)
             PlayMusic(MenuMusic, true);
         }
     }
@@ -76,9 +79,10 @@ public class MusicManager : MonoBehaviour
         Debug.Log("Scene loaded: " + sceneName);
 
         // Menu music should be active in all non-gameplay scenes
-        if (sceneName == "Map1")
+        if (sceneName == "Map1" || sceneName == "PlayerTestingMap" || sceneName == "Map2")
         {
             PlayMusic(IntroFightingMusic, false); // Play intro music for the testing map
+            audioSource.volume = 0.18f; // Set the volume (adjust as needed)
             menuFlag = false; // Set menuFlag to false for gameplay scenes
         }
         else
@@ -86,7 +90,7 @@ public class MusicManager : MonoBehaviour
             if (menuFlag  == false)
             {
                PlayMusic(MenuMusic, true); // Play menu music for all other scenes
-            
+               audioSource.volume = 1f; // Set the volume (adjust as needed)
             }
            menuFlag = true; // Set menuFlag to true for non-gameplay scenes
         }

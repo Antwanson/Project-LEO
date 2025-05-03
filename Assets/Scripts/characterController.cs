@@ -16,6 +16,8 @@ public class characterController : Entity
     [SerializeField] public int attackNeutralDamage = 10;
     public bool isAttackingNeutral = false;
 
+    public PlayerHandler referenceToDaddy;
+
     [Header("Attack Favor Attributes")]
 
     [SerializeField] public int attackFavorDistance;

@@ -51,6 +51,28 @@ public class PlayerHandler : MonoBehaviour
         if(sceneInitializer != null) {
         //instantiate player in scene
         currentPlayerObject = sceneInitializer.InstantiatePlayerInScene(isLateJoining);
+        
+        //get characterController component or CursorMovement component from current player object and set referenceToDaddy to this object
+        
+        //if current player object is prefab of flattened spartan
+        if (currentPlayerObject != null){
+            characterController playerControls = currentPlayerObject.GetComponent<characterController>();
+            if (playerControls != null) {
+            playerControls.referenceToDaddy = this;
+            }
+            else {
+                Debug.LogError("characterController not found on player object");
+            }
+            //get CursorMovement component from current player object and set referenceToDaddy to this object
+            CursorMovement cursorMovement = currentPlayerObject.GetComponent<CursorMovement>();
+            if (cursorMovement != null) {
+                cursorMovement.referenceToDaddy = this;
+            }
+            else {
+                Debug.LogError("CursorMovement not found on player object");
+            }
+        }
+
         //color
         //setColor();
         }

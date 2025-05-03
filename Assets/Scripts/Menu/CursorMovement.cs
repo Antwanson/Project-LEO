@@ -13,6 +13,7 @@ public class CursorMovement : MonoBehaviour
 
     public int playerIndex;
 
+    public PlayerHandler referenceToDaddy;
     protected CharacterControls playerControls;
     [SerializeField]
 

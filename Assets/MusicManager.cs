@@ -1,75 +1,117 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MusicManager : MonoBehaviour
 {
     public AudioSource audioSource; // Reference to the AudioSource component
     public AudioClip IntroFightingMusic;   // The intro music clip
     public AudioClip NormalFightingMusic; // The looping music clip
+    public AudioClip IntenseCombatMusic; // The intense combat music clip
+    public AudioClip MenuMusic; // The menu music clip
 
-    //needs to be a singleton
+    public bool menuFlag = true; // Flag to determine if we are in a menu scene
+
+    // Singleton instance
     private static MusicManager instance;
 
-    public void Awake()
+    private void Awake()
     {
-        // Check if an instance already exists
+        // Ensure only one instance of MusicManager exists
         if (instance == null)
         {
-            instance = this; // Set the instance to this object
-            DontDestroyOnLoad(gameObject); // Don't destroy this object when loading new scenes
+            instance = this;
+            DontDestroyOnLoad(gameObject); // Persist across scene loads
+            SceneManager.sceneLoaded += OnSceneLoaded; // Subscribe to scene load events
         }
         else
         {
-            Destroy(gameObject); // Destroy this object if another instance already exists
-        }   
+            Destroy(gameObject); // Destroy duplicate instances
+        }
     }
-
 
     void Start()
     {
-        // Set the intro music and play it
-        audioSource.clip = IntroFightingMusic;
-        audioSource.loop = false; // Ensure the intro music does not loop
-        audioSource.Play();
-        //set volume to 0.5f
-        audioSource.volume = 0.5f; // Set the volume to 50%
+        // Set initial music based on the current scene
+        SetInitialMusic();
+    }
+
+    void SetInitialMusic()
+    {
+        string currentScene = SceneManager.GetActiveScene().name;
+
+        // If we are in PlayerTestingMap, play the intro music
+        if (currentScene == "Map1")
+        {
+            PlayMusic(IntroFightingMusic, false);
+        }
+        // Otherwise, keep playing MenuMusic for any non-gameplay scene
+        else
+        {
+            PlayMusic(MenuMusic, true);
+        }
     }
 
     void Update()
     {
-        // Check if the intro music has finished playing
+        // If intro music finishes, start normal fighting music
         if (!audioSource.isPlaying && audioSource.clip == IntroFightingMusic)
         {
-            PlayLoopingMusic();
+            PlayMusic(NormalFightingMusic, true);
         }
     }
 
-    void PlayLoopingMusic()
+    private void PlayMusic(AudioClip clip, bool loop)
     {
-        // Switch to the looping music
-        audioSource.clip = NormalFightingMusic;
-        audioSource.loop = true; // Enable looping for the new track
+        // Play the specified music clip
+        audioSource.clip = clip;
+        audioSource.loop = loop;
+        audioSource.volume = 0.5f; // Set the volume (adjust as needed)
         audioSource.Play();
     }
 
-    public void StopMusic()
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        // Stop the music
-        audioSource.Stop();
+        // Automatically set music based on the scene loaded
+        string sceneName = scene.name;
+        Debug.Log("Scene loaded: " + sceneName);
+
+        // Menu music should be active in all non-gameplay scenes
+        if (sceneName == "Map1")
+        {
+            PlayMusic(IntroFightingMusic, false); // Play intro music for the testing map
+            menuFlag = false; // Set menuFlag to false for gameplay scenes
+        }
+        else
+        {
+            if (menuFlag  == false)
+            {
+               PlayMusic(MenuMusic, true); // Play menu music for all other scenes
+            
+            }
+           menuFlag = true; // Set menuFlag to true for non-gameplay scenes
+        }
     }
 
-    // This function is called when the player enters the combat state
-    public void SwitchCombat(){
-        StopMusic();
-        //TODO: play combat music
+    // Call these functions to switch to combat music states when needed
+    public void SwitchCombat()
+    {
+        if (audioSource.clip != NormalFightingMusic)
+        {
+            PlayMusic(NormalFightingMusic, true);
+        }
     }
-    // This function is called when player enters the intense combat state
-    public void SwitchIntenseCombat(){
-        StopMusic();
-        //TODO: play intense combat music
+
+    public void SwitchIntenseCombat()
+    {
+        if (audioSource.clip != IntenseCombatMusic)
+        {
+            PlayMusic(IntenseCombatMusic, true);
+        }
     }
-    // This function is called when player enters menu/Character select/Map select/ pause?
-    public void SwitchMenu(){
-        StopMusic();
-        //TODO: play menu music
+
+    public void SwitchMenu()
+    {
+        // Ensure menu music is playing when we switch to a menu
+        PlayMusic(MenuMusic, true);
     }
 }

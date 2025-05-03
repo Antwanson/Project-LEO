@@ -370,8 +370,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6cfd76844bd85a44a50fa1707dd45fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentEntityKnockback: {x: 0, y: 0}
   damage: 10
   speed: 10
+  maxSpeed: 15
   jumpPower: 30
   attackSpeed: 1
   boxSize: {x: 0.85, y: 0.3}
@@ -380,17 +382,31 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   attackNeutralDistance: 0
+  attackNeutralOffset: {x: 0, y: 0, z: 0}
   attackNeutralHitboxSize: {x: 10, y: 10}
   attackNeutralDamage: 10
   isAttackingNeutral: 0
   attackFavorDistance: 0
+  attackFavorOffset: {x: 0, y: 0, z: 0}
   attackFavorHitboxSize: {x: 10, y: 10}
   attackFavorDamage: 50
   isAttackingFavor: 0
-  dashSpeed: 1
+  isTaunting: 0
+  dashingSpeed: 10
   isDashing: 0
+  immune: 0
+  attackDir: 1
   xDir: 0
   stateMachine: {fileID: 0}
+  entityFavor: {fileID: 0}
+  characterLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  currentInputMovmentDir: {x: 0, y: 0}
+  NeutralKnockbackMulti: 15
+  FavorKnockbackMulti: 60
+  isMovementLocked: 0
+  lockedVelocity: {x: 0, y: 0}
 --- !u!114 &229084582
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -467,6 +483,8 @@ MonoBehaviour:
   audioSource: {fileID: 1040101042}
   IntroFightingMusic: {fileID: 8300000, guid: 36c93e2d3feaef44485e1257853f571d, type: 3}
   NormalFightingMusic: {fileID: 8300000, guid: af3cf7b5dd76ce344a9d9b1034daed1d, type: 3}
+  IntenseCombatMusic: {fileID: 8300000, guid: 4b79ee6d80c3d6240b2f73e1da4dd4a5, type: 3}
+  MenuMusic: {fileID: 8300000, guid: 52bb8ce182f4032489cad679b7a59fdc, type: 3}
 --- !u!4 &237990118
 Transform:
   m_ObjectHideFlags: 0

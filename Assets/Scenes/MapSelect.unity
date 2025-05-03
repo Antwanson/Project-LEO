@@ -2398,13 +2398,13 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!222 &1724790166
+--- !u!222 &1787782225
 CanvasRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1724790163}
+  m_GameObject: {fileID: 1787782222}
   m_CullTransparentMesh: 1
 --- !u!1 &2144202100
 GameObject:

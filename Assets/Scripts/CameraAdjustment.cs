@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -11,10 +12,14 @@ public class CameraAdjustment : MonoBehaviour
     protected float leftLimit;
     protected float rightLimit;
 
+    protected float centerAdjust;
+
+    protected float[] mapBounds = new float[4];
+
     protected GameObject[] playerArray = null;
 
     protected Camera m_MainCamera;
-    [SerializeField] protected float minimumZoom = 7f;
+    [SerializeField] protected float minimumZoom;
 
     protected bool splitScreenBool;
 
@@ -24,31 +29,37 @@ public class CameraAdjustment : MonoBehaviour
         m_MainCamera = Camera.main;
         m_MainCamera.enabled = true;
 
-        InitializeLimits();
-
-        if (GameObject.FindGameObjectsWithTag("Player") != null && GameObject.FindGameObjectsWithTag("Player").Length != 0){
-            UpdateLimits();
-            SetCamera();
-        }
+        DetermineVariables();
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if (GameObject.FindGameObjectsWithTag("Player") != null && GameObject.FindGameObjectsWithTag("Player").Length != 0){
             InitializeLimits();
             UpdateLimits();
-            SetCamera();
+            UpdateCamera();
         }
         else {
             ResetLimits();
         }
     }
 
+    void DetermineVariables() {
+        mapBounds[0] = GameObject.Find("KillZoneU").GetComponent<Transform>().position.y;
+        mapBounds[1] = GameObject.Find("KillZoneD").GetComponent<Transform>().position.y;
+        mapBounds[2] = GameObject.Find("KillZoneL").GetComponent<Transform>().position.x;
+        mapBounds[3] = GameObject.Find("KillZoneR").GetComponent<Transform>().position.x;
+
+        centerAdjust = (mapBounds[0] - mapBounds[1]) / 10 + 2;
+
+        minimumZoom = Mathf.Ceil(Mathf.Sqrt(mapBounds[3] - mapBounds[2]));
+    }
+
     void ResetLimits() {
         leftLimit = 0;
         rightLimit = 0;
-        upLimit = 3;
+        upLimit = centerAdjust;
         downLimit = 0;
 
         SetCamera();
@@ -93,30 +104,27 @@ public class CameraAdjustment : MonoBehaviour
     void SetCamera()
     {
         float xCenter = (leftLimit + rightLimit) / 2;
-        float yCenter = (downLimit + upLimit) / 2 + 3;
+
+        float yCenter = (downLimit + upLimit) / 2;
+
+        yCenter += centerAdjust / (1 + Mathf.Abs(yCenter - (mapBounds[0] + mapBounds[1]) / 2) / minimumZoom);
 
         float xDistance = Mathf.Abs(leftLimit - rightLimit);
         float yDistance = Mathf.Abs(downLimit - upLimit);
 
-        float xMinimumZoom = Mathf.Ceil(xDistance / 4);
+        float xMinimumZoom = Mathf.Ceil(xDistance / 2);
         float yMinimumZoom = Mathf.Ceil(yDistance * 2 / 3);
 
         Vector3 center = new Vector3(xCenter, yCenter, -1f);
 
         Camera.main.transform.position = center;
 
-        if (Mathf.Max(xMinimumZoom, yMinimumZoom) < minimumZoom)
-        {
-            Camera.main.orthographicSize = minimumZoom;
-        }
-        else if (xMinimumZoom > yMinimumZoom)
-        {
-            Camera.main.orthographicSize = xMinimumZoom;
-        }
-        else
-        {
-            Camera.main.orthographicSize = yMinimumZoom;
-        }
+        float newZoom = Mathf.Max(Mathf.Max(xMinimumZoom, yMinimumZoom), minimumZoom);
+
+        if (newZoom != Camera.main.orthographicSize)
+            Debug.Log("Zoom has been set to " + newZoom);
+
+        Camera.main.orthographicSize = newZoom;
 
         // Need to set up an if-statement that requires the center to deviate significantly to institute a change, so it doesn't
         // wildly get off-center
@@ -127,31 +135,26 @@ public class CameraAdjustment : MonoBehaviour
         float xCenter = (leftLimit + rightLimit) / 2;
         float yCenter = (downLimit + upLimit) / 2;
 
+        yCenter += centerAdjust / (1 + Mathf.Abs(yCenter - (mapBounds[0] + mapBounds[1]) / 2) / centerAdjust);
+
+        if (yCenter > (mapBounds[0] + mapBounds[1]) * 0.75f) {
+            yCenter = (mapBounds[0] + mapBounds[1]) * 0.75f;
+        }
+
         float xDistance = Mathf.Abs(leftLimit - rightLimit);
         float yDistance = Mathf.Abs(downLimit - upLimit);
 
-        float xMinimumZoom = Mathf.Ceil(xDistance / 4);
+        float xMinimumZoom = Mathf.Ceil(xDistance / 3);
         float yMinimumZoom = Mathf.Ceil(yDistance * 2 / 3);
-        
-        if (yDistance <= 5f){
-            yCenter += 3f / (1 + yDistance);
-        }
 
         Vector3 center = new Vector3(xCenter, yCenter, -1f);
 
         Camera.main.transform.position = center;
 
+        float newZoom = Mathf.Max(Mathf.Max(xMinimumZoom, yMinimumZoom), minimumZoom);
+
         // Ensures a minimum zoom so that it doesn't follow the players too closely when bundled together.
-        if (Mathf.Max(xMinimumZoom, yMinimumZoom) < minimumZoom)
-        {
-            IncrementalAdjustTo(minimumZoom);
-        }
-        else if (xMinimumZoom > yMinimumZoom){
-            IncrementalAdjustTo(xMinimumZoom);
-        }
-        else{
-            IncrementalAdjustTo(yMinimumZoom);
-        }
+        IncrementalAdjustTo(newZoom);
 
         // This code may be developed in the future to have a smoother change or be more rigid in accordance to variables set by a
         // specific map.
@@ -160,16 +163,17 @@ public class CameraAdjustment : MonoBehaviour
     // This method makes the camera's current size change to a target size in increments that are multiplied by their distance to
     // to the target. The farther it is, the faster it adjusts, until it reaches a threshold and snaps to the target size.
     void IncrementalAdjustTo(float targetSize){
-        int numToTarget = (int) Mathf.Abs(Camera.main.orthographicSize - targetSize) + 1;
+        float numToTarget = Mathf.Abs(Camera.main.orthographicSize - targetSize) + 1;
+        numToTarget -= numToTarget % 0.1f;
 
-        if (Mathf.Abs(Camera.main.orthographicSize - targetSize) <= 0.03f * numToTarget){
+        if (Mathf.Abs(Camera.main.orthographicSize - targetSize) <= 0.05f * numToTarget){
             Camera.main.orthographicSize = targetSize;
         }
         else if (Camera.main.orthographicSize < targetSize) {
-            Camera.main.orthographicSize += 0.03f * numToTarget;
+            Camera.main.orthographicSize += 0.05f * numToTarget;
         }
         else{
-            Camera.main.orthographicSize -= 0.03f * numToTarget;
+            Camera.main.orthographicSize -= 0.05f * numToTarget;
         }
     }
 }

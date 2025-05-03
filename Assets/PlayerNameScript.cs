@@ -22,18 +22,24 @@ public class PlayerNameScript : MonoBehaviour
 
         
         //make y scale negative if player is negative
-        if (playerObject.transform.localScale.y < 0)
-        {
-            transform.localScale = new Vector3(transform.localScale.x, -1, transform.localScale.z);
-        } else
-        {
-            transform.localScale = new Vector3(transform.localScale.x, 1, transform.localScale.z);
-        }
+        Debug.Log("Player scale: " + playerObject.transform.localScale.x);
+        
         
 
         textMeshProUGUI.text = characterController.referenceToDaddy.playerName;
 
         mainCam = Camera.main;
+    }
+
+    void Update()
+    {
+        if (playerObject.transform.localScale.x < 0)
+        {
+            transform.localScale = new Vector3(-1, transform.localScale.y, transform.localScale.z);
+        } else
+        {
+            transform.localScale = new Vector3(1, transform.localScale.y, transform.localScale.z);
+        }
     }
 
     void LateUpdate()

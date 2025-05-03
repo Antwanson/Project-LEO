@@ -8,6 +8,7 @@ public class WalkState : State
     {
         Debug.Log("Walk");
         animator.Play(anim.name);
+        animator.speed = 2f; // remove once actual anim input
     }
     public override void Do()
     {
@@ -43,6 +44,8 @@ public class WalkState : State
     }
     public override void Exit()
     {
+        //reset the animation speed
+        animator.speed = 1f;
         Debug.Log("exit walk state");
     }
 }

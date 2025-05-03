@@ -388,6 +388,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 183522cd73743054eae10cd8d4c5821e, type: 3}
+--- !u!1 &149174851 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 43939585904444585, guid: 183522cd73743054eae10cd8d4c5821e, type: 3}
+  m_PrefabInstance: {fileID: 149174850}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &412328421
 GameObject:
   m_ObjectHideFlags: 0
@@ -4914,7 +4919,11 @@ PrefabInstance:
     - target: {fileID: 620137728769942482, guid: efc684d85b5b3a74a9c7e28c45183872, type: 3}
       propertyPath: pauseMenu
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 149174851}
+    - target: {fileID: 620137728769942482, guid: efc684d85b5b3a74a9c7e28c45183872, type: 3}
+      propertyPath: sceneInitializer
+      value: 
+      objectReference: {fileID: 1918498794}
     - target: {fileID: 1084464251252512588, guid: efc684d85b5b3a74a9c7e28c45183872, type: 3}
       propertyPath: m_Name
       value: DeathManager

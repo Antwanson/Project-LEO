@@ -9,8 +9,11 @@ public class AirAttackState : State
     {
         Debug.Log("Air Attack");
         animator.Play(anim.name, 0, .2f);
-        animator.speed = 2f;
-
+        animator.speed = 2.3f;
+        //set gravity to .1 of the normal gravity
+        //set y velocity to 0
+        character.rb.velocity = new Vector2(character.rb.velocity.x, character.rb.velocity.y * 0.1f);
+        character.rb.gravityScale = 0.1f * 6f;
         //character.lockMovement(false, new Vector2(0, -100));
     }
     public override void Do()
@@ -22,13 +25,13 @@ public class AirAttackState : State
             return;
         }
 
-        if (hasAttacked == false && animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= anim.length * .9f)
+        if (hasAttacked == false && animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= anim.length * .35f)
         {
             character.AttackAir();
             hasAttacked = true;
         }
 
-        if (animationComplete())
+        if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= anim.length * .70f)
         {
 
             //logic for if the player is airborne or grounded
@@ -52,6 +55,8 @@ public class AirAttackState : State
         hasAttacked = false;
         character.isAttackingNeutral = false;
 
+        //reset gravity to normal
+        character.rb.gravityScale = 6f;
         //reset the animation speed
         animator.speed = 1f;
         character.unlockMovement();

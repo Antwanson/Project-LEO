@@ -13,14 +13,14 @@ public class DashState : State
 
         Debug.Log("Dash");
         animator.Play(anim.name, 0, 0f);
-        animator.speed = 4f; // remove once actual anim input
+        animator.speed = 3f; // remove once actual anim input
         character.isDashing = true;
 
         //locking movement IF pushing player, delete if just increasing velocity
         //character.lockMovement(false, Vector2.zero);
         character.EnableImmunity();
 
-        character.lockMovement(false, new Vector2(character.attackDir * 15, 0));
+        character.lockMovement(false, new Vector2(character.attackDir * 22, 0));
     
     }
     public override void Do()

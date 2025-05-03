@@ -26,7 +26,7 @@ public class WalkState : State
         //if the player is attacking switch to attack state
         if (character.isAttackingNeutral)
         {
-            machine.Set(controller.attackState);
+            machine.Set(controller.dashAttackState);
             return;
         }
         //if the player is attacking with favor switch to favor attack state

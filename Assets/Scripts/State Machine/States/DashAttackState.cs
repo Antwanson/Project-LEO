@@ -8,11 +8,12 @@ public class DashAttackState : State
     public override void Enter()
     {
         Debug.Log("Dash Attack");
-        animator.Play(anim.name, 0, .2f);
-        animator.speed = 6f;
+        animator.Play(anim.name, 0, 0.05f);
+        animator.speed = 2.5f;
 
-        //character.lockMovement(false, new Vector2(0, -100));
-        character.lockMovement(false, new Vector2(character.attackDir * 15, 0));
+        //play animation in reverse
+
+        character.lockMovement(false, new Vector2(character.attackDir * 10, 0));
     }
     public override void Do()
     {
@@ -23,13 +24,13 @@ public class DashAttackState : State
             return;
         }
 
-        if (hasAttacked == false && animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= anim.length * .9f)
+        if (hasAttacked == false && animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= anim.length * .5f)
         {
             character.AttackDash();
             hasAttacked = true;
         }
 
-        if (animationComplete())
+        if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= anim.length * .6f)
         {
 
             //logic for if the player is airborne or grounded

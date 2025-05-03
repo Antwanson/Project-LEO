@@ -11,7 +11,7 @@ using UnityEngine;
 public class Entity : MonoBehaviour
 {
     
-    protected Rigidbody2D rb;
+    public Rigidbody2D rb;
     protected EntityHealth health;
 
     protected EntityFavor favor;

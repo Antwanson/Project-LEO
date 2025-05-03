@@ -986,6 +986,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6cfd76844bd85a44a50fa1707dd45fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rb: {fileID: 0}
   currentEntityKnockback: {x: 0, y: 0}
   damage: 10
   speed: 10
@@ -1008,8 +1009,8 @@ MonoBehaviour:
   attackFavorDamage: 200
   isAttackingFavor: 0
   attackAirDistance: 0
-  attackAirOffset: {x: 0.07, y: 1.13, z: 0}
-  attackAirHitboxSize: {x: 1.6, y: 2.28}
+  attackAirOffset: {x: 0, y: 1.64, z: 0}
+  attackAirHitboxSize: {x: 3.55, y: 3.52}
   attackAirDamage: 40
   attackDashDistance: 0
   attackDashOffset: {x: 0.2, y: 1.02, z: 0}

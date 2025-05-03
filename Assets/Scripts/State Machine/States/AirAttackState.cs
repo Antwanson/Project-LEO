@@ -5,6 +5,8 @@ using UnityEngine;
 public class AirAttackState : State
 {
     public bool hasAttacked = false;
+    public AudioClip attackSound;
+    public AudioSource audioSource;
     public override void Enter()
     {
         Debug.Log("Air Attack");
@@ -15,6 +17,11 @@ public class AirAttackState : State
         character.rb.velocity = new Vector2(character.rb.velocity.x, character.rb.velocity.y * 0.1f);
         character.rb.gravityScale = 0.1f * 6f;
         //character.lockMovement(false, new Vector2(0, -100));
+        //play sound
+        if (attackSound != null && audioSource != null)
+        {
+            audioSource.PlayOneShot(attackSound);
+        }
     }
     public override void Do()
     {
@@ -54,7 +61,11 @@ public class AirAttackState : State
         Debug.Log("exit air attack state");
         hasAttacked = false;
         character.isAttackingNeutral = false;
-
+        //stop sound
+        if (audioSource != null && attackSound != null)
+        {
+            audioSource.Stop();
+        }
         //reset gravity to normal
         character.rb.gravityScale = 6f;
         //reset the animation speed

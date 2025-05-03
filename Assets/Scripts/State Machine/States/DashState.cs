@@ -5,6 +5,8 @@ using UnityEngine;
 public class DashState : State
 {
     public bool hasDashed = false;
+    public AudioClip dashSound;
+    public AudioSource audioSource;
     
     public override void Enter()
     {
@@ -15,6 +17,13 @@ public class DashState : State
         animator.Play(anim.name, 0, 0f);
         animator.speed = 3f; // remove once actual anim input
         character.isDashing = true;
+        //play dash sound set volume to 0.5f
+
+        audioSource.volume = 0.5f;
+        if (dashSound != null && audioSource != null)
+        {
+            audioSource.PlayOneShot(dashSound);
+        }
 
         //locking movement IF pushing player, delete if just increasing velocity
         //character.lockMovement(false, Vector2.zero);
@@ -64,6 +73,12 @@ public class DashState : State
         Debug.Log("exit dash state");
         character.isDashing = false;
 
+        //stop the dash sound
+        if (audioSource != null && audioSource.isPlaying)
+        {
+            audioSource.Stop();
+        }
+        audioSource.volume = 1f;
         hasDashed = false;
         animator.speed = 1f;
         character.unlockMovement();

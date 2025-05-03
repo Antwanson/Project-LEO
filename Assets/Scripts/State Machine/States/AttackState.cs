@@ -5,11 +5,22 @@ using UnityEngine;
 public class AttackState : State
 {
     public bool hasAttacked = false;
+
+    public AudioClip attackSound;
+    public AudioSource audioSource;
     public override void Enter()
     {
         Debug.Log("Attack");
         animator.Play(anim.name, 0, .2f);
         animator.speed = 2.5f;
+        //have audio clip start .2 seconds into the audio clip
+        //audioSource.PlayOneShot(attackSound, .2f);
+        
+        //play attack sound
+        if (attackSound != null && audioSource != null)
+        {
+            audioSource.PlayOneShot(attackSound);
+        }
         
         character.lockMovement(false, Vector2.zero);
     }
@@ -52,6 +63,11 @@ public class AttackState : State
         hasAttacked = false;
         character.isAttackingNeutral = false;
 
+        //stop the attack sound
+        if (audioSource != null && audioSource.isPlaying)
+        {
+            audioSource.Stop();
+        }
         //reset the animation speed
         animator.speed = 1f;
         character.unlockMovement();

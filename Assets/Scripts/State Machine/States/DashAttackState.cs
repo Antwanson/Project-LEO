@@ -5,14 +5,18 @@ using UnityEngine;
 public class DashAttackState : State
 {
     public bool hasAttacked = false;
+    public AudioClip attackSound;
+    public AudioSource audioSource;
     public override void Enter()
     {
         Debug.Log("Dash Attack");
-        animator.Play(anim.name, 0, 0.05f);
-        animator.speed = 2.5f;
-
-        //play animation in reverse
-
+        animator.Play(anim.name, 0, 0.35f);
+        animator.speed = 2.1f;
+        //play audio
+        if (attackSound != null && audioSource != null)
+        {
+            audioSource.PlayOneShot(attackSound);
+        }
         character.lockMovement(false, new Vector2(character.attackDir * 10, 0));
     }
     public override void Do()
@@ -53,7 +57,11 @@ public class DashAttackState : State
         Debug.Log("exit dash attack state");
         hasAttacked = false;
         character.isAttackingNeutral = false;
-
+        //stop audio
+        if (audioSource != null && audioSource.isPlaying)
+        {
+            audioSource.Stop();
+        }
         //reset the animation speed
         animator.speed = 1f;
         character.unlockMovement();

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class FavorAttackState : State
 {
+    public AudioClip attackSound;
+    public AudioSource audioSource;
     public bool hasAttacked = false;
     public override void Enter()
     {
@@ -12,6 +14,11 @@ public class FavorAttackState : State
         if (character.entityFavor.getFavor() >= character.entityFavor.getMaxFavor())  //temp cond
         {
             
+            //play sound
+            if (attackSound != null && audioSource != null)
+            {
+                audioSource.PlayOneShot(attackSound);
+            }
             animator.Play(anim.name);
             //double speed
             animator.speed = 2f;
@@ -59,6 +66,11 @@ public class FavorAttackState : State
         //reset speed
         animator.speed = 1f;
         
+        //stop sound
+        if (audioSource != null && audioSource.isPlaying)
+        {
+            audioSource.Stop();
+        }
         character.unlockMovement();
     }
 }

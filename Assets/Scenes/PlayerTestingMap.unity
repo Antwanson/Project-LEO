@@ -122,6 +122,17 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &53181696 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4776919662827197529, guid: e5901a7d1e08d984ba04dfc310889c03, type: 3}
+  m_PrefabInstance: {fileID: 6419280494664354933}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb51b46c9da57414faafed9ee7b52882, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &58272352
 GameObject:
   m_ObjectHideFlags: 0
@@ -1988,6 +1999,71 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1232174610710299082
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1953878926349040368, guid: 744462a95ee10bc4095e17cd81e93cf1, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 429.52518
+      objectReference: {fileID: 0}
+    - target: {fileID: 1953878926349040368, guid: 744462a95ee10bc4095e17cd81e93cf1, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 269.04208
+      objectReference: {fileID: 0}
+    - target: {fileID: 1953878926349040368, guid: 744462a95ee10bc4095e17cd81e93cf1, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -11.458835
+      objectReference: {fileID: 0}
+    - target: {fileID: 1953878926349040368, guid: 744462a95ee10bc4095e17cd81e93cf1, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1953878926349040368, guid: 744462a95ee10bc4095e17cd81e93cf1, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1953878926349040368, guid: 744462a95ee10bc4095e17cd81e93cf1, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1953878926349040368, guid: 744462a95ee10bc4095e17cd81e93cf1, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1953878926349040368, guid: 744462a95ee10bc4095e17cd81e93cf1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1953878926349040368, guid: 744462a95ee10bc4095e17cd81e93cf1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1953878926349040368, guid: 744462a95ee10bc4095e17cd81e93cf1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2055027654524514486, guid: 744462a95ee10bc4095e17cd81e93cf1, type: 3}
+      propertyPath: Background
+      value: 
+      objectReference: {fileID: 2026357912}
+    - target: {fileID: 2055027654524514486, guid: 744462a95ee10bc4095e17cd81e93cf1, type: 3}
+      propertyPath: musicManager
+      value: 
+      objectReference: {fileID: 53181696}
+    - target: {fileID: 7723536423539423676, guid: 744462a95ee10bc4095e17cd81e93cf1, type: 3}
+      propertyPath: m_Name
+      value: IntensityManager
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 744462a95ee10bc4095e17cd81e93cf1, type: 3}
 --- !u!1001 &4529130784586495293
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2275,6 +2351,10 @@ PrefabInstance:
       propertyPath: pauseMenu
       value: 
       objectReference: {fileID: 1598598749}
+    - target: {fileID: 620137728769942482, guid: efc684d85b5b3a74a9c7e28c45183872, type: 3}
+      propertyPath: sceneInitializer
+      value: 
+      objectReference: {fileID: 1094606630}
     - target: {fileID: 1084464251252512588, guid: efc684d85b5b3a74a9c7e28c45183872, type: 3}
       propertyPath: m_Name
       value: DeathManager
@@ -2336,6 +2416,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Music Manager
       objectReference: {fileID: 0}
+    - target: {fileID: 4776919662827197529, guid: e5901a7d1e08d984ba04dfc310889c03, type: 3}
+      propertyPath: MenuMusic
+      value: 
+      objectReference: {fileID: 8300000, guid: 52bb8ce182f4032489cad679b7a59fdc, type: 3}
+    - target: {fileID: 4776919662827197529, guid: e5901a7d1e08d984ba04dfc310889c03, type: 3}
+      propertyPath: IntenseCombatMusic
+      value: 
+      objectReference: {fileID: 8300000, guid: 4b79ee6d80c3d6240b2f73e1da4dd4a5, type: 3}
     - target: {fileID: 6821678371345708114, guid: e5901a7d1e08d984ba04dfc310889c03, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2.8066494
@@ -2504,3 +2592,4 @@ SceneRoots:
   - {fileID: 1393074900}
   - {fileID: 5683081661487125844}
   - {fileID: 4529130784586495293}
+  - {fileID: 1232174610710299082}

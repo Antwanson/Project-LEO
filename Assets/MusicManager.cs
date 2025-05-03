@@ -43,8 +43,9 @@ public class MusicManager : MonoBehaviour
         // If we are in PlayerTestingMap, play the intro music
         if (currentScene == "Map1" || currentScene == "PlayerTestingMap" || currentScene == "Map2")
         {
-            audioSource.volume = 0.18f; // Set the volume (adjust as needed)
+             // Set the volume (adjust as needed)
             PlayMusic(IntroFightingMusic, false);
+            audioSource.volume = 0.18f;
         }
         // Otherwise, keep playing MenuMusic for any non-gameplay scene
         else

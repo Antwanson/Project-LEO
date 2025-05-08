@@ -10,7 +10,7 @@ This was a game made as apart of UTSA ACM-RowdyCreators. Project created to demo
 
 ## 🌟 **Check out our latest releases!** 🌟  
 
-Controllers required & Windows only
+Controllers required, non-standard monitor sizes are WIP, & Windows only
 - 🚀 [Latest Build 1.1](https://drive.google.com/file/d/1avKdVsaKAgpobx5CFqEo3dwfRmMPy-mJ/view?usp=sharing)  
 - 📂 [All Builds](https://drive.google.com/drive/folders/1q3ieoBT0W_nYxYFgcnAE0W6a-nsqPLw7?usp=sharing)
 

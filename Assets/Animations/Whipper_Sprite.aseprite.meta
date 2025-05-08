@@ -8,6 +8,7 @@ ScriptedImporter:
   assetBundleName: 
   assetBundleVariant: 
   script: {fileID: 11500000, guid: 62a9f0aa5b59740cfbadc7e5f9823bb0, type: 3}
+  importerVersion: 2
   textureImporterSettings:
     alphaSource: 1
     mipMapMode: 0
@@ -97,7 +98,7 @@ ScriptedImporter:
     addSortingGroup: 1
     addShadowCasters: 0
   importFileNodeState: 1
-  platformSettingsDirtyTick: 638673165015900781
+  platformSettingsDirtyTick: 638822435239540736
   textureAssetName: 
   singleSpriteImportData:
   - name: 
@@ -2101,26 +2102,6 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 425, y: 4}
-  - name: Frame_109
-    originalName: 
-    pivot: {x: 0.3636363, y: -0.05882353}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 167
-      y: 792
-      width: 33
-      height: 68
-    spriteID: f311ddeaf7107024e97a9e9e6965aeb5
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 167, y: 792}
   - name: Frame_66
     originalName: 
     pivot: {x: 0.4333334, y: -0.14285716}
@@ -2401,10 +2382,35 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 118, y: 199}
+  - name: Frame_114
+    originalName: 
+    pivot: {x: 0.3636363, y: -0.05882353}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 167
+      y: 792
+      width: 33
+      height: 68
+    spriteID: 01c6f552fcd763b4ba31bb460a2c4a6f
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 167, y: 792}
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: 105563543
+    uuid:
+      value0: 2131521715
+      value1: 0
+      value2: 0
+      value3: 0
+    guid: 2131521715
     name: Whipper_Sprite
     layerFlags: 0
     layerType: 0
@@ -3444,7 +3450,7 @@ ScriptedImporter:
         y: 4
         width: 33
         height: 68
-      spriteId: f311ddeaf7107024e97a9e9e6965aeb5
+      spriteId: 01c6f552fcd763b4ba31bb460a2c4a6f
     linkedCells: []
     parentIndex: -1
   platformSettings:
@@ -3466,7 +3472,7 @@ ScriptedImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     forceMaximumCompressionQuality_BC6H_BC7: 0
     crunchedCompression: 0
@@ -3488,3 +3494,4 @@ ScriptedImporter:
   secondarySpriteTextures: []
   spritePackingTag: 
   canvasSize: {x: 160, y: 140}
+  previousTextureSize: {x: 1024, y: 1024}

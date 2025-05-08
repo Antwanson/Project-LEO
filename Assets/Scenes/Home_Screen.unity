@@ -2143,6 +2143,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 952358973158113375, guid: e5901a7d1e08d984ba04dfc310889c03, type: 3}
+      propertyPath: m_Volume
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 2822829464577479150, guid: e5901a7d1e08d984ba04dfc310889c03, type: 3}
       propertyPath: m_Name
       value: Music Manager

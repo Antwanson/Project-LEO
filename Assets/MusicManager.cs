@@ -14,8 +14,15 @@ public class MusicManager : MonoBehaviour
     // Singleton instance
     private static MusicManager instance;
 
+    public float menuVolume = 1f; // Volume for menu music
+    public float combatVolume = 0.5f; // Volume for combat music
+    public float intenseCombatVolume = 1f; // Volume for intense combat music
+
+    private float startingVolume = 1f;
+
     private void Awake()
     {
+        startingVolume = audioSource.volume; // Store the initial volume
         // Ensure only one instance of MusicManager exists
         if (instance == null)
         {
@@ -44,13 +51,15 @@ public class MusicManager : MonoBehaviour
         if (currentScene == "Map1" || currentScene == "PlayerTestingMap" || currentScene == "Map2")
         {
              // Set the volume (adjust as needed)
+            audioSource.volume = startingVolume * combatVolume; // Set the volume for combat music
             PlayMusic(IntroFightingMusic, false);
-            audioSource.volume = 0.18f;
+            // audioSource.volume = 0.18f;
         }
         // Otherwise, keep playing MenuMusic for any non-gameplay scene
         else
         {
-            audioSource.volume = 1f; // Set the volume (adjust as needed)
+            // audioSource.volume = 1f; // Set the volume (adjust as needed)
+            audioSource.volume = startingVolume * menuVolume; // Set the volume for menu music
             PlayMusic(MenuMusic, true);
         }
     }
@@ -60,6 +69,8 @@ public class MusicManager : MonoBehaviour
         // If intro music finishes, start normal fighting music
         if (!audioSource.isPlaying && audioSource.clip == IntroFightingMusic)
         {
+            // Set the volume for combat music
+            audioSource.volume = startingVolume * combatVolume; // Set the volume for combat music
             PlayMusic(NormalFightingMusic, true);
         }
     }
@@ -82,16 +93,18 @@ public class MusicManager : MonoBehaviour
         // Menu music should be active in all non-gameplay scenes
         if (sceneName == "Map1" || sceneName == "PlayerTestingMap" || sceneName == "Map2")
         {
+            audioSource.volume = startingVolume * combatVolume; // Set the volume for combat music
             PlayMusic(IntroFightingMusic, false); // Play intro music for the testing map
-            audioSource.volume = 0.18f; // Set the volume (adjust as needed)
+            // audioSource.volume = 0.18f; // Set the volume (adjust as needed)
             menuFlag = false; // Set menuFlag to false for gameplay scenes
         }
         else
         {
             if (menuFlag  == false)
             {
+                audioSource.volume = startingVolume * menuVolume;
                PlayMusic(MenuMusic, true); // Play menu music for all other scenes
-               audioSource.volume = 1f; // Set the volume (adjust as needed)
+            //    audioSource.volume = 1f; // Set the volume (adjust as needed)
             }
            menuFlag = true; // Set menuFlag to true for non-gameplay scenes
         }
@@ -100,8 +113,11 @@ public class MusicManager : MonoBehaviour
     // Call these functions to switch to combat music states when needed
     public void SwitchCombat()
     {
+        
         if (audioSource.clip != NormalFightingMusic)
         {
+            //set volume to 0.5f
+            audioSource.volume = startingVolume * combatVolume;
             PlayMusic(NormalFightingMusic, true);
         }
     }
@@ -110,6 +126,8 @@ public class MusicManager : MonoBehaviour
     {
         if (audioSource.clip != IntenseCombatMusic)
         {
+            //set volume to 1f
+            audioSource.volume = startingVolume * intenseCombatVolume;
             PlayMusic(IntenseCombatMusic, true);
         }
     }
@@ -117,6 +135,7 @@ public class MusicManager : MonoBehaviour
     public void SwitchMenu()
     {
         // Ensure menu music is playing when we switch to a menu
+        audioSource.volume = startingVolume * menuVolume;
         PlayMusic(MenuMusic, true);
     }
 }

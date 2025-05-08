@@ -69,7 +69,7 @@ public class MusicManager : MonoBehaviour
         // Play the specified music clip
         audioSource.clip = clip;
         audioSource.loop = loop;
-        audioSource.volume = 0.5f; // Set the volume (adjust as needed)
+        //audioSource.volume = 0.5f; // Set the volume (adjust as needed)
         audioSource.Play();
     }
 
